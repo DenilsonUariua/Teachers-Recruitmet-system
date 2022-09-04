@@ -63,7 +63,7 @@
                                     <p class="card-text">Town: '.$row['town'].'</p>
                                     <p class="card-text">Start Date: '.$row['startDate'].'</p>
                                     <p class="card-text">End Date: '.$row['endDate'].'</p>
-                                    <a href="#" class="btn btn-primary">Apply</a>
+                                    <a href="jobApplication.php" class="btn btn-primary">Apply</a>
                                 </div>
                             </div>
                         </div>';
