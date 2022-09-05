@@ -22,8 +22,7 @@
             height="43"
             alt="logo"
           />
-          NamEduHire</a
-        >
+          NamEduHire</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -83,8 +82,6 @@
               class="form-control"
               id="exampleInputPassword1"
             />
-          </div></div>
-          
           <button type="submit" name="submit" class="btn btn-danger">Submit</button>
         </form>
       </div>
