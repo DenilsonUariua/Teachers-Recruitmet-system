@@ -45,9 +45,9 @@
             <label for="type_of_job" class="form-label">Job Type</label>
             <select class="form-control" aria-label="Default select example" name="type_of_job">
               <option selected disabled>Job Type</option>
-              <option value="internship">Internship</option>
-              <option value="permanent">Permanent</option>
-              <option value="volunteer">Volunteer</option>
+              <option value="Internship">Internship</option>
+              <option value="Permanent">Permanent</option>
+              <option value="Volunteer">Volunteer</option>
             </select>
           </div>
           <div class="col-md-6">
@@ -70,6 +70,61 @@
           <div class="col-6">
             <label for="inputAddress2" class="form-label">End Date</label>
             <input type="date" name="endDate" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="col-4">
+            <label for="inputAddress2" class="form-label">Region</label>
+            <select class="form-control" aria-label="Default select example" name="region">
+              <option selected disabled>Regions</option>
+              <option value="Caprivi">Caprivi</option>
+              <option value="erongo">Erongo</option>
+              <option value="Hardap">Hardap</option>
+              <option value="kharas">kharas</option>
+              <option value="Kavango">Kavango </option>
+              <option value="Khomas">Khomas </option>
+              <option value="Kunene">Kunene </option>
+              <option value="Ohangwena">Ohangwena</option>
+              <option value="Omaheke ">Omaheke </option>
+              <option value="Omusati">Omusati </option>
+              <option value="Oshana">Oshana</option>
+              <option value="Oshikoto">Oshikoto</option>
+              <option value="Otjozondjupa">Otjozondjupa</option>
+            </select>
+            </select>
+          </div>
+          <div class="col-4">
+            <label for="inputAddress2" class="form-label">Subject</label>
+            <select class="form-control" aria-label="Default select example" name="subject">
+              <option selected>Subjects</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Geography">Geography</option>
+              <option value="Biology">Biology</option>
+              <option value="Physical Science">Physical Science</option>
+              <option value="Physical Education">Physical Education</option>
+              <option value="Languages">Languages</option>
+              <option value="Arts">Arts</option>
+              <option value="History">History</option>
+              <option value="Life Skills">Life Skills</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Design & Technology">Design & Technology</option>
+            </select>
+          </div>
+          <div class="col-4">
+            <label for="inputAddress2" class="form-label">Grade</label>
+            <select class="form-control" aria-label="Default select example" name="grade">
+              <option selected>Grades</option>
+              <option value="1">Grade 1</option>
+              <option value="2">Grade 2</option>
+              <option value="3">Grade 3</option>
+              <option value="4">Grade 4</option>
+              <option value="5">Grade 5</option>
+              <option value="6">Grade 6</option>
+              <option value="7">Grade 7</option>    
+              <option value="8">Grade 8</option>
+              <option value="9">Grade 9</option>
+              <option value="10">Grade 10</option>
+              <option value="11">Grade 11</option>
+              <option value="12">Grade 12</option>
+            </select>
           </div>
 
           <div class="col-12">
@@ -118,11 +173,14 @@
           town VARCHAR(255) NOT NULL,
           employer VARCHAR(255) NOT NULL,
           seniority_level VARCHAR(255) NOT NULL,
+          region VARCHAR(255) NOT NULL,
+          subject_of_job VARCHAR(255) NOT NULL,
+          grade VARCHAR(255) NOT NULL,
           startDate DATE NOT NULL,
           endDate DATE NOT NULL,
           requirements VARCHAR(255) NOT NULL,
           description_of_job VARCHAR(255) NOT NULL,
-          fileUpload VARCHAR(255) NOT NULL,
+        
           PRIMARY KEY(id)
       )";
       //execute the query
@@ -136,10 +194,13 @@
           $seniority_level = $_POST['seniority_level'];
           $startDate = $_POST['startDate'];
           $endDate = $_POST['endDate'];
+          $region = $_POST['region'];
+          $subject = $_POST['subject'];
+          $grade = $_POST['grade'];
           $requirements = $_POST['requirements'];
           $description_of_job = $_POST['description_of_job'];
           $fileUpload = $_POST['fileUpload'];
-          $sql = "INSERT INTO jobs (type_of_job, town, employer, seniority_level, startDate, endDate, requirements, description_of_job) VALUES ('$type_of_job', '$town', '$employer', '$seniority_level', '$startDate', '$endDate', '$requirements', '$description_of_job')";
+          $sql = "INSERT INTO jobs (type_of_job, town, employer, seniority_level, startDate, endDate, region, subject_of_job, grade, requirements, description_of_job) VALUES ('$type_of_job', '$town', '$employer', '$seniority_level', '$startDate', '$endDate', '$region', '$subject', '$grade','$requirements', '$description_of_job')";
           $result = mysqli_query($db, $sql);
           if($result){}
           else{
