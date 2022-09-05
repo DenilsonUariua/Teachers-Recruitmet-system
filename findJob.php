@@ -38,6 +38,19 @@
         </div>
       </nav>
     <!-- end of navbar -->
+    <!-- create search bar -->
+    <div class="search-job text-center m-2">
+            <form action="findJob.php" method="post">
+                <select class="form-control" aria-label="Default select example" name="jobType">
+                    <option selected disabled>Job Types</option>
+                    <option value="internship">Internship</option>
+                    <option value="volunteer">Volunteer</option>
+                    <option value="permanent">Permanent</option>
+                  </select>
+                <button class="btn2" name="submit">Find Job</button>
+            </form>
+        </div>  
+<!-- end of search bar -->
     <div class="p-4"></div>
     <div class="container m-6 ">
         <div class="row">
@@ -52,21 +65,37 @@
                 $query = $db->query("SELECT * FROM jobs ORDER BY id DESC");
                 // loop through the jobs until all jobs are displayed
                 if($query->num_rows > 0){ 
-                    while($row = $query->fetch_assoc()){
-                    // display the job in one row
-                    echo '
-                        <div class="col-md-4">
-                            <div class="card m-2 bg-light">
-                                <div class="card-body">
-                                    <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
-                                    <p class="card-text">Description: '.$row['description_of_job'].'</p>
-                                    <p class="card-text">Town: '.$row['town'].'</p>
-                                    <p class="card-text">Start Date: '.$row['startDate'].'</p>
-                                    <p class="card-text">End Date: '.$row['endDate'].'</p>
-                                    <a href="jobApplication.php" class="btn btn-primary">Apply</a>
+                    // display number of job in database
+                    echo '<div class="col-md-12 text-center"><p class="text-muted">There are '.$query->num_rows.' jobs!</p></div>';
+                }
+                // if form is submitted fetch jobs from database that match the job type
+                if(isset($_POST['submit'])){
+                  // clear the previous search results
+                  echo '<div class="col-md-4"></div>';
+                    $jobType = $_POST['jobType'];
+                    $query = $db->query("SELECT * FROM jobs WHERE type_of_job = '$jobType' ORDER BY id DESC");
+                    // loop through the jobs until all jobs are displayed
+                    if($query->num_rows > 0){ 
+                        while($row = $query->fetch_assoc()){
+                        // display the job in one row
+                        echo '
+                            <div class="col-md-4">
+                                <div class="card m-2 bg-light">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
+                                        <p class="card-text">Description: '.$row['description_of_job'].'</p>
+                                        <p class="card-text">Town: '.$row['town'].'</p>
+                                        <p class="card-text">Start Date: '.$row['startDate'].'</p>
+                                        <p class="card-text">End Date: '.$row['endDate'].'</p>
+                                        <a href="jobApplication.php" class="btn btn-primary">Apply</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>';
+                            </div>';
+                        }
+                    }
+                    // display message if no jobs are found
+                    else{
+                        echo '<div class="col-md-12 text-center"><p class="text-muted">No jobs found!</p></div>';
                     }
                 }
             ?>

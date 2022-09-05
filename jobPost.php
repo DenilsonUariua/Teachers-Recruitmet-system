@@ -42,8 +42,13 @@
     <div class="container-md bg-light border">
       <form class="row g-3" action="jobPost.php" method="post">
           <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Job Type</label>
-            <input type="text" name="type_of_job"class="form-control" id="inputEmail4" placeholder="Internship">
+            <label for="type_of_job" class="form-label">Job Type</label>
+            <select class="form-control" aria-label="Default select example" name="type_of_job">
+              <option selected disabled>Job Type</option>
+              <option value="internship">Internship</option>
+              <option value="permanent">Permanent</option>
+              <option value="volunteer">Volunteer</option>
+            </select>
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Town</label>
@@ -134,7 +139,7 @@
           $requirements = $_POST['requirements'];
           $description_of_job = $_POST['description_of_job'];
           $fileUpload = $_POST['fileUpload'];
-          $sql = "INSERT INTO jobs (type_of_job, town, employer, seniority_level, startDate, endDate, requirements, description_of_job, fileUpload) VALUES ('$type_of_job', '$town', '$employer', '$seniority_level', '$startDate', '$endDate', '$requirements', '$description_of_job', '$fileUpload')";
+          $sql = "INSERT INTO jobs (type_of_job, town, employer, seniority_level, startDate, endDate, requirements, description_of_job) VALUES ('$type_of_job', '$town', '$employer', '$seniority_level', '$startDate', '$endDate', '$requirements', '$description_of_job')";
           $result = mysqli_query($db, $sql);
           if($result){}
           else{
