@@ -37,7 +37,7 @@
                         <a class="nav-link" href="findJob.php">Find a Job</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="postJop.php">Post a Job</a>
+                        <a class="nav-link" href="jobPost.php">Post a Job</a>
                     </li>
 
                 </ul>
@@ -47,24 +47,39 @@
     <!-- end of navbar -->
     <!-- start of body containing title and paragraph text  -->
     <div class="p-5"></div>
-    <div class="container bg-light rounded">
-        <!-- Content here -->
-        <h1 class="text-center">About NamEduHire</h1>
-        <div class="p-3 ">
-        <p class="h4">One of them most urgent development challenges in Namibia over the past three decades
-            is unemployment amongst qualified teachers. Hanghuwo (2019) reported that it is evident
-            that more qualified teachers exist over the number of available positions to fill.
-            To which the current Namibian Minister of Education, Arts and Culture; Hon. Anna Nghipondoka
-            responded that the Ministry will only provide a total of 1600 teaching vacancies as of 2019,
-            which merely amounts to a little over 60% of the number of qualified teachers that were produced in
-            that year. “Amongst the total number of 2019 graduates, over 2000 students came from the faculty of
-            education.” (Iikela.S,2020) The majority of which are still unemployed or between jobs.
-            Tubaundula (2021) believes that the main issue is the lack of available jobs for the annual
-            high influx of teachers. There are many instances where, when teachers finally see the vacancy, it is
-            way past the due date. With this in mind it is safe to believe that it is vital for every teacher to have
-            equal opportunities at accessing available vacancies on time at a centralized platform.</p>
+    <div class="container text-center bg-light rounded ">
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-
 </body>
 </html>

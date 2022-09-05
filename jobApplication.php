@@ -30,7 +30,7 @@
                         <a class="nav-link" href="findJob.php">Find a Job</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="postJop.php">Post a Job</a>
+                        <a class="nav-link" href="jobPost.php">Post a Job</a>
                     </li>
                     
                     </ul>
