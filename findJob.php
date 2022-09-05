@@ -42,7 +42,7 @@
     <div class="search-job text-center m-2">
             <form action="findJob.php" method="post">
                 <select class="form-control" aria-label="Default select example" name="jobType">
-                    <option selected disabled>Job Types</option>
+                    <option selected disabled>Click to Select Job Type</option>
                     <option value="internship">Internship</option>
                     <option value="volunteer">Volunteer</option>
                     <option value="permanent">Permanent</option>
