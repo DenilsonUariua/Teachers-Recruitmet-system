@@ -61,7 +61,7 @@
     <div class="card align-middle" style="margin: 5rem; background: #f8f9fa">
       <div class="card-body d-flex justify-content-center">
         <form action="login.php" method="post">
-          <div class="mb-3">
+          <div class="row"><div class="mb-4">
             <label for="exampleInputEmail1" class="form-label"
               >Username</label
             >
@@ -72,11 +72,8 @@
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
             />
-            <div id="emailHelp" class="form-text">
-              We'll never share your email with anyone else.
-            </div>
           </div>
-          <div class="mb-3">
+          <div class="mb-4">
             <label for="exampleInputPassword1" class="form-label"
               >Password</label
             >
@@ -86,18 +83,9 @@
               class="form-control"
               id="exampleInputPassword1"
             />
-          </div>
-          <div class="mb-3 form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="exampleCheck1"
-            />
-            <label class="form-check-label" for="exampleCheck1"
-              >Check me out</label
-            >
-          </div>
-          <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+          </div></div>
+          
+          <button type="submit" name="submit" class="btn btn-danger">Submit</button>
         </form>
       </div>
     </div>
