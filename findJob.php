@@ -85,6 +85,8 @@
                                         <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
                                         <p class="card-text">Description: '.$row['description_of_job'].'</p>
                                         <p class="card-text">Town: '.$row['town'].'</p>
+                                        <p class="card-text">Subject: '.$row['subject_of_job'].'</p>
+                                        <p class="card-text">Grade: '.$row['grade'].'</p>
                                         <p class="card-text">Start Date: '.$row['startDate'].'</p>
                                         <p class="card-text">End Date: '.$row['endDate'].'</p>
                                         <a href="jobApplication.php" class="btn btn-primary">Apply</a>
