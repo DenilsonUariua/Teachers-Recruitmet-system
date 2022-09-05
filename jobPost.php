@@ -117,6 +117,7 @@
           endDate DATE NOT NULL,
           requirements VARCHAR(255) NOT NULL,
           description_of_job VARCHAR(255) NOT NULL,
+          fileUpload VARCHAR(255) NOT NULL,
           PRIMARY KEY(id)
       )";
       //execute the query
@@ -132,7 +133,8 @@
           $endDate = $_POST['endDate'];
           $requirements = $_POST['requirements'];
           $description_of_job = $_POST['description_of_job'];
-          $sql = "INSERT INTO jobs (type_of_job, town, employer, seniority_level, startDate, endDate, requirements, description_of_job) VALUES ('$type_of_job', '$town', '$employer', '$seniority_level', '$startDate', '$endDate', '$requirements', '$description_of_job')";
+          $fileUpload = $_POST['fileUpload'];
+          $sql = "INSERT INTO jobs (type_of_job, town, employer, seniority_level, startDate, endDate, requirements, description_of_job, fileUpload) VALUES ('$type_of_job', '$town', '$employer', '$seniority_level', '$startDate', '$endDate', '$requirements', '$description_of_job', '$fileUpload')";
           $result = mysqli_query($db, $sql);
           if($result){}
           else{
