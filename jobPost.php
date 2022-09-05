@@ -74,16 +74,18 @@
             </div>
           </div>
           <div class="col-12">
-            <!-- <textarea rows="" cols=""></textarea> <input type="textarea" name="description" class="form-control" id="inputAddress" placeholder="1234 Main St"> -->
             <div class="form-floating">
               <textarea class="form-control" name="description_of_job" placeholder="Leave a comment here" id="Description"></textarea>
               <label for="description">Description</label>
             </div>
           </div>
           <div class="col-12">
+            <label for="fileUpload" class="form-label">Upload PDF or Image File</label>
+            <input type="file" class="form-control" id="fileUpload" name="fileUpload" placeholder="Upload PDF or Image">  
+          </div>
+          <div class="col-12 my-3">
             <button type="submit" name="submit" class="btn btn-primary">Post Job</button>
           </div>
-          <div class="p-2"></div>
       </form>
     </div>  
     <div class="p-4"></div>
