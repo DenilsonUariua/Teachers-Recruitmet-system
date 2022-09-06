@@ -100,6 +100,28 @@
                         echo '<div class="col-md-12 text-center"><p class="text-muted">No jobs found!</p></div>';
                     }
                 }
+                // if form is not submitted fetch all jobs from database
+                else{
+                    // loop through the jobs until all jobs are displayed
+                    while($row = $query->fetch_assoc()){
+                        // display the job in one row
+                        echo '
+                            <div class="col-md-4">
+                                <div class="card m-2 bg-light">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
+                                        <p class="card-text">Description: '.$row['description_of_job'].'</p>
+                                        <p class="card-text">Town: '.$row['town'].'</p>
+                                        <p class="card-text">Subject: '.$row['subject_of_job'].'</p>
+                                        <p class="card-text">Grade: '.$row['grade'].'</p>
+                                        <p class="card-text">Start Date: '.$row['startDate'].'</p>
+                                        <p class="card-text">End Date: '.$row['endDate'].'</p>
+                                        <a href="jobApplication.php" class="btn btn-primary">Apply</a>
+                                    </div>
+                                </div>
+                            </div>';
+                    }
+                }
             ?>
         <!-- end of card groups -->
         </div>
