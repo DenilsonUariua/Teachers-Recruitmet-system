@@ -1,0 +1,23 @@
+{
+  "name": "teachers-recruitmet-system",
+  "version": "1.0.0",
+  "description": "A web based system to facilitate job seeking/recruitment amongst regional offices and schools in Namibia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DenilsonUariua/Teachers-Recruitmet-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DenilsonUariua/Teachers-Recruitmet-system/issues"
+  },
+  "homepage": "https://github.com/DenilsonUariua/Teachers-Recruitmet-system#readme",
+  "dependencies": {
+    "bulma": "^0.9.4"
+  }
+}
