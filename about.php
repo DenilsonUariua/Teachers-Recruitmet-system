@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- add logo to the browser tab -->
+    <link rel="icon" href="./images/eduhirelogo.png" />
     <!--Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title> NamEduHire</title>
@@ -54,10 +56,10 @@
                     <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Our Mission</h5>
-                        <p class="card-text">We have digitized the recruitment process 
+                        <p class="card-text">We have digitized the recruitment process
                             for teachers in Namibia. To improve the recruitment process
                             for teachers by making vacancies more accessible and for schools
-                            to attract more applicants while saving advertising costs.</p>  
+                            to attract more applicants while saving advertising costs.</p>
                         <a href="registration.php" class="btn btn-danger">Sign Up Now</a>
                     </div>
                 </div>
@@ -68,9 +70,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Job Seekers</h5>
                         <p class="card-text">Whether you're just starting out or experienced,
-                             NamEduHire is the best place to manage your education career.
+                            NamEduHire is the best place to manage your education career.
                             Access thousands of job openings nationwide in a single,
-                        easy-to-search engine. And that's just the beginning </p>
+                            easy-to-search engine. And that's just the beginning </p>
                         <a href="findJob.php" class="btn btn-danger">Find a Job ></a>
                     </div>
                 </div>
@@ -80,9 +82,9 @@
                     <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Employers</h5>
-                        <p class="card-text">Find teachers, administrators, support 
+                        <p class="card-text">Find teachers, administrators, support
                             staff and other education professionals for your school.
-                            Attract more applicants even those hard-to-fill positions, 
+                            Attract more applicants even those hard-to-fill positions,
                             while saving money spent on career fairs and advertising.
                         </p>
                         <a href="jobPost.php" class="btn btn-danger">Post a Job ></a>
@@ -92,4 +94,5 @@
         </div>
     </div>
 </body>
+
 </html>

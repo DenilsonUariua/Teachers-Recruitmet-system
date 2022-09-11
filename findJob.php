@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- add logo to the browser tab -->
+    <link rel="icon" href="./images/eduhirelogo.png" />
     <!--Bootstrap CSS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
@@ -13,44 +16,48 @@
     <link rel="stylesheet" href="./style.css">
     <title>Find Job</title>
 </head>
+
 <body>
-   
+
     <!-- start of navbar -->
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><img src="./images/eduhirelogo.png" width="45" height="43" alt="logo"> NamEduHire</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="about.php">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="findJob.php">Find a Job</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="jobPost.php">Post a Job</a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="index.html"><img src="./images/eduhirelogo.png" width="45" height="43"
+                    alt="logo"> NamEduHire</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.php">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="findJob.php">Find a Job</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jobPost.php">Post a Job</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
+    </nav>
     <!-- end of navbar -->
     <!-- create search bar -->
     <div class="search-job text-center m-2">
-            <form action="findJob.php" method="post">
-                <select class="form-control" aria-label="Default select example" name="jobType">
-                    <option selected disabled>Click to Select Job Type</option>
-                    <option value="internship">Internship</option>
-                    <option value="volunteer">Volunteer</option>
-                    <option value="permanent">Permanent</option>
-                  </select>
-                <button class="btn2" name="submit">Find Job</button>
-            </form>
-        </div>  
-<!-- end of search bar -->
+        <form action="findJob.php" method="post">
+            <select class="form-control" aria-label="Default select example" name="jobType">
+                <option selected disabled>Click to Select Job Type</option>
+                <option value="internship">Internship</option>
+                <option value="volunteer">Volunteer</option>
+                <option value="permanent">Permanent</option>
+            </select>
+            <button class="btn2" name="submit">Find Job</button>
+        </form>
+    </div>
+    <!-- end of search bar -->
     <div class="p-4"></div>
     <div class="container m-6 ">
         <div class="row">
@@ -106,30 +113,42 @@
                     while($row = $query->fetch_assoc()){
                         // display the job in one row
                         echo '
-                            <div class="col-md-4">
-                                <div class="card m-2 bg-light">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
-                                        <p class="card-text">Description: '.$row['description_of_job'].'</p>
-                                        <p class="card-text">Town: '.$row['town'].'</p>
-                                        <p class="card-text">Subject: '.$row['subject_of_job'].'</p>
-                                        <p class="card-text">Grade: '.$row['grade'].'</p>
-                                        <p class="card-text">Start Date: '.$row['startDate'].'</p>
-                                        <p class="card-text">End Date: '.$row['endDate'].'</p>
-                                        <a href="jobApplication.php" class="btn btn-primary">Apply</a>
-                                    </div>
+                        <div class="col-md-4">
+                        <div class="card m-2 bg-light">
+                            <div class="card-body d-inline-flex">
+                                <div class="col" style="width: 40%">
+                                <img src="./images/eduhirelogo.png" class="card-img-top" alt="company-logo">
                                 </div>
-                            </div>';
+                                <div class="col" style="width: 60%">
+                                    <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
+                                    <p class="card-text">Description: '.$row['description_of_job'].'</p>
+                                    <p class="card-text">Town: '.$row['town'].'</p>
+                                    <p class="card-text">Subject: '.$row['subject_of_job'].'</p>
+                                    <p class="card-text">Grade: '.$row['grade'].'</p>
+                                    <p class="card-text">Start Date: '.$row['startDate'].'</p>
+                                    <p class="card-text">End Date: '.$row['endDate'].'</p>
+                                    <a href="jobApplication.php" class="btn btn-primary">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
                     }
                 }
             ?>
-        <!-- end of card groups -->
+            <!-- end of card groups -->
         </div>
     </div>
     <div class="p-4"></div>
-<!-- Bootstrap 5 scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <!-- Bootstrap 5 scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
