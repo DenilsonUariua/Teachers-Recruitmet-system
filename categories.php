@@ -48,8 +48,14 @@
     </nav>
     <!-- end of nav bar -->
     <div class="d-flex p-2 justify-content-center flex-column">
-        <h1>Categories</h1>
 
+        <div class="container text-center d-flex justify-content-center" 
+        style="height: 200px;background-image: url('./images/coffee.jpg');
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-position: center; align-items: center;">
+            <h1>Categories</h1>
+        </div>
         <div class="container text-center bg-light">
             <!-- Start of first card -->
             <div class="card-group m-3">
@@ -71,7 +77,6 @@
                     </div>
                 </div>
                 <!-- end of first card -->
-
                 <div class="card">
                     <div class="image-container m-4"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
                             fill="currentColor" class="bi bi-brush-fill" viewBox="0 0 16 16">

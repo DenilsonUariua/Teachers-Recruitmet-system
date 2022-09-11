@@ -142,3 +142,7 @@
     text-decoration: none;
     color: black;
 }
+.bgImageCcontainer{
+    background-image: url("./images/GeographyImage.png");
+    height: 200px;
+}
