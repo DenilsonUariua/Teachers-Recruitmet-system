@@ -36,13 +36,12 @@
                         <a class="nav-link" href="jobPost.php">Post a Job</a>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <div class="d-flex">
                     <button class="btn0"><a href="login.php"
                             style="text-decoration: none; color: black;">Login</a></button>
                     <button class="btn1"><a href="registration.php" style="text-decoration: none; color: black;">Sign
                             Up</a></button>
-                </form>
-                </form>
+                </div>
             </div>
         </div>
     </nav>

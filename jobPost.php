@@ -47,8 +47,15 @@
     <div class="p-4"></div>
     <!-- form for creating a job post -->
     <div class="container-md bg-light border">
+        <div class="py-2">
+            <h3>Post A New Job</h3>
+        </div>
         <form class="row g-3" action="jobPost.php" method="post">
-            <div class="col-md-6">
+            <div class="col-md-12">
+                <label for="inputPassword4" class="form-label">Job Title</label>
+                <input type="text" name="jobTitle" class="form-control" id="inputPassword4">
+            </div>
+            <div class="col-md-12">
                 <label for="type_of_job" class="form-label">Job Type</label>
                 <select class="form-control" aria-label="Default select example" name="type_of_job">
                     <option selected disabled>Job Type</option>
@@ -57,19 +64,9 @@
                     <option value="Volunteer">Volunteer</option>
                 </select>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Town</label>
-                <input type="text" name="town" class="form-control" id="inputPassword4" placeholder="Tsumeb">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Employer information</label>
-                <input type="text" name="employer" class="form-control" id="inputAddress" placeholder="Name">
-            </div>
-
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Seniority Level</label>
-                <input type="text" name="seniority_level" class="form-control" id="inputAddress"
-                    placeholder="Entry level">
+                <input type="text" name="town" class="form-control" id="inputPassword4" placeholder="">
             </div>
             <div class="col-6">
                 <label for="inputAddress2" class="form-label">Start Date</label>
@@ -151,6 +148,23 @@
                     <label for="description">Description</label>
                 </div>
             </div>
+
+            <div class="col-12">
+                <h4>Company Details</h4>
+            </div>
+
+            <div class="col-md-12">
+                <label for="inputPassword4" class="form-label">Company Name</label>
+                <input type="text" name="town" class="form-control" id="inputPassword4" placeholder="">
+            </div>
+            <div class="col-md-12">
+                <label for="inputPassword4" class="form-label">Website (Optional)</label>
+                <input type="text" name="website" class="form-control" id="inputPassword4" placeholder="http://">
+            </div>
+            <div class="col-md-12">
+                <label for="inputPassword4" class="form-label">Town</label>
+                <input type="text" name="town" class="form-control" id="inputPassword4" placeholder="">
+            </div>
             <div class="col-12">
                 <label for="fileUpload" class="form-label">Upload PDF or Image File</label>
                 <input type="file" class="form-control" id="fileUpload" name="fileUpload"
@@ -179,23 +193,27 @@
           die();
       }
       else{}
-      //check if table jobs exists in the database, if not create it
-      $sql = "CREATE TABLE IF NOT EXISTS jobs(
-          id INT(11) NOT NULL AUTO_INCREMENT,
-          type_of_job VARCHAR(255) NOT NULL,
-          town VARCHAR(255) NOT NULL,
-          employer VARCHAR(255) NOT NULL,
-          seniority_level VARCHAR(255) NOT NULL,
-          region VARCHAR(255) NOT NULL,
-          subject_of_job VARCHAR(255) NOT NULL,
-          grade VARCHAR(255) NOT NULL,
-          startDate DATE NOT NULL,
-          endDate DATE NOT NULL,
-          requirements VARCHAR(255) NOT NULL,
-          description_of_job VARCHAR(255) NOT NULL,
-        
-          PRIMARY KEY(id)
-      )";
+        //check if table jobs exists in the database, if not create it
+        // fileUpload should upload the file to the database
+        $sql = "CREATE TABLE IF NOT EXISTS jobs (
+            id INT(11) NOT NULL AUTO_INCREMENT,
+            job_title VARCHAR(255) NOT NULL,
+            startDate DATE NOT NULL,
+            endDate DATE NOT NULL,
+            region VARCHAR(255) NOT NULL,
+            subject VARCHAR(255) NOT NULL,
+            grade VARCHAR(255) NOT NULL,
+            requirements VARCHAR(255) NOT NULL,
+            description_of_job VARCHAR(255) NOT NULL,
+            company_name VARCHAR(255) NOT NULL,
+            website VARCHAR(255) NOT NULL,
+            town VARCHAR(255) NOT NULL,
+            fileUpload VARCHAR(255) NOT NULL,
+            PRIMARY KEY (id)
+        )";
+      
+
+
       //execute the query
       $db->query($sql);
 
