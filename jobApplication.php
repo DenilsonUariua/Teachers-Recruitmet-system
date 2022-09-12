@@ -75,6 +75,11 @@
                             placeholder="Enter the position you are applying for">
                     </div>
                     <div class="mb-3">
+                        <label for="position" class="form-label">Company</label>
+                        <input type="text" class="form-control" id="position" name="company"
+                            placeholder="Enter the company you are applying for">
+                    </div>
+                    <div class="mb-3">
                         <label for="resume" class="form-label">Resume</label>
                         <input type="file" class="form-control" id="resume" name="resume"
                             placeholder="Upload your resume">
@@ -83,6 +88,65 @@
                 </form>
             </div>
         </div>
+    </div>
+    <div class="p-3"></div>
+
+    <!-- php code to handle job application -->
+    <?php 
+            // connect to the database
+            $conn = mysqli_connect("localhost", "root", "", "test");
+            // check if the connection was successful
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+             // create job application table if it does not exist
+            $sql = "CREATE TABLE IF NOT EXISTS jobApplication (
+                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(30) NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                phone VARCHAR(30) NOT NULL,
+                address VARCHAR(50) NOT NULL,
+                position VARCHAR(50) NOT NULL,
+                company VARCHAR(50) NOT NULL,
+                resume VARCHAR(50) NOT NULL,
+                reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                )";
+
+            if (mysqli_query($conn, $sql)) {
+                // echo "Table jobApplication created successfully";
+            } else {
+                echo "Error creating table: " . mysqli_error($conn);
+            }
+            // check if the submit button was clicked
+            if (isset($_POST['submit'])) {
+                // get the form data
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $phone = $_POST['phone'];
+                $address = $_POST['address'];
+                $position = $_POST['position'];
+                $company = $_POST['company'];
+                $resume = $_FILES['resume']['name'];
+                $resume_tmp = $_FILES['resume']['tmp_name'];
+                // only allow pdf files
+                $file_ext = strtolower(end(explode('.', $resume)));
+                $extensions = array("pdf");
+                if (in_array($file_ext, $extensions) === false) {
+                    echo "<script>alert('Only PDF files are allowed')</script>";
+                } else {
+                    // insert the data into the database
+                    $sql = "INSERT INTO jobApplication (name, email, phone, address, position, company, resume) VALUES ('$name', '$email', '$phone', '$address', '$position', '$company', '$resume')";
+                    if (mysqli_query($conn, $sql)) {
+                        // echo "New record created successfully";
+                        // move the resume to the uploads folder
+                        move_uploaded_file($resume_tmp, "uploads/$resume");
+                        echo "<script>alert('Your application has been submitted successfully')</script>";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    }
+                }
+            }
+        ?>
 </body>
 
 </html>
