@@ -18,7 +18,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
     <!--Link HTML and CSS file-->
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>About Us</title>
 </head>
 
 <body>
@@ -36,28 +36,29 @@ session_start();
                         <a class="nav-link" href="#">About</a>
                     </li>
 
-                    <?php 
+                    
+                </ul>
+                <?php 
                         if (isset($_SESSION['username'])) {
                             $username = $_SESSION['username'];
-                            echo "<li class='nav-item'>
-                            <a class='nav-link' href='findJob.php'>Find a Job</a>
+                            echo '<li class="nav-item">
+                            <a class="nav-link" href="findJob.php">Find Job</a>
                         </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='jobPost.php'>Post a Job</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="jobPost.php">Post Job</a>
                         </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='logout.php'>Logout</a>
-                        </li>";
+                        <a href="logout.php" style="text-decoration: none; color: black;"> <button
+                        class="btn btn-danger btn-lg mx-2" style="border-radius: 0">Logout</button></a>';
                         } else {
-                            echo "<li class='nav-item'>
-                            <a class='nav-link' href='login.php'>Login</a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='registration.php'>Sign Up</a>
-                        </li>";
+                            echo '<div class="d-flex">
+                            <a href="login.php" style="text-decoration: none; color: black;"> <button
+                                    class="btn btn-danger btn-lg mx-2" style="border-radius: 0">Login</button></a>
+                            <a href="registration.php" style="text-decoration: none; color: black;">
+                            <button class="btn btn-outline-danger btn-lg" style="border-radius: 0">Sign
+                                    Up</button></a>
+                        </div>';
                         } 
                     ?>
-                </ul>
             </div>
         </div>
     </nav>

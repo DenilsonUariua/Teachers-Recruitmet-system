@@ -1,12 +1,5 @@
 <?php 
 session_start();
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    echo "Welcome $username";
-} else {
-    echo "You are not logged in";
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,13 +37,19 @@ if (isset($_SESSION['username'])) {
                     <li class="nav-item">
                         <a class="nav-link" href="about.php">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="findJob.php">Find a Job</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="jobPost.php">Post a Job</a>
-                    </li>
                 </ul>
+                <?php 
+                    if (isset($_SESSION['username'])) {
+                        echo '<li class="nav-item">
+                        <a class="nav-link" href="findJob.php">Find Job</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jobPost.php">Post Job</a>
+                    </li>
+                    <a href="logout.php" style="text-decoration: none; color: black;"> <button
+                    class="btn btn-danger btn-lg mx-2" style="border-radius: 0">Logout</button></a>';
+                    }
+                    ?>
             </div>
         </div>
     </nav>
@@ -149,8 +148,8 @@ if (isset($_SESSION['username'])) {
         </div>
     </div>
     <div class="p-4"></div>
-     <!-- start of footer -->
-     <footer class="footer bg-light">
+    <!-- start of footer -->
+    <footer class="footer bg-light">
         <div class="container text-center">
             <div class="row">
                 <div class="col">

@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -32,14 +35,28 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about.php">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="findJob.php">Find a Job</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Post a Job</a>
-                    </li>
-
                 </ul>
+                <?php 
+                    if(isset($_SESSION['username'])){
+                        echo '<li class="nav-item">
+                        <a class="nav-link" href="findJob.php">Find Job</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jobPost.php">Post Job</a>
+                    </li>
+                    <a href="logout.php" style="text-decoration: none; color: black;"> <button
+                    class="btn btn-danger btn-lg mx-2" style="border-radius: 0">Logout</button></a>';
+                    }
+                    else{
+                        echo '<div class="d-flex">
+                        <a href="login.php" style="text-decoration: none; color: black;"> <button
+                                class="btn btn-danger btn-lg mx-2" style="border-radius: 0">Login</button></a>
+                        <a href="registration.php" style="text-decoration: none; color: black;">
+                        <button class="btn btn-outline-danger btn-lg" style="border-radius: 0">Sign
+                                Up</button></a>
+                    </div>';
+                    }
+                ?>
             </div>
         </div>
     </nav>
