@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+   
+?>
 <!doctype html>
 <html lang="en">
 
@@ -21,10 +25,12 @@
     <!--Nav Bar-->
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="./images/eduhirelogo.png" width="45" height="43" alt="logo">
-                NamEduHire
-            </a>
+          
+                <a class="navbar-brand" href="index.php" style="display: flex; align-items: center;">
+                    <img src="./images/eduhirelogo.png" width="45" height="43" alt="logo">
+                    NamEduHire
+                </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -36,12 +42,27 @@
                         <a class="nav-link" href="about.php">About</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <a href="login.php" style="text-decoration: none; color: black;"> <button
-                            class="btn0">Login</button></a>
-                    <a href="registration.php" style="text-decoration: none; color: black;"><button class="btn1">Sign
-                            Up</button></a>
-                </form>
+                <?php 
+                    if(isset($_SESSION['username'])){
+                        echo "<li class='nav-item'>
+                        <a class='nav-link' href='findJob.php'>Find a Job</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='jobPost.php'>Post a Job</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='logout.php'>Logout</a>
+                    </li>";
+                    }
+                    else{
+                        echo "<li class='nav-item'>
+                        <a class='nav-link' href='login.php'>Login</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='registration.php'>Sign Up</a>
+                    </li>";
+                    }
+                ?>
             </div>
         </div>
     </nav>
@@ -271,7 +292,7 @@
                                 </svg></div>
 
                             <h5 class="text-center">Create an account</h5>
-                            <p class="text-center">Post a job tell us about your project. We quickly match you 
+                            <p class="text-center">Post a job tell us about your project. We quickly match you
                                 with the right freelancers.</p>
                             </p>
                         </div>
@@ -287,7 +308,7 @@
                                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                 </svg></div>
                             <h5 class="text-center">Search for Jobs</h5>
-                            <p class="text-center">Post a job to tell us about your project. We'll 
+                            <p class="text-center">Post a job to tell us about your project. We'll
                                 quickly match you with the right freelancers.</p>
                             </p>
                         </div>
@@ -303,7 +324,7 @@
                                         d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935z" />
                                 </svg></div>
                             <h5 class="text-center">Apply</h5>
-                            <p class="text-center">Post a job to tell us about your project. We'll 
+                            <p class="text-center">Post a job to tell us about your project. We'll
                                 quickly match you with the right freelancers.</p>
                         </div>
                     </div>
@@ -321,7 +342,7 @@
             <div class="row">
                 <div class="col">
                     <div class="row">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="index.php">
                             <img src="./images/eduhirelogo.png" width="45" height="43" alt="logo">
                             NamEduHire
                         </a>
