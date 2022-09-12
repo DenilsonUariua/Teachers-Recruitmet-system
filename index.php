@@ -78,7 +78,7 @@
         </div>
         <!--search bar-->
         <div class="search-job text-center m-2">
-            <form method="post" action="searchJob.php">
+            <form method="post" action="jobSearch.php">
                 <select class="form-control" aria-label="Default select example" name="region">
                     <option selected>Regions</option>
                     <option value="Caprivi">Caprivi</option>
