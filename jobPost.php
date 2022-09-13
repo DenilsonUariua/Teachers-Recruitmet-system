@@ -282,6 +282,7 @@
         $sql = "CREATE TABLE IF NOT EXISTS jobs (
             id INT(11) NOT NULL AUTO_INCREMENT,
             job_title VARCHAR(255) NOT NULL,
+            type_of_job VARCHAR(255) NOT NULL,
             startDate DATE NOT NULL,
             endDate DATE NOT NULL,
             region VARCHAR(255) NOT NULL,
@@ -292,7 +293,7 @@
             company_name VARCHAR(255) NOT NULL,
             website VARCHAR(255) NOT NULL,
             town VARCHAR(255) NOT NULL,
-            fileUpload VARCHAR(255) NOT NULL,
+            fileUpload LONGBLOB NOT NULL,
             PRIMARY KEY (id)
         )";
       
@@ -303,24 +304,25 @@
 
       //send values into jobs table in the database
       if(isset($_POST['submit'])){
-          $type_of_job = $_POST['type_of_job'];
-          $town = $_POST['town'];
-          $employer = $_POST['employer'];
-          $seniority_level = $_POST['seniority_level'];
-          $startDate = $_POST['startDate'];
-          $endDate = $_POST['endDate'];
-          $region = $_POST['region'];
-          $subject = $_POST['subject'];
-          $grade = $_POST['grade'];
-          $requirements = $_POST['requirements'];
-          $description_of_job = $_POST['description_of_job'];
-          $fileUpload = $_POST['fileUpload'];
-          $sql = "INSERT INTO jobs (type_of_job, town, employer, seniority_level, startDate, endDate, region, subject_of_job, grade, requirements, description_of_job) VALUES ('$type_of_job', '$town', '$employer', '$seniority_level', '$startDate', '$endDate', '$region', '$subject', '$grade','$requirements', '$description_of_job')";
-          $result = mysqli_query($db, $sql);
-          if($result){}
-          else{
-              echo 'You have not successfully created a job post!';
-          }
+        //  insert into jobs table
+        $job_title = $_POST['job_title'];
+        $type_of_job = $_POST['type_of_job'];
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+        $region = $_POST['region'];
+        $subject = $_POST['subject'];
+        $grade = $_POST['grade'];
+        $requirements = $_POST['requirements'];
+        $description_of_job = $_POST['description_of_job'];
+        $company_name = $_POST['company_name'];
+        $website = $_POST['website'];
+        $town = $_POST['town'];
+        $fileUpload = $_POST['fileUpload'];
+
+        $sql = "INSERT INTO jobs (job_title, type_of_job, startDate, endDate, region, subject, grade, requirements, description_of_job, company_name, website, town, fileUpload) VALUES ('$job_title', '$type_of_job', '$startDate', '$endDate', '$region', '$subject', '$grade', '$requirements', '$description_of_job', '$company_name', '$website', '$town', '$fileUpload')";
+        $db->query($sql);
+       
+
       }
     ?>
 
