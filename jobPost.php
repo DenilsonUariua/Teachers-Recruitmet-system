@@ -75,7 +75,7 @@
             <div class="col-md-12">
                 <label for="type_of_job" class="form-label">Job Type</label>
                 <select class="form-control" aria-label="Default select example" name="type_of_job">
-                    <option selected disabled>Job Type</option>
+                    <option selected hidden>Job Type</option>
                     <option value="Internship">Internship</option>
                     <option value="Permanent">Permanent</option>
                     <option value="Volunteer">Volunteer</option>
@@ -98,11 +98,11 @@
             <div class="col-4">
                 <label for="inputAddress2" class="form-label">Region</label>
                 <select class="form-control" aria-label="Default select example" name="region">
-                    <option selected disabled>Regions</option>
+                    <option selected hidden>Regions</option>
                     <option value="Caprivi">Caprivi</option>
-                    <option value="erongo">Erongo</option>
+                    <option value="Erongo">Erongo</option>
                     <option value="Hardap">Hardap</option>
-                    <option value="kharas">kharas</option>
+                    <option value="Kharas">kharas</option>
                     <option value="Kavango">Kavango </option>
                     <option value="Khomas">Khomas </option>
                     <option value="Kunene">Kunene </option>
@@ -118,7 +118,7 @@
             <div class="col-4">
                 <label for="inputAddress2" class="form-label">Subject</label>
                 <select class="form-control" aria-label="Default select example" name="subject">
-                    <option selected>Subjects</option>
+                    <option selected hidden>Subjects</option>
                     <option value="Mathematics">Mathematics</option>
                     <option value="Geography">Geography</option>
                     <option value="Biology">Biology</option>
@@ -135,7 +135,7 @@
             <div class="col-4">
                 <label for="inputAddress2" class="form-label">Grade</label>
                 <select class="form-control" aria-label="Default select example" name="grade">
-                    <option selected>Grades</option>
+                    <option selected hidden>Grades</option>
                     <option value="1">Grade 1</option>
                     <option value="2">Grade 2</option>
                     <option value="3">Grade 3</option>

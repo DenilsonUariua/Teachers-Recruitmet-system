@@ -14,7 +14,7 @@
         if (isset($_SESSION['username'])) {
            // clear the previous search results
            echo '<div class="col-md-4"></div>';
-           $query = $db->query("SELECT * FROM jobs WHERE region = '$region' AND subject = '$subject' AND grade = '$grade'");
+           $query = $db->query("SELECT * FROM jobs WHERE region = '$region' OR subject = '$subject' OR grade = '$grade'");
            // loop through the jobs until all jobs are displayed
            if($query->num_rows > 0){ 
                while($row = $query->fetch_assoc()){

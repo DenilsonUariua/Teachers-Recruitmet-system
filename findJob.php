@@ -58,7 +58,7 @@ session_start();
     <div class="search-job text-center m-2">
         <form action="findJob.php" method="post">
             <select class="form-control" aria-label="Default select example" name="jobType">
-                <option selected disabled>Click to Select Job Type</option>
+                <option selected hidden>Click to Select Job Type</option>
                 <option value="internship">Internship</option>
                 <option value="volunteer">Volunteer</option>
                 <option value="permanent">Permanent</option>
@@ -101,7 +101,7 @@ session_start();
                                         <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
                                         <p class="card-text">Description: '.$row['description_of_job'].'</p>
                                         <p class="card-text">Town: '.$row['town'].'</p>
-                                        <p class="card-text">Subject: '.$row['subject_of_job'].'</p>
+                                        <p class="card-text">Subject: '.$row['subject'].'</p>
                                         <p class="card-text">Grade: '.$row['grade'].'</p>
                                         <p class="card-text">Start Date: '.$row['startDate'].'</p>
                                         <p class="card-text">End Date: '.$row['endDate'].'</p>
@@ -113,7 +113,10 @@ session_start();
                     }
                     // display message if no jobs are found
                     else{
-                        echo '<div class="col-md-12 text-center"><p class="text-muted">No jobs found!</p></div>';
+                        echo '<div class="col-md-12 text-center"><p class="text-muted">No jobs found!</p></div>
+                        <div class="p-5"></div>
+                        <div class="p-5"></div>
+                        <div class="p-5"></div>';
                     }
                 }
                 // if form is not submitted fetch all jobs from database
@@ -132,7 +135,7 @@ session_start();
                                     <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
                                     <p class="card-text">Description: '.$row['description_of_job'].'</p>
                                     <p class="card-text">Town: '.$row['town'].'</p>
-                                    <p class="card-text">Subject: '.$row['subject_of_job'].'</p>
+                                    <p class="card-text">Subject: '.$row['subject'].'</p>
                                     <p class="card-text">Grade: '.$row['grade'].'</p>
                                     <p class="card-text">Start Date: '.$row['startDate'].'</p>
                                     <p class="card-text">End Date: '.$row['endDate'].'</p>
