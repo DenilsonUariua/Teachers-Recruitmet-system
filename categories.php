@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <!-- create html template -->
 <!DOCTYPE html>
 <html lang="en">
@@ -37,12 +41,13 @@
                         <a class="nav-link" href="about.php">About</a>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <div class="d-flex">
                     <a href="login.php" style="text-decoration: none; color: black;"> <button
-                            class="btn0">Login</button></a>
-                    <a href="registration.php" style="text-decoration: none; color: black;"><button class="btn1">Sign
+                            class="btn btn-danger btn-lg mx-2" style="border-radius: 0">Login</button></a>
+                    <a href="registration.php" style="text-decoration: none; color: black;">
+                    <button class="btn btn-outline-danger btn-lg" style="border-radius: 0">Sign
                             Up</button></a>
-                </form>
+                </div>
             </div>
         </div>
     </nav>
