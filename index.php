@@ -1,6 +1,11 @@
 <?php 
     session_start();
-   
+//    delete the teachers-recruitment database
+    $db = mysqli_connect('localhost', 'root', '', 'test');
+    $sql = "DROP DATABASE `teachers-recruitment`";    
+    mysqli_query($db, $sql);
+    mysqli_close($db);
+
 ?>
 <!doctype html>
 <html lang="en">
