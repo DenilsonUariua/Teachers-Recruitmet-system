@@ -47,7 +47,7 @@ session_start();
     <!-- end of navbar -->
 
     <!-- Login form -->
-    <div class="card align-middle" style="margin: 5rem; background: #f8f9fa">
+    <div class="card align-middle " style="margin: 5rem; background: #f8f9fa">
         <div class="card-body d-flex justify-content-center">
             <form action="login.php" method="post">
                 <div class="row">
@@ -64,8 +64,9 @@ session_start();
                 </div>
             </form>
         </div>
-        <a href="registration.php" style="text-decoration: none; color: black;">
-            Don't have an account?</a>
+        <div class="text-center p-3"><a href="registration.php" style="text-decoration: none; color: black;">
+            Don't have an account?</a></div>
+        
     </div>
     <!-- end of login form -->
 

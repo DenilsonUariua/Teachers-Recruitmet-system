@@ -161,10 +161,6 @@
                 <label for="inputPassword4" class="form-label">Website (Optional)</label>
                 <input type="text" name="website" class="form-control" id="inputPassword4" placeholder="http://">
             </div>
-            <div class="col-md-12">
-                <label for="inputPassword4" class="form-label">Town</label>
-                <input type="text" name="town" class="form-control" id="inputPassword4" placeholder="">
-            </div>
             <div class="col-12">
                 <label for="fileUpload" class="form-label">Upload PDF or Image File</label>
                 <input type="file" class="form-control" id="fileUpload" name="fileUpload"
