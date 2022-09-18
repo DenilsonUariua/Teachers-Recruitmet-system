@@ -10,13 +10,8 @@
 
 <body>
     <?php
-    // Path: displayJobApplications.php
-    // connect to db
-    $conn = mysqli_connect("localhost", "root", "", "test");
-    // check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+    // include dbConfig
+    include 'dbConfig.php';
     
     // if button is clicked submit file to db
     if (isset($_POST['submit'])) {
@@ -33,18 +28,18 @@
         reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )";
         //execute the query
-      $conn->query($sqlCreate);
+      $db->query($sqlCreate);
 
     $sql = "INSERT INTO images (imageType, imageData, imageId) 
     VALUES ('{$imageProperties['mime']}', '{$imageData}', '{$generateUniqueID}')";
         
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_query($db, $sql)) {
         // echo "New record created successfully";
         // move the resume to the uploads folder
         // move_uploaded_file($resume_tmp, "uploads/$resume");
         echo "<script>alert('Your application has been submitted successfully')</script>";
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $sql . "<br>" . mysqli_error($db);
     }
     }
     ?>
