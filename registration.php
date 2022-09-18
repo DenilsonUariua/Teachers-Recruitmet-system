@@ -1,3 +1,55 @@
+<?php
+    // include dbConfig
+    include_once 'dbConfig.php';
+
+    // create users table if it does not exist
+    $sql = "CREATE TABLE IF NOT EXISTS users (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    role VARCHAR(255) NOT NULL,
+    company VARCHAR(255) NOT NULL,
+    age INT(11) NOT NULL
+    )";
+
+    // execute the query
+    $db->query($sql);
+
+    //save the data to the database
+    if(isset($_POST['submit'])){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $address = $_POST['address'];
+        $role = $_POST['role'];
+        $company = $_POST['company'];
+        $age = $_POST['age'];
+
+        // check if the username is unique
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $result = mysqli_query($db, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            echo 'Username already exists';
+            // display toast notification
+            echo '<script>
+            var toastElList = [].slice.call(document.querySelectorAll(".toast"))
+            var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl)
+            })
+            toastList.forEach(toast => toast.show())
+            </script>';
+        } else {
+
+            // insert the data into the database
+            $sql = "INSERT INTO users(username, password, address, role, company, age) VALUES('$username', '$password', '$address', '$role', '$company', '$age')";
+            // execute the query
+            $db->query($sql);
+            // redirect to the login page
+            header('Location: login.php');
+        }
+    }     
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,15 +97,15 @@
                 </div>
                 <div class="col-md-6">
                     <label for="role" class="form-label">Role</label>
-                    <select class="form-control" aria-label="Default select example" name="role">
-                        <option selected hidden>Role</option>
+                    <select class="form-control" aria-label="Default select example" name="role" id="role" onchange="disableCompany()" required>
+                        <option selected hidden value="">Role</option>
                         <option value="Employer">Employer</option>
                         <option value="Employee">Employee</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="validationServer02" class="form-label">Company</label>
-                    <input type="text" name="company" class="form-control " id="validationServer02" value="" required />
+                    <input type="text" name="company" class="form-control " id="company" value="" required/>
                     <div class="valid-feedback">Looks good!</div>
                 </div>
 
@@ -72,49 +124,7 @@
         </div>
         <div class='d-flex justify-content-center'>
             <!-- php code to save the data to the database -->
-            <?php
-            //connect to the teachers-recruitment database 
-            $db = mysqli_connect('localhost', 'root', '', 'test');
-
-            //check if the connection was successful
-            if(!$db){
-              echo 'Connection error: ' . mysqli_connect_error();
-            }
-
-            // create users table if it does not exist
-            $sql = "CREATE TABLE IF NOT EXISTS users (
-                id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(255) NOT NULL,
-                password VARCHAR(255) NOT NULL,
-                address VARCHAR(255) NOT NULL,
-                role VARCHAR(255) NOT NULL,
-                company VARCHAR(255) NOT NULL,
-                age INT(11) NOT NULL
-            )";
-            
-            // execute the query
-            $db->query($sql);
-
-            //save the data to the database
-            if(isset($_POST['submit'])){
-                $username = $_POST['username'];
-                $password = $_POST['password'];
-                $address = $_POST['address'];
-                $role = $_POST['role'];
-                $company = $_POST['company'];
-                $age = $_POST['age'];
-
-                $sql = "INSERT INTO users(username, password, address, role, company, age) VALUES('$username', '$password', '$address', '$role', '$company', '$age')";
-
-                if(mysqli_query($db, $sql)){
-                    echo 'Data saved successfully';
-                    header('Location: login.php');
-
-                } else {
-                    echo 'Error: ' . $sql . '<br>' . mysqli_error($db);
-                }
-            }       
-          ?>
+           
         </div>
     </div>
     <!-- End of Form -->
@@ -126,6 +136,18 @@
         include_once 'footer.php'; 
     ?>
     <!-- end of footer -->
+    <script>
+        // function to disable the company field when the role === 'Employee'
+        function disableCompany() {
+            var role = document.getElementById("role").value;
+            console.log("Role: ",role)
+            if (role === "Employee") {
+                document.getElementById("company").disabled = true;
+            } else {
+                document.getElementById("company").disabled = false;
+            }
+        }
+        disableCompany()
+    </script>
 </body>
-
 </html>

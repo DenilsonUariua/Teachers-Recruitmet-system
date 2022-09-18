@@ -1,3 +1,31 @@
+
+<!-- php code to handle login process -->
+<?php
+// include database connection file    
+include_once 'dbConfig.php';
+// check if the form is submitted
+if (isset($_POST['submit'])) {
+    // get the form data
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    // check if the username and password are correct
+    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $result = mysqli_query($db, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        while($row = $result->fetch_assoc()){
+                $_SESSION['company'] = $row['company'];
+
+        }
+        //   set session variables
+        $_SESSION['username'] = $username;
+        // login successful
+        header('Location: findJob.php');
+    } else {
+        // login failed
+        echo 'Incorrect username or password';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,43 +71,6 @@
         
     </div>
     <!-- end of login form -->
-
-    <!-- php code to handle login process -->
-    <?php
-    // include database connection file    
-    include_once 'dbConfig.php';
-    // check if the form is submitted
-    if (isset($_POST['submit'])) {
-        // get the form data
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        // check if the username and password are correct
-        $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-        $result = mysqli_query($db, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            while($row = $result->fetch_assoc()){
-                // display the job in one row
-                echo '
-                    <div class="col-md-4">
-                        <div class="card m-2 bg-light">
-                            <div class="card-body">
-                                <h5 class="card-title">Job Type: '.$row['company'].'</h5>
-                            </div>
-                        </div>
-                    </div>';
-                    $_SESSION['company'] = $row['company'];
-
-            }
-            //   set session variables
-            $_SESSION['username'] = $username;
-            // login successful
-            header('Location: findJob.php');
-        } else {
-            // login failed
-            echo 'Incorrect username or password';
-        }
-    }
-    ?>
  <!-- start of footer -->
  <!-- PHP code to import the header/navbar -->
  <?php

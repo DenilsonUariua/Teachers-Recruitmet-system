@@ -1,5 +1,5 @@
 <!-- start of footer -->
-<footer class="footer bg-light">
+<footer class="footer bg-light p-2">
         <div class="container text-center">
             <div class="row">
                 <div class="col">

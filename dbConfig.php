@@ -13,7 +13,10 @@ $host = 'localhost';
 $database = 'test';
 $user = 'root';
 $password = '';
-
+// if session is not started start session
+if (!isset($_SESSION)) {
+    session_start();
+}
 //create a connection to the database
 $db = mysqli_connect($host, $user, $password, $database);
 

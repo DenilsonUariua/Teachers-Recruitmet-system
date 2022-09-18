@@ -1,5 +1,8 @@
 <?php
-session_start();
+// if session is not started start session
+if(!isset($_SESSION)){
+    session_start();
+}
 // include dbConfig.php
 include_once 'dbConfig.php'; 
 ?>
@@ -49,4 +52,7 @@ include_once 'dbConfig.php';
         </div>
     </nav>
     <div class="p-2"></div>
+    <!-- only display back button if not on the homepage -->
+    <?php if (basename($_SERVER['PHP_SELF']) != 'index.php') { ?>
     <button type="button" class="btn btn-outline-dark mx-2" onclick="history.back()">Back</button>
+    <?php } ?>
