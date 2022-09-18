@@ -57,6 +57,19 @@
         $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_assoc()){
+                // display the job in one row
+                echo '
+                    <div class="col-md-4">
+                        <div class="card m-2 bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">Job Type: '.$row['company'].'</h5>
+                            </div>
+                        </div>
+                    </div>';
+                    $_SESSION['company'] = $row['company'];
+
+            }
             //   set session variables
             $_SESSION['username'] = $username;
             // login successful

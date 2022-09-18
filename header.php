@@ -48,3 +48,5 @@ include_once 'dbConfig.php';
             </div>
         </div>
     </nav>
+    <div class="p-2"></div>
+    <button type="button" class="btn btn-outline-dark mx-2" onclick="history.back()">Back</button>

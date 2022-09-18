@@ -177,6 +177,7 @@
             website VARCHAR(255) NOT NULL,
             town VARCHAR(255) NOT NULL,
             fileUpload LONGBLOB NOT NULL,
+            date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id)
         )";
         

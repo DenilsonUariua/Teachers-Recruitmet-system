@@ -43,11 +43,7 @@
         <div class="row">
             <?php 
                 // connect to database
-                $db = mysqli_connect('localhost', 'root', '', 'test');
-                //check if connection was successful
-                if(!$db){
-                    die("Connection failed: " . mysqli_connect_error());
-                }
+                include_once 'dbConfig.php';
                 // Get jobs from the database
                 $query = $db->query("SELECT * FROM jobs ORDER BY id DESC");
                 // loop through the jobs until all jobs are displayed
@@ -76,7 +72,7 @@
                                         <p class="card-text">Grade: '.$row['grade'].'</p>
                                         <p class="card-text">Start Date: '.$row['startDate'].'</p>
                                         <p class="card-text">End Date: '.$row['endDate'].'</p>
-                                        <a href="jobApplication.php" class="btn btn-primary">Apply</a>
+                                        <a href="jobApplication.php" class="btn btn-danger">Apply</a>
                                     </div>
                                 </div>
                             </div>';
@@ -110,7 +106,7 @@
                                     <p class="card-text">Grade: '.$row['grade'].'</p>
                                     <p class="card-text">Start Date: '.$row['startDate'].'</p>
                                     <p class="card-text">End Date: '.$row['endDate'].'</p>
-                                    <a href="jobApplication.php" class="btn btn-primary">Apply</a>
+                                    <a href="jobApplication.php" class="btn btn-danger">Apply</a>
                                 </div>
                             </div>
                         </div>

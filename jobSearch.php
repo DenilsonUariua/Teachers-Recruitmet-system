@@ -34,7 +34,7 @@
             $region = $_POST['region'];
             $grade = $_POST['grade'];
             // connect to the database
-            include_once 'dbConfig.php'
+            include_once 'dbConfig.php';
 
             // check is the user is logged in
             if (isset($_SESSION['username'])) {
@@ -64,7 +64,12 @@
             }
             // display message if no jobs are found
             else{
-                echo '<div class="col-md-12 text-center"><p class="text-muted">No jobs found!</p></div>';
+                echo '<div class="col-md-12 text-center">
+                        <h3 class="text-muted">No jobs found!</h3>
+                        <div class="p-5"></div>
+                        <div class="p-5"></div>
+                        <div class="p-5"></div>
+                    </div>';
             }
             }
         else{

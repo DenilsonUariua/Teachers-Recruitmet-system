@@ -108,6 +108,8 @@
 
                 if(mysqli_query($db, $sql)){
                     echo 'Data saved successfully';
+                    header('Location: login.php');
+
                 } else {
                     echo 'Error: ' . $sql . '<br>' . mysqli_error($db);
                 }
