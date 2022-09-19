@@ -79,6 +79,7 @@
             // if the username already exists display a toast notification
             if (mysqli_num_rows($result) > 0) {
                 echo 'Username already exists';
+
             } else {
                 echo 'Registration successful';
             }
@@ -92,24 +93,33 @@
         <div class="card-body d-flex justify-content-center">
             <!-- action="registration.php" is where the form will submit the data when the button is clicked -->
             <!-- method="post" send the form data-->
-            <form class="row g-3" action="registration.php" method="post">
+            <form  class="row g-3 needs-validation" novalidate action="registration.php" method="post">
                 <div class="col-md-6">
                     <label for="validationServerUsername" class="form-label">Username</label>
                     <div class="input-group ">
                         <span class="input-group-text" id="inputGroupPrepend3">@</span>
                         <input type="text" name="username" class="form-control " id="validationServerUsername"
                             aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                            <div class="invalid-feedback">
+                                Please enter a username.
+                            </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label for="validationServer01" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control " id="validationServer01" value=""
                         required />
+                        <div class="invalid-feedback">
+                            Please enter a password.
+                        </div>
                 </div>
                 <div class="col-md-6">
                     <label for="validationServer02" class="form-label">Address</label>
                     <input type="text" name="address" class="form-control " id="validationServer02" value="" required />
                     <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">
+                        Please enter an address.
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <label for="role" class="form-label">Role</label>
@@ -118,11 +128,17 @@
                         <option value="Employer">Employer</option>
                         <option value="Employee">Employee</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose a user role.
+                    </div>
                 </div>
                 <div class="col-md-6" id="company-field">
                     <label for="validationServer02" class="form-label">Company</label>
                     <input type="text" name="company" class="form-control " id="company" value="" required/>
                     <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">
+                        Please enter a company.
+                    </div>
                 </div>
 
                 <div class="col-md-6 age-field">
@@ -131,6 +147,9 @@
                         <span class="input-group-text" id="inputGroupPrepend3">#</span>
                         <input type="number" name="age" class="form-control " id="validationServerUsername"
                             aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                        <div class="invalid-feedback">
+                            Please enter an age.
+                        </div>
                     </div>
                 </div>
                 <div class="col-12">
@@ -138,13 +157,8 @@
                 </div>
             </form>
         </div>
-        <div class='d-flex justify-content-center'>
-            <!-- php code to save the data to the database -->
-           
-        </div>
     </div>
     <!-- End of Form -->
-    <div class="p-3"></div>
     <div class="p-5"></div>
     <!-- Bootstrap 5 scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
@@ -188,6 +202,16 @@
     ?>
     <!-- end of footer -->
     <script>
+
+        // if the username already exist change the innerHtml of the error message
+        const usernameError = document.querySelector('.username-error');
+        const username = document.querySelector('#validationServerUsername');
+        username.addEventListener('input', () => {
+            if(username.value.length > 0){
+                usernameError.innerHTML = 'Username already exist';
+            }
+        })
+
         // function to change the display property of the company field to none when the role === 'Employee'
         function disableCompany() {
             var role = document.getElementById("role").value;
@@ -204,6 +228,25 @@
                 document.querySelector(".age-field").classList.add("col-md-6");
             }
         }
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+
     </script>
 </body>
 </html>

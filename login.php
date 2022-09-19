@@ -1,4 +1,3 @@
-
 <!-- php code to handle login process -->
 <?php
 // include database connection file    
@@ -51,24 +50,31 @@ if (isset($_POST['submit'])) {
     <!-- Login form -->
     <div class="card align-middle " style="margin: 5rem; background: #f8f9fa">
         <div class="card-body d-flex justify-content-center">
-            <form action="login.php" method="post">
+            <form class="needs-validation" novalidate action="login.php" method="post">
                 <div class="row">
                     <div class="mb-4">
                         <label for="exampleInputEmail1" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" id="exampleInputEmail1"
-                            aria-describedby="emailHelp" />
+                        <input type="text" name="username" class="form-control " id="validationServerUsername"
+                        aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                        <div class="invalid-feedback">
+                            Please enter a username.
+                        </div>
                     </div>
                     <div class="mb-4">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" />
+                        <input type="password" name="password" class="form-control " id="validationServer01" value=""
+                        required />
+                        <div class="invalid-feedback">
+                            Please enter a password.
+                        </div>
                         <button type="submit" name="submit" class="btn btn-danger my-3">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="text-center p-3"><a href="registration.php" style="text-decoration: none; color: black;">
-            Don't have an account?</a></div>
-        
+            Don't have an account?</a>
+        </div>        
     </div>
     <!-- end of login form -->
  <!-- start of footer -->
@@ -77,6 +83,27 @@ if (isset($_POST['submit'])) {
     include_once 'footer.php'; 
  ?>   
 <!-- end of footer -->
-</body>
+<script>
+    (() => {
+        'use strict'
 
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+
+</script>
+
+</body>
 </html>
