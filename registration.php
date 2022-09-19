@@ -29,24 +29,16 @@
         $sql = "SELECT * FROM users WHERE username = '$username'";
         $result = mysqli_query($db, $sql);
 
-        if (mysqli_num_rows($result) > 0) {
-            echo 'Username already exists';
-            // display toast notification
-            echo '<script>
-            var toastElList = [].slice.call(document.querySelectorAll(".toast"))
-            var toastList = toastElList.map(function (toastEl) {
-            return new bootstrap.Toast(toastEl)
-            })
-            toastList.forEach(toast => toast.show())
-            </script>';
-        } else {
+        if (mysqli_num_rows($result) > 0) {}
+        else {
 
             // insert the data into the database
             $sql = "INSERT INTO users(username, password, address, role, company, age) VALUES('$username', '$password', '$address', '$role', '$company', '$age')";
             // execute the query
             $db->query($sql);
-            // redirect to the login page
-            header('Location: login.php');
+            //wait 3 seconds before redirect to the login page
+            header("refresh:3;url=login.php");
+            
         }
     }     
 ?>
@@ -70,6 +62,30 @@
         include_once 'header.php'; 
     ?>
     <!-- end of navbar -->
+
+    <!-- Toast notification to welcome the user -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
+        <strong class="me-auto">NamEduHire</strong>
+        <small><?php 
+            echo date("h:i:sa");
+        ?></small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+       <?php
+            // if the username already exists display a toast notification
+            if (mysqli_num_rows($result) > 0) {
+                echo 'Username already exists';
+            } else {
+                echo 'Registration successful';
+            }
+        ?>
+        </div>
+    </div>
+    </div>
 
     <!-- Start of the form  -->
     <div class="card align-middle" style="margin: 5rem; background: #f8f9fa">
@@ -103,13 +119,13 @@
                         <option value="Employee">Employee</option>
                     </select>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" id="company-field">
                     <label for="validationServer02" class="form-label">Company</label>
                     <input type="text" name="company" class="form-control " id="company" value="" required/>
                     <div class="valid-feedback">Looks good!</div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 age-field">
                     <label for="validationServerUsername" class="form-label">Age</label>
                     <div class="input-group ">
                         <span class="input-group-text" id="inputGroupPrepend3">#</span>
@@ -118,7 +134,7 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-danger" type="submit" name="submit">Sign Up</button>
+                    <button class="btn btn-danger" id="submit" type="submit" name="submit">Sign Up</button>
                 </div>
             </form>
         </div>
@@ -130,24 +146,64 @@
     <!-- End of Form -->
     <div class="p-3"></div>
     <div class="p-5"></div>
-
+    <!-- Bootstrap 5 scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    </script>
     <!-- start of footer -->
     <?php
+    if(isset($_POST['submit'])){
+        $username = $_POST['username'];
+
+        // check if the username is unique
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $result = mysqli_query($db, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            echo '<script>
+            const toastLiveExample = document.getElementById("liveToast")          
+               console.log("show toast");
+               const toast = new bootstrap.Toast(toastLiveExample)
+               toast.show()
+            </script>';
+        }  
+        else {
+            echo '<script>
+            const toastTrigger = document.getElementById("submit")
+            const toastLiveExample = document.getElementById("liveToast")
+            toastTrigger.addEventListener("click", () => {
+            const toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+        })
+            </script>';
+        }
+    }
         include_once 'footer.php'; 
     ?>
     <!-- end of footer -->
     <script>
-        // function to disable the company field when the role === 'Employee'
+        // function to change the display property of the company field to none when the role === 'Employee'
         function disableCompany() {
             var role = document.getElementById("role").value;
-            console.log("Role: ",role)
             if (role === "Employee") {
-                document.getElementById("company").disabled = true;
+                document.getElementById("company-field").style.display = "none";
+                document.getElementById("company").required = false;
+                // change age-field to col-md-12
+                document.querySelector(".age-field").classList.remove("col-md-6");
+                document.querySelector(".age-field").classList.add("col-md-12");
             } else {
-                document.getElementById("company").disabled = false;
+                document.getElementById("company-field").style.display = "block";
+                // change age-field to col-md-12
+                document.querySelector(".age-field").classList.remove("col-md-12");
+                document.querySelector(".age-field").classList.add("col-md-6");
             }
         }
-        disableCompany()
     </script>
 </body>
 </html>

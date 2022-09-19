@@ -18,7 +18,7 @@ Open your browser and type in "localhost"
 1. User fills out the application form
 2. User uploads a CV
 3. User submits the application
-4. The data is sent and stored in the database in the jobapplications table
+4. The data is sent and stored in the database in the jobapplication table
 5. User is redirected to the view all applications page
 6. Success message is shown.
 

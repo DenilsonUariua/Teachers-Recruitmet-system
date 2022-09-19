@@ -25,6 +25,30 @@
         include_once 'header.php'; 
     ?>
     <!-- end of navbar -->
+    
+    <!-- Toast notification to welcome the user -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
+        <strong class="me-auto">NamEduHire</strong>
+        <small><?php 
+            echo date("h:i:sa");
+        ?></small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        <?php
+        // check if session is set
+        if (isset($_SESSION['username'])) {
+            // if session is set, display welcome message
+            echo "Welcome " . $_SESSION['username'] . "!";
+        } 
+        ?>
+        </div>
+    </div>
+    </div>
+
     <!-- create search bar -->
     <div class="search-job text-center m-2">
         <form action="findJob.php" method="post">
@@ -134,6 +158,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
         integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
     </script>
+
+<script>
+    const toastLiveExample = document.getElementById('liveToast')
+     // if the previous page was login.php show toast 
+     if (document.referrer == "http://localhost/Teachers-Recruitmet-system/login.php") {
+        console.log("show toast");
+        const toast = new bootstrap.Toast(toastLiveExample)
+        toast.show()
+        // hide toast after 3 seconds
+        setTimeout(function () {
+            toast.hide()
+        }, 3000);
+    }
+</script>
 </body>
 
 </html>
