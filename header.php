@@ -48,7 +48,7 @@ include_once 'dbConfig.php';
                                 Manage Jobs
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">See Applications</a></li>
+                                <li><a class="dropdown-item" href="applicationsPosted.php">See Applications</a></li>
                                 <li><a class="dropdown-item" href="jobsPosted.php">See Job Post</a></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>

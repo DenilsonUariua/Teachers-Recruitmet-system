@@ -12,7 +12,7 @@
         address VARCHAR(50) NOT NULL,
         position VARCHAR(50) NOT NULL,
         company VARCHAR(50) NOT NULL,
-        resume VARCHAR(50) NOT NULL,
+        resume LONGBLOB NOT NULL,
         reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )";
 
@@ -116,7 +116,7 @@
                         <input type="file" class="form-control" id="resume" name="resume"
                             placeholder="Upload your resume">
                     </div>
-                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                    <button type="submit" class="btn btn-danger" name="submit">Submit</button>
                 </form>
             </div>
         </div>
