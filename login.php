@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
         while($row = $result->fetch_assoc()){
                 $_SESSION['company'] = $row['company'];
-
+                $_SESSION['role'] = $row['role'];
         }
         //   set session variables
         $_SESSION['username'] = $username;

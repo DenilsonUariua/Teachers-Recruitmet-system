@@ -6,7 +6,7 @@ if(!isset($_SESSION)){
 // include dbConfig.php
 include_once 'dbConfig.php'; 
 ?>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <!--Nav Bar-->
  <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
@@ -29,14 +29,45 @@ include_once 'dbConfig.php';
                 </ul>
                 <?php 
                     if(isset($_SESSION['username'])){
-                        echo '<li class="nav-item">
-                        <a class="nav-link" href="findJob.php">Find Job</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="jobPost.php">Post Job</a>
-                    </li>
-                    <a href="logout.php" style="text-decoration: none; color: black;"> <button
-                    class="btn btn-danger btn-lg mx-2" style="border-radius: 0">Logout</button></a>';
+                        // if the user role is employer, display employer navbar
+                        if($_SESSION['role'] == 'Employer'){
+                            echo '
+                            <li class="nav-item">
+                            <a class="nav-link" href="findJob.php">Find Job</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="jobPost.php">Post Job</a>
+                            </li>
+                            <a href="logout.php" style="text-decoration: none; color: black;"> 
+                                <button class="btn btn-danger btn-lg mx-2" style="border-radius: 0">
+                                    Logout
+                                </button>
+                            </a>
+                            <div class="dropdown m-1">
+                            <button style="border-radius: 0; height: 3rem;" class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Manage Jobs
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">See Applications</a></li>
+                                <li><a class="dropdown-item" href="jobsPosted.php">See Job Post</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                            </div>
+                            ';
+                        } else {
+                            // if the user role is student, display student navbar
+                            echo '
+                            <li class="nav-item">
+                            <a class="nav-link" href="findJob.php">Find Job</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="jobPost.php">Post Job</a>
+                        </li>
+                        <a href="logout.php" style="text-decoration: none; color: black;"> <button
+                        class="btn btn-danger btn-lg mx-2" style="border-radius: 0">Logout</button></a>
+                            ';
+                        }
+                       
                     }
                     else{
                         echo '<div class="d-flex">
