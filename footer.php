@@ -5,7 +5,7 @@
                 <div class="col">
                     <div class="row">
                         <a class="navbar-brand" href="index.php">
-                            <img src="./images/eduhirelogo.png" width="45" height="43" alt="logo">
+                            <img src="./images/eduhirelogo.png" width="25" height="23" alt="logo">
                             NamEduHire
                         </a>
                         <p>this is some paragraph text that is suppose

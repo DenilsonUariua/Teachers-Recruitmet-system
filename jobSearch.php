@@ -27,6 +27,7 @@
     ?>
     <!-- end of navbar -->
     <div class="container p-5">
+    <div class="row">
     <?php
         // if the submit button is clicked find all jobs that match the search criteria
         if (isset($_POST['submit'])) {
@@ -38,8 +39,6 @@
 
             // check is the user is logged in
             if (isset($_SESSION['username'])) {
-            // clear the previous search results
-            echo '<div class="col-md-4"></div>';
             $query = $db->query("SELECT * FROM jobs WHERE region = '$region' OR subject = '$subject' OR grade = '$grade'");
             // loop through the jobs until all jobs are displayed
             if($query->num_rows > 0){ 
@@ -50,6 +49,7 @@
                         <div class="card m-2 bg-light">
                             <div class="card-body">
                                 <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
+                                <p class="card-text">Job Title: '.$row['job_title'].'</p>
                                 <p class="card-text">Description: '.$row['description_of_job'].'</p>
                                 <p class="card-text">Town: '.$row['town'].'</p>
                                 <p class="card-text">Subject: '.$row['subject'].'</p>
@@ -85,6 +85,7 @@
         }
         }
     ?>
+    </div>
     </div>
      <!-- start of footer -->
     <!-- PHP code to import the header/navbar -->

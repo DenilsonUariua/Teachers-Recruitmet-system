@@ -22,6 +22,29 @@
         include_once 'header.php'; 
     ?>
     <!-- end of navbar  -->
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
+                <strong class="me-auto">NamEduHire</strong>
+                <small><?php 
+            echo date("h:i:sa");
+        ?></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?php
+            // if session message is defined display it
+            if (isset($_SESSION['message'])) {
+                echo $_SESSION['message'];
+                // unset the session message
+            }
+        ?>
+            </div>
+        </div>
+    </div>
+
     <div class="p-4"></div>
     <!-- form for creating a job post -->
     <div class="container-md bg-light border">
@@ -31,11 +54,11 @@
         <form class="row g-3" action="jobPost.php" method="post">
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Job Title</label>
-                <input type="text" name="jobTitle" class="form-control" id="inputPassword4">
+                <input type="text" name="job_title" class="form-control" id="inputPassword4" required>
             </div>
             <div class="col-md-12">
                 <label for="type_of_job" class="form-label">Job Type</label>
-                <select class="form-control" aria-label="Default select example" name="type_of_job">
+                <select class="form-control" aria-label="Default select example" name="type_of_job" required>
                     <option selected hidden>Job Type</option>
                     <option value="Internship">Internship</option>
                     <option value="Permanent">Permanent</option>
@@ -44,26 +67,24 @@
             </div>
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Town</label>
-                <input type="text" name="town" class="form-control" id="inputPassword4" placeholder="">
+                <input type="text" name="town" class="form-control" id="inputPassword4" placeholder="" required>
             </div>
             <div class="col-6">
                 <label for="inputAddress2" class="form-label">Start Date</label>
-                <input type="date" name="startDate" class="form-control" id="inputAddress2"
-                    placeholder="Apartment, studio, or floor">
+                <input type="date" name="startDate" class="form-control" id="inputAddress2">
             </div>
             <div class="col-6">
                 <label for="inputAddress2" class="form-label">End Date</label>
-                <input type="date" name="endDate" class="form-control" id="inputAddress2"
-                    placeholder="Apartment, studio, or floor">
+                <input type="date" name="endDate" class="form-control" id="inputAddress2" required>
             </div>
             <div class="col-4">
                 <label for="inputAddress2" class="form-label">Region</label>
-                <select class="form-control" aria-label="Default select example" name="region">
+                <select class="form-control" aria-label="Default select example" name="region" required>
                     <option selected hidden>Regions</option>
                     <option value="Caprivi">Caprivi</option>
                     <option value="Erongo">Erongo</option>
                     <option value="Hardap">Hardap</option>
-                    <option value="Kharas">kharas</option>
+                    <option value="Kharas">Kharas</option>
                     <option value="Kavango">Kavango </option>
                     <option value="Khomas">Khomas </option>
                     <option value="Kunene">Kunene </option>
@@ -78,7 +99,7 @@
             </div>
             <div class="col-4">
                 <label for="inputAddress2" class="form-label">Subject</label>
-                <select class="form-control" aria-label="Default select example" name="subject">
+                <select class="form-control" aria-label="Default select example" name="subject" required>
                     <option selected hidden>Subjects</option>
                     <option value="Mathematics">Mathematics</option>
                     <option value="Geography">Geography</option>
@@ -95,7 +116,7 @@
             </div>
             <div class="col-4">
                 <label for="inputAddress2" class="form-label">Grade</label>
-                <select class="form-control" aria-label="Default select example" name="grade">
+                <select class="form-control" aria-label="Default select example" name="grade" required>
                     <option selected hidden>Grades</option>
                     <option value="1">Grade 1</option>
                     <option value="2">Grade 2</option>
@@ -122,7 +143,7 @@
             <div class="col-12">
                 <div class="form-floating">
                     <textarea class="form-control" name="description_of_job" placeholder="Leave a comment here"
-                        id="Description"></textarea>
+                        id="Description" required></textarea>
                     <label for="description">Description</label>
                 </div>
             </div>
@@ -133,11 +154,12 @@
 
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Company Name</label>
-                <input type="text" name="town" class="form-control" id="inputPassword4" placeholder="">
+                <input type="text" name="company_name" class="form-control" id="inputPassword4" placeholder="" required>
             </div>
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Website (Optional)</label>
-                <input type="text" name="website" class="form-control" id="inputPassword4" placeholder="http://">
+                <input type="text" name="website" class="form-control" id="inputPassword4" placeholder="http://"
+                    required>
             </div>
             <div class="col-12">
                 <label for="fileUpload" class="form-label">Upload PDF or Image File</label>
@@ -145,17 +167,24 @@
                     placeholder="Upload PDF or Image">
             </div>
             <div class="col-12 my-3">
-                <button type="submit" name="submit" class="btn btn-primary">Post Job</button>
+                <button id="submit" type="submit" name="submit" class="btn btn-primary">Post Job</button>
             </div>
         </form>
     </div>
     <div class="p-4"></div>
 
-    <!-- start of footer -->
-    <?php
-        include_once 'footer.php'; 
-    ?>
-    <!-- end of footer -->
+
+    <!--bootstrap 5 imports   -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    </script>
+
     <!-- handle form submission -->
     <?php
         //connect to database
@@ -180,8 +209,6 @@
             date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id)
         )";
-        
-
 
       //execute the query
       $db->query($sql);
@@ -204,21 +231,30 @@
         $fileUpload = $_POST['fileUpload'];
 
         $sql = "INSERT INTO jobs (job_title, type_of_job, startDate, endDate, region, subject, grade, requirements, description_of_job, company_name, website, town, fileUpload) VALUES ('$job_title', '$type_of_job', '$startDate', '$endDate', '$region', '$subject', '$grade', '$requirements', '$description_of_job', '$company_name', '$website', '$town', '$fileUpload')";
-        $db->query($sql);
+
+        $result = mysqli_query($db, $sql);
+
+        // check if query was successful
+        if($result){
+            // create a session variable to display message
+            $_SESSION['message'] = "Job posted successfully";
+            // script to display toast notification
+            echo '<script>  
+                const toastLiveExample = document.getElementById("liveToast")          
+                console.log("show toast");
+                const toast = new bootstrap.Toast(toastLiveExample)
+                toast.show()
+            </script>';
+        }else{
+            $_SESSION['message'] = "Error encountered while posting job";
+        }
       }
     ?>
-
-
-    <!--bootstrap 5 imports   -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
-        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
-    </script>
+    <!-- start of footer -->
+    <?php
+        include_once 'footer.php'; 
+    ?>
+    <!-- end of footer -->
 </body>
 
 </html>
