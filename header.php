@@ -11,7 +11,14 @@ include_once 'dbConfig.php';
  <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
 
-            <a class="navbar-brand" href="index.php" style="display: flex; align-items: center;">
+            <a class="navbar-brand" href="<?php 
+            // if the user is logged in redirect to the homepage
+            if(isset($_SESSION['username'])){
+                echo 'homepage.php';
+            }else{
+                echo 'index.php';
+            }
+            ?>" style="display: flex; align-items: center;">
                 <img src="./images/eduhirelogo.png" width="45" height="43" alt="logo">
                 NamEduHire
             </a>
