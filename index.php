@@ -22,6 +22,7 @@
     <?php
         include_once 'header.php'; 
     ?>
+    <div class="m-5"></div>
     <div class="container text-center">
         <div class="title-container d-flex justify-content-center">
             <div class="title-image">

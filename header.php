@@ -91,6 +91,6 @@ include_once 'dbConfig.php';
     </nav>
     <div class="p-2"></div>
     <!-- only display back button if not on the homepage -->
-    <?php if (basename($_SERVER['PHP_SELF']) != 'index.php') { ?>
+    <?php if (basename($_SERVER['PHP_SELF']) != 'index.php' && basename($_SERVER['PHP_SELF']) != 'homepage.php') { ?>
     <button type="button" class="btn btn-outline-dark mx-2" onclick="history.back()">Back</button>
     <?php } ?>
