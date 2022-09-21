@@ -270,7 +270,7 @@
                 </div>
             </div>
             <div class="paragraph-container text-center">
-                <p>TRhgui is the paragrah under the heading please add text heere</p>
+                <p>Follow these three simple steps to find jobs in Education today</p>
             </div>
             <div class="row py-4">
                 <div class="col-lg-4">
