@@ -174,7 +174,6 @@
     <?php
     if(isset($_POST['submit'])){
         $username = $_POST['username'];
-
         // check if the username is unique
         $sql = "SELECT * FROM users WHERE username = '$username'";
         $result = mysqli_query($db, $sql);
