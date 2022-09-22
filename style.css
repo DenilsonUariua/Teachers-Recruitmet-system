@@ -153,7 +153,8 @@ footer {
 
 .footer-links {
     text-decoration: none;
-    color: black;
+    /* change the text color to white */
+    color: white;
 }
 .bgImageCcontainer{
     background-image: url("./images/GeographyImage.png");
