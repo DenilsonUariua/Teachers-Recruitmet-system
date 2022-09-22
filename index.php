@@ -35,7 +35,8 @@
         <div class="m-3"></div>
         <div class="subtitle-container">
             <div class="subtitle">
-                <h2 style="font-size: 90px;">Welcome To The Teachers Job Portal</h2>
+                <!-- increase the text size and change the color -->
+                <h2 style="font-size: 90px; color: rgb(214, 11, 11);">Welcome To The Teachers Job Portal</h2>
             </div>      
         </div>
     </div>
