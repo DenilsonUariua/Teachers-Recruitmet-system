@@ -35,7 +35,7 @@
         <div class="m-3"></div>
         <div class="subtitle-container">
             <div class="subtitle">
-                <h2 style="font-size: 30px;">Welcome to the teachers job portal</h2>
+                <h2 style="font-size: 90px;">Welcome To The Teachers Job Portal</h2>
             </div>      
         </div>
     </div>
