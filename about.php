@@ -34,6 +34,7 @@
                 <div class="card my-3 shadow-lg" style="width: 18rem;">
                     <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
+                        
                         <h5 class="card-title">Our Mission</h5>
                         <p class="card-text">We have digitized the recruitment process
                             for teachers in Namibia. To improve the recruitment process
