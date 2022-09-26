@@ -19,7 +19,7 @@
 <body>
     <!-- start of navbar  -->
     <?php
-        include_once 'header.php'; 
+    include_once 'header.php';
     ?>
     <!-- end of navbar  -->
 
@@ -28,19 +28,19 @@
             <div class="toast-header">
                 <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
                 <strong class="me-auto">NamEduHire</strong>
-                <small><?php 
-            echo date("h:i:sa");
-        ?></small>
+                <small><?php
+                        echo date("h:i:sa");
+                        ?></small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
                 <?php
-            // if session message is defined display it
-            if (isset($_SESSION['message'])) {
-                echo $_SESSION['message'];
-                // unset the session message
-            }
-        ?>
+                // if session message is defined display it
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    // unset the session message
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -135,15 +135,13 @@
 
             <div class="col-12">
                 <div class="form-floating">
-                    <textarea class="form-control" name="requirements" placeholder="Leave a comment here"
-                        id="requirements"></textarea>
+                    <textarea class="form-control" name="requirements" placeholder="Leave a comment here" id="requirements"></textarea>
                     <label for="requirements">Requirements</label>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-floating">
-                    <textarea class="form-control" name="description_of_job" placeholder="Leave a comment here"
-                        id="Description" required></textarea>
+                    <textarea class="form-control" name="description_of_job" placeholder="Leave a comment here" id="Description" required></textarea>
                     <label for="description">Description</label>
                 </div>
             </div>
@@ -158,13 +156,11 @@
             </div>
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Website (Optional)</label>
-                <input type="text" name="website" class="form-control" id="inputPassword4" placeholder="http://"
-                    required>
+                <input type="text" name="website" class="form-control" id="inputPassword4" placeholder="http://" required>
             </div>
             <div class="col-12">
                 <label for="fileUpload" class="form-label">Upload PDF or Image File</label>
-                <input type="file" class="form-control" id="fileUpload" name="fileUpload"
-                    placeholder="Upload PDF or Image">
+                <input type="file" class="form-control" id="fileUpload" name="fileUpload" placeholder="Upload PDF or Image">
             </div>
             <div class="col-12 my-3">
                 <button id="submit" type="submit" name="submit" class="btn btn-primary">Post Job</button>
@@ -175,23 +171,20 @@
 
 
     <!--bootstrap 5 imports   -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
-        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
     </script>
 
     <!-- handle form submission -->
     <?php
-        //connect to database
-        include_once 'dbConfig.php';
-        //check if table jobs exists in the database, if not create it
-        // fileUpload should upload the file to the database
-        $sql = "CREATE TABLE IF NOT EXISTS jobs (
+    //connect to database
+    include_once 'dbConfig.php';
+    //check if table jobs exists in the database, if not create it
+    // fileUpload should upload the file to the database
+    $sql = "CREATE TABLE IF NOT EXISTS jobs (
             id INT(11) NOT NULL AUTO_INCREMENT,
             job_title VARCHAR(255) NOT NULL,
             type_of_job VARCHAR(255) NOT NULL,
@@ -210,11 +203,11 @@
             PRIMARY KEY (id)
         )";
 
-      //execute the query
-      $db->query($sql);
+    //execute the query
+    $db->query($sql);
 
-      //send values into jobs table in the database
-      if(isset($_POST['submit'])){
+    //send values into jobs table in the database
+    if (isset($_POST['submit'])) {
         //  insert into jobs table
         $job_title = $_POST['job_title'];
         $type_of_job = $_POST['type_of_job'];
@@ -235,7 +228,7 @@
         $result = mysqli_query($db, $sql);
 
         // check if query was successful
-        if($result){
+        if ($result) {
             // create a session variable to display message
             $_SESSION['message'] = "Job posted successfully";
             // script to display toast notification
@@ -245,14 +238,14 @@
                 const toast = new bootstrap.Toast(toastLiveExample)
                 toast.show()
             </script>';
-        }else{
+        } else {
             $_SESSION['message'] = "Error encountered while posting job";
         }
-      }
+    }
     ?>
     <!-- start of footer -->
     <?php
-        include_once 'footer.php'; 
+    include_once 'footer.php';
     ?>
     <!-- end of footer -->
 </body>
