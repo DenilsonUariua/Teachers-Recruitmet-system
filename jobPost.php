@@ -51,7 +51,7 @@
         <div class="py-2">
             <h3>Post A New Job</h3>
         </div>
-        <form class="row g-3" action="jobPost.php" method="post">
+        <form class="row g-3" action="jobPost.php" method="post" enctype="multipart/form-data">
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Job Title</label>
                 <input type="text" name="job_title" class="form-control" id="inputPassword4" required>
@@ -198,7 +198,7 @@
             company_name VARCHAR(255) NOT NULL,
             website VARCHAR(255) NOT NULL,
             town VARCHAR(255) NOT NULL,
-            fileUpload LONGBLOB NOT NULL,
+            fileUpload VARCHAR(255) NOT NULL,
             date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id)
         )";
@@ -221,9 +221,50 @@
         $company_name = $_POST['company_name'];
         $website = $_POST['website'];
         $town = $_POST['town'];
-        $fileUpload = $_POST['fileUpload'];
+        
+        // --------------------start of file upload-----------------------------------------------------
+        // create uploads folder if it doesn't exist
+        if (!file_exists('uploads')) {
+            mkdir('uploads', 0777, true);
+        }
 
-        $sql = "INSERT INTO jobs (job_title, type_of_job, startDate, endDate, region, subject, grade, requirements, description_of_job, company_name, website, town, fileUpload) VALUES ('$job_title', '$type_of_job', '$startDate', '$endDate', '$region', '$subject', '$grade', '$requirements', '$description_of_job', '$company_name', '$website', '$town', '$fileUpload')";
+        // File upload code
+        $targetDir = "uploads/";
+        $fileName = basename($_FILES["fileUpload"]["name"]);
+        $targetFilePath = $targetDir . $fileName;
+        $fileUploadName = $fileName;
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+        echo $targetFilePath;
+        //create images table if not exists
+        $sql = "CREATE TABLE `images` (
+                    `id` int(11) NOT NULL AUTO_INCREMENT,
+                    `file_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                    `uploaded_on` datetime NOT NULL,
+                    `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL DEFAULT '1',
+                    PRIMARY KEY (`id`)
+                   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+        $result = mysqli_query($db, $sql);
+        // Allow certain file formats
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+        if (in_array($fileType, $allowTypes)) {
+            // Upload file to server
+            if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $targetFilePath)) {
+                // Insert image file name into database
+                $insert = $db->query("INSERT into images (file_name, uploaded_on) VALUES ('" . $fileName . "', NOW())");
+                if ($insert) {
+                    $statusMsg = "The file " . $fileName . " has been uploaded successfully.";
+                } else {
+                    $statusMsg = "Error uploading file, please try again.";
+                }
+            } else {
+                $statusMsg = "Sorry, there was an error uploading your file.";
+            }
+        } else {
+            $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
+        }
+        //------------------- end of file upload-----------------------------------------------------
+
+        $sql = "INSERT INTO jobs (job_title, type_of_job, startDate, endDate, region, subject, grade, requirements, description_of_job, company_name, website, town, fileUpload) VALUES ('$job_title', '$type_of_job', '$startDate', '$endDate', '$region', '$subject', '$grade', '$requirements', '$description_of_job', '$company_name', '$website', '$town', '$fileUploadName')";
 
         $result = mysqli_query($db, $sql);
 
@@ -234,12 +275,16 @@
             // script to display toast notification
             echo '<script>  
                 const toastLiveExample = document.getElementById("liveToast")          
-                console.log("show toast");
                 const toast = new bootstrap.Toast(toastLiveExample)
                 toast.show()
             </script>';
         } else {
             $_SESSION['message'] = "Error encountered while posting job";
+            echo '<script>  
+            const toastLiveExample = document.getElementById("liveToast")          
+            const toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+        </script>';
         }
     }
     ?>

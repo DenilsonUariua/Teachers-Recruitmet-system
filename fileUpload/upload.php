@@ -29,12 +29,13 @@
         if (!file_exists('uploads')) {
             mkdir('uploads', 0777, true);
         }
-        
-        // File upload path
+
+        // File upload code
         $targetDir = "uploads/";
         $fileName = basename($_FILES["file"]["name"]);
         $targetFilePath = $targetDir . $fileName;
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+        echo $targetFilePath;
         //create images table if not exists
         $sql = "CREATE TABLE `images` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,

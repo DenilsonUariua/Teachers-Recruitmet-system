@@ -10,7 +10,7 @@ if ($query->num_rows > 0) {
     while ($row = $query->fetch_assoc()) {
         $imageURL = 'uploads/' . $row["file_name"];
         $pdfImgUrl = 'uploads/pdf.png';
-        $fileType = pathinfo($imageURL, PATHINFO_EXTENSION);
+        // $fileType = pathinfo($imageURL, PATHINFO_EXTENSION);
 
 ?>
         <img src="<?php echo $imageURL; ?>" alt="" style='width: 200px; height: 200px;' />
