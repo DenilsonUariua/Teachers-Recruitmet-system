@@ -57,12 +57,11 @@ include_once 'dbConfig.php';
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="applicationsPosted.php">See Applications</a></li>
                                 <li><a class="dropdown-item" href="jobsPosted.php">See Job Post</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                             </div>
                             ';
                         } else {
-                            // if the user role is student, display student navbar
+                            // if the user role is student, display employee navbar
                             echo '
                             <li class="nav-item">
                             <a class="nav-link" href="findJob.php">Find Job</a>
