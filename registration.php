@@ -1,9 +1,9 @@
 <?php
-    // include dbConfig
-    include_once 'dbConfig.php';
+// include dbConfig
+include_once 'dbConfig.php';
 
-    // create users table if it does not exist
-    $sql = "CREATE TABLE IF NOT EXISTS users (
+// create users table if it does not exist
+$sql = "CREATE TABLE IF NOT EXISTS users (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -13,34 +13,33 @@
     age INT(11) NOT NULL
     )";
 
-    // execute the query
-    $db->query($sql);
+// execute the query
+$db->query($sql);
 
-    //save the data to the database
-    if(isset($_POST['submit'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $address = $_POST['address'];
-        $role = $_POST['role'];
-        $company = $_POST['company'];
-        $age = $_POST['age'];
+//save the data to the database
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $address = $_POST['address'];
+    $role = $_POST['role'];
+    $company = $_POST['company'];
+    $age = $_POST['age'];
 
-        // check if the username is unique
-        $sql = "SELECT * FROM users WHERE username = '$username'";
-        $result = mysqli_query($db, $sql);
+    // check if the username is unique
+    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($db, $sql);
 
-        if (mysqli_num_rows($result) > 0) {}
-        else {
+    if (mysqli_num_rows($result) > 0) {
+    } else {
 
-            // insert the data into the database
-            $sql = "INSERT INTO users(username, password, address, role, company, age) VALUES('$username', '$password', '$address', '$role', '$company', '$age')";
-            // execute the query
-            $db->query($sql);
-            //wait 3 seconds before redirect to the login page
-            header("refresh:3;url=login.php");
-            
-        }
-    }     
+        // insert the data into the database
+        $sql = "INSERT INTO users(username, password, address, role, company, age) VALUES('$username', '$password', '$address', '$role', '$company', '$age')";
+        // execute the query
+        $db->query($sql);
+        //wait 3 seconds before redirect to the login page
+        header("refresh:3;url=login.php");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,33 +58,32 @@
 <body>
     <!-- Navbar  -->
     <?php
-        include_once 'header.php'; 
+    include_once 'header.php';
     ?>
     <!-- end of navbar -->
 
     <!-- Toast notification to welcome the user -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-        <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
-        <strong class="me-auto">NamEduHire</strong>
-        <small><?php 
-            echo date("h:i:sa");
-        ?></small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
+                <strong class="me-auto">NamEduHire</strong>
+                <small><?php
+                        echo date("h:i:sa");
+                        ?></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?php
+                // if the username already exists display a toast notification
+                if (mysqli_num_rows($result) > 0) {
+                    echo 'Username already exists';
+                } else {
+                    echo 'Registration successful';
+                }
+                ?>
+            </div>
         </div>
-        <div class="toast-body">
-       <?php
-            // if the username already exists display a toast notification
-            if (mysqli_num_rows($result) > 0) {
-                echo 'Username already exists';
-
-            } else {
-                echo 'Registration successful';
-            }
-        ?>
-        </div>
-    </div>
     </div>
 
     <!-- Start of the form  -->
@@ -93,25 +91,23 @@
         <div class="card-body d-flex justify-content-center">
             <!-- action="registration.php" is where the form will submit the data when the button is clicked -->
             <!-- method="post" send the form data-->
-            <form  class="row g-3 needs-validation" novalidate action="registration.php" method="post">
+            <form class="row g-3 needs-validation" novalidate action="registration.php" method="post">
                 <div class="col-md-6">
                     <label for="validationServerUsername" class="form-label">Username</label>
                     <div class="input-group ">
                         <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                        <input type="text" name="username" class="form-control " id="validationServerUsername"
-                            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
-                            <div class="invalid-feedback">
-                                Please enter a username.
-                            </div>
+                        <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                        <div class="invalid-feedback">
+                            Please enter a username.
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="validationServer01" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control " id="validationServer01" value=""
-                        required />
-                        <div class="invalid-feedback">
-                            Please enter a password.
-                        </div>
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control " id="password" value="" required />
+                    <div class="invalid-feedback" id='password-error'>
+                        Please enter a password.
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <label for="validationServer02" class="form-label">Address</label>
@@ -134,7 +130,7 @@
                 </div>
                 <div class="col-md-6" id="company-field">
                     <label for="validationServer02" class="form-label">Company</label>
-                    <input type="text" name="company" class="form-control " id="company" value="" required/>
+                    <input type="text" name="company" class="form-control " id="company" value="" required />
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">
                         Please enter a company.
@@ -145,8 +141,7 @@
                     <label for="validationServerUsername" class="form-label">Age</label>
                     <div class="input-group ">
                         <span class="input-group-text" id="inputGroupPrepend3">#</span>
-                        <input type="number" name="age" class="form-control " id="validationServerUsername"
-                            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                        <input type="number" name="age" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div class="invalid-feedback">
                             Please enter an age.
                         </div>
@@ -161,18 +156,15 @@
     <!-- End of Form -->
     <div class="p-5"></div>
     <!-- Bootstrap 5 scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
-        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
     </script>
     <!-- start of footer -->
     <?php
-    if(isset($_POST['submit'])){
+    if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         // check if the username is unique
         $sql = "SELECT * FROM users WHERE username = '$username'";
@@ -185,8 +177,7 @@
                const toast = new bootstrap.Toast(toastLiveExample)
                toast.show()
             </script>';
-        }  
-        else {
+        } else {
             echo '<script>
             const toastTrigger = document.getElementById("submit")
             const toastLiveExample = document.getElementById("liveToast")
@@ -197,19 +188,45 @@
             </script>';
         }
     }
-        include_once 'footer.php'; 
+    include_once 'footer.php';
     ?>
     <!-- end of footer -->
     <script>
-
         // if the username already exist change the innerHtml of the error message
         const usernameError = document.querySelector('.username-error');
         const username = document.querySelector('#validationServerUsername');
         username.addEventListener('input', () => {
-            if(username.value.length > 0){
+            if (username.value.length > 0) {
                 usernameError.innerHTML = 'Username already exist';
             }
         })
+        // function to check if a string contains a capital letter
+        function hasUpperCase(str) {
+            return (/[A-Z]/.test(str));
+        }
+
+        // add password validation
+        const password = document.getElementById('password');
+        const passwordError = document.getElementById('password-error');
+        password.addEventListener('input', () => {
+            console.log(password.value.length);
+            // password must contain atleast one capital letter
+            if (password.value.length < 6) {
+                // console.log('password is too short');
+                passwordError.innerHTML = 'Password must be at least 6 characters';
+                password.classList.add('is-invalid')
+                // console.log(passwordError.innerHTML);
+            }
+            else if (hasUpperCase(password.value) === false) {
+                passwordError.innerHTML = 'Password must contain at least one capital letter';
+            }
+            else{
+                passwordError.innerHTML = 'Password is valid';
+                password.classList.remove('is-invalid')
+                password.classList.add('is-valid')
+            }
+        })
+
 
         // function to change the display property of the company field to none when the role === 'Employee'
         function disableCompany() {
@@ -236,16 +253,15 @@
             // Loop over them and prevent submission
             Array.from(forms).forEach(form => {
                 form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-
-                form.classList.add('was-validated')
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
                 }, false)
             })
         })()
-
     </script>
 </body>
+
 </html>
