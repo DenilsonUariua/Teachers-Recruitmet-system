@@ -124,10 +124,10 @@
                     $imageURL = 'uploads/' . $row2["file_name"];
             ?>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="card m-2 bg-light">
                             <div class="card-body d-inline-flex">
-                                <div class="col" style="width: 40%">
+                                <div class="col p-1" style="width: 40%">
                                     <img src="<?php echo $imageURL; ?>" class="card-img-top" alt="company-logo">
                                 </div>
                                 <div class="col" style="width: 60%">
@@ -138,7 +138,9 @@
                                     <p class="card-text">Grade: <?php echo $row['grade'] ?></p>
                                     <p class="card-text">Start Date: <?php echo $row['startDate'] ?></p>
                                     <p class="card-text">End Date: <?php echo $row['endDate'] ?></p>
-                                    <a href="jobApplication.php" class="btn btn-danger">Apply</a>
+                                </div>
+                                <div class="col p-3" style="width: 5%">
+                                <a href="jobApplication.php" class="btn btn-danger">Apply</a>
                                 </div>
                             </div>
                         </div>

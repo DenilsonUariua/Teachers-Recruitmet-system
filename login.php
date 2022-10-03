@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
         header('Location: findJob.php');
     } else {
         // login failed
-        echo 'Incorrect username or password';
+        // echo 'Incorrect username or password';
     }
 }
 ?>
