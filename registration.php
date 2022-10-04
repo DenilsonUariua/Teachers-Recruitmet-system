@@ -62,30 +62,6 @@ if (isset($_POST['submit'])) {
     ?>
     <!-- end of navbar -->
 
-    <!-- Toast notification to welcome the user -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
-                <strong class="me-auto">NamEduHire</strong>
-                <small><?php
-                        echo date("h:i:sa");
-                        ?></small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                <?php
-                // if the username already exists display a toast notification
-                if (mysqli_num_rows($result) > 0) {
-                    echo 'Username already exists';
-                } else {
-                    echo 'Registration successful';
-                }
-                ?>
-            </div>
-        </div>
-    </div>
-
     <!-- Start of the form  -->
     <div class="card align-middle" style="margin: 5rem; background: #f8f9fa">
         <div class="card-body d-flex justify-content-center">
@@ -95,7 +71,7 @@ if (isset($_POST['submit'])) {
                 <div class="col-md-6">
                     <label for="validationServerUsername" class="form-label">Username</label>
                     <div class="input-group ">
-                        <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                        
                         <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div class="invalid-feedback">
                             Please enter a username.
@@ -140,7 +116,6 @@ if (isset($_POST['submit'])) {
                 <div class="col-md-6 age-field">
                     <label for="validationServerUsername" class="form-label">Age</label>
                     <div class="input-group ">
-                        <span class="input-group-text" id="inputGroupPrepend3">#</span>
                         <input type="number" name="age" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div class="invalid-feedback">
                             Please enter an age.
@@ -155,6 +130,30 @@ if (isset($_POST['submit'])) {
     </div>
     <!-- End of Form -->
     <div class="p-5"></div>
+
+    <!-- Toast notification to welcome the user -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
+                <strong class="me-auto">NamEduHire</strong>
+                <small><?php
+                        echo date("h:i:sa");
+                        ?></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?php
+                // if the username already exists display a toast notification
+                if (mysqli_num_rows($result) > 0) {
+                    echo 'Username already exists';
+                } else {
+                    echo 'Registration successful';
+                }
+                ?>
+            </div>
+        </div>
+    </div>
     <!-- Bootstrap 5 scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
