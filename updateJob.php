@@ -1,36 +1,38 @@
-<?php 
-    // when the submit button is clicked update the job
-    if(isset($_POST['submit'])){
-        // get the id of the job to be updated
-        $id = $_GET['id'];
-        // get the new values for the job
-        $jobTitle = $_POST['jobTitle'];
-        $description = $_POST['description'];
-        $town = $_POST['town'];
-        $region = $_POST['region'];
-        $subject = $_POST['subject'];
-        $grade = $_POST['grade'];
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-        $typeOfJob = $_POST['typeOfJob'];
-        // connect to the database
-        include_once 'dbConfig.php';
-        // update the job in the database
-        $result = mysqli_query($db, "UPDATE jobs SET job_title='$jobTitle', description_of_job='$description', town='$town', region='$region', subject='$subject', grade='$grade', startDate='$startDate', endDate='$endDate', type_of_job='$typeOfJob' WHERE id=$id");
-        // check if the job was updated
-        if($result){
-            // if the job was updated redirect to the jobsPosted page
-            header("Location: jobsPosted.php");
-        }
-        else{
-            // if the job was not updated display an error message
-            echo "Error updating record: " . mysqli_error($db);
-        }
+<?php
+include_once 'dbConfig.php';
+$id = $_GET['id'];
+// when the submit button is clicked update the job
+if (isset($_POST['submit'])) {
+    // get the new values for the job
+    $jobTitle = $_POST['job_title'];
+    $description = $_POST['description_of_job'];
+    $town = $_POST['town'];
+    $region = $_POST['region'];
+    $subject = $_POST['subject'];
+    $grade = $_POST['grade'];
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+    $typeOfJob = $_POST['type_of_job'];
+
+    // update the job in the database
+    $result = $db->query("UPDATE jobs SET job_title = '$jobTitle', description_of_job = '$description', 
+    town = '$town', region = '$region', subject = '$subject', grade = '$grade', startDate = '$startDate', 
+    endDate = '$endDate', type_of_job = '$typeOfJob' WHERE id = '$id'");
+
+    // check if the job was updated
+    if ($result) {
+        // if the job was updated redirect to the jobsPosted page
+        header("Location: jobsPosted.php");
+    } else {
+        // if the job was not updated display an error message
+        echo "Error updating record: " . mysqli_error($db);
     }
+}
 ?>
 
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,16 +46,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
     <!--Link HTML and CSS file-->
     <link rel="stylesheet" href="./style.css">
-    <title> Update Job <?php $id = $_GET['id'];
-    echo $id;?></title>
+    <title> Update Job <?php echo $id; ?></title>
 </head>
 
 <body>
     <!-- PHP code to import the header/navbar -->
     <?php
-        include_once 'header.php'; 
+    include_once 'header.php';
     ?>
-    <!-- end of navbar -->  
+    <!-- end of navbar -->
 
     <!-- add form to update a job -->
     <div class="container-md bg-light border">
@@ -63,18 +64,14 @@
         <form class="row g-3" action="updateJob.php" method="post">
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Job Title</label>
-                <input value=<?php 
-                // include the dbConfig file
-                include_once 'dbConfig.php';
-                // get the id from the url
-                $id = $_GET['id'];
-                // get the job from the db that matches the id
-                $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
-                // fetch the job from the db
-                $row = $query->fetch_assoc();
-                // display the job title
-                echo $row['job_title'];
-                ?> type="text" name="job_title" class="form-control" id="inputPassword4" required>
+                <input value=<?php
+                                // get the job from the db that matches the id
+                                $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
+                                // fetch the job from the db
+                                $row = $query->fetch_assoc();
+                                // display the job title
+                                echo $row['job_title'];
+                                ?> type="text" name="job_title" class="form-control" id="inputPassword4" required>
             </div>
             <div class="col-md-12">
                 <label for="type_of_job" class="form-label">Job Type</label>
@@ -87,18 +84,14 @@
             </div>
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Town</label>
-                <input value=<?php 
-                // include the dbConfig file
-                include_once 'dbConfig.php';
-                // get the id from the url
-                $id = $_GET['id'];
-                // get the job from the db that matches the id
-                $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
-                // fetch the job from the db
-                $row = $query->fetch_assoc();
-                // display the job title
-                echo $row['town'];
-                ?> type="text" name="town" class="form-control" id="inputPassword4" placeholder="" required>
+                <input value=<?php
+                                // get the job from the db that matches the id
+                                $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
+                                // fetch the job from the db
+                                $row = $query->fetch_assoc();
+                                // display the job title
+                                echo $row['town'];
+                                ?> type="text" name="town" class="form-control" id="inputPassword4" placeholder="" required>
             </div>
             <div class="col-6">
                 <label for="inputAddress2" class="form-label">Start Date</label>
@@ -166,26 +159,20 @@
 
             <div class="col-12">
                 <div class="form-floating">
-                    <textarea value=<?php 
-                // include the dbConfig file
-                include_once 'dbConfig.php';
-                // get the id from the url
-                $id = $_GET['id'];
-                // get the job from the db that matches the id
-                $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
-                // fetch the job from the db
-                $row = $query->fetch_assoc();
-                // display the job title
-                echo $row['requirements'];
-                ?> class="form-control" name="requirements" placeholder="Leave a comment here"
-                        id="requirements"></textarea>
+                    <textarea value=<?php
+                                    // get the job from the db that matches the id
+                                    $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
+                                    // fetch the job from the db
+                                    $row = $query->fetch_assoc();
+                                    // display the job title
+                                    echo $row['requirements'];
+                                    ?> class="form-control" name="requirements" placeholder="Leave a comment here" id="requirements"></textarea>
                     <label for="requirements">Requirements</label>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-floating">
-                    <textarea class="form-control" name="description_of_job" placeholder="Leave a comment here"
-                        id="Description" required></textarea>
+                    <textarea class="form-control" name="description_of_job" placeholder="Leave a comment here" id="Description" required></textarea>
                     <label for="description">Description</label>
                 </div>
             </div>
@@ -196,39 +183,29 @@
 
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Company Name</label>
-                <input value=<?php 
-                // include the dbConfig file
-                include_once 'dbConfig.php';
-                // get the id from the url
-                $id = $_GET['id'];
-                // get the job from the db that matches the id
-                $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
-                // fetch the job from the db
-                $row = $query->fetch_assoc();
-                // display the job title
-                echo $row['company_name'];
-                ?> type="text" name="company_name" class="form-control" id="inputPassword4" placeholder="" required>
+                <input value=<?php
+                                // get the job from the db that matches the id
+                                $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
+                                // fetch the job from the db
+                                $row = $query->fetch_assoc();
+                                // display the job title
+                                echo $row['company_name'];
+                                ?> type="text" name="company_name" class="form-control" id="inputPassword4" placeholder="" required>
             </div>
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label">Website (Optional)</label>
-                <input value=<?php 
-                // include the dbConfig file
-                include_once 'dbConfig.php';
-                // get the id from the url
-                $id = $_GET['id'];
-                // get the job from the db that matches the id
-                $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
-                // fetch the job from the db
-                $row = $query->fetch_assoc();
-                // display the job title
-                echo $row['website'];
-                ?> type="text" name="website" class="form-control" id="inputPassword4" placeholder="http://"
-                    required>
+                <input value=<?php
+                                // get the job from the db that matches the id
+                                $query = $db->query("SELECT * FROM jobs WHERE id = '$id'");
+                                // fetch the job from the db
+                                $row = $query->fetch_assoc();
+                                // display the job title
+                                echo $row['website'];
+                                ?> type="text" name="website" class="form-control" id="inputPassword4" placeholder="http://">
             </div>
             <div class="col-12">
                 <label for="fileUpload" class="form-label">Upload PDF or Image File</label>
-                <input type="file" class="form-control" id="fileUpload" name="fileUpload"
-                    placeholder="Upload PDF or Image">
+                <input type="file" class="form-control" id="fileUpload" name="fileUpload" placeholder="Upload PDF or Image">
             </div>
             <div class="col-12 my-3">
                 <button id="submit" type="submit" name="submit" class="btn btn-danger">Update Job</button>
@@ -236,4 +213,5 @@
         </form>
     </div>
 </body>
+
 </html>

@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="./style.css">
     <title>Find Job</title>
 </head>
+<style>
+    .card{
+        border-radius: 0;
+        height: 580px;
+        overflow: hidden auto;
+    }
+</style>
 
 <body>
 
@@ -77,30 +84,45 @@
             }
             // if form is submitted fetch jobs from database that match the job type
             if (isset($_POST['submit'])) {
-                // clear the previous search results
-                echo '<div class="col-md-4"></div>';
+
                 $jobType = $_POST['jobType'];
                 $query = $db->query("SELECT * FROM jobs WHERE type_of_job = '$jobType' ORDER BY id DESC");
                 // loop through the jobs until all jobs are displayed
                 if ($query->num_rows > 0) {
+
                     while ($row = $query->fetch_assoc()) {
-                        // display the job in one row
-                        echo '
-                            <div class="col-md-4">
-                                <div class="card m-2 bg-light">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Job Type: ' . $row['type_of_job'] . '</h5>
-                                        <p class="card-text">Description: ' . $row['description_of_job'] . '</p>
-                                        <p class="card-text">Town: ' . $row['town'] . '</p>
-                                        <p class="card-text">Subject: ' . $row['subject'] . '</p>
-                                        <p class="card-text">Grade: ' . $row['grade'] . '</p>
-                                        <p class="card-text">Start Date: ' . $row['startDate'] . '</p>
-                                        <p class="card-text">End Date: ' . $row['endDate'] . '</p>
-                                        <a href="jobApplication.php" class="btn btn-danger">Apply</a>
+                        // Get image from database that matches the fileUpload 
+                        $fileUpload = $row['fileUpload'];
+                        // echo $fileUpload;
+                        $query2 = $db->query("SELECT * FROM images WHERE file_name = '$fileUpload'");
+                        $row2 = $query2->fetch_assoc();
+                        $imageURL = 'uploads/' . $row2["file_name"]; ?>
+                        <div class="col-md-6">
+                            <div class="card m-2 bg-light">
+                                <!-- <div class="card-body d-inline-flex"> -->
+                                <div class="row p-2 d-flex">
+                                    <div class="col p-3" style="width: 70%">
+                                        <img src="<?php echo $imageURL; ?>" width="40px" height="200px" class="card-img-top" alt="company-logo">
+                                    </div>
+                                    <div class="col p-3 float-end" style="width: 30%">
+                                        <a href="jobApplication.php" class="btn btn-danger float-end">Apply</a>
                                     </div>
                                 </div>
-                            </div>';
-                    }
+                                <!-- </div> -->
+                                <div class="col m-2 p-3" style="width: 100%">
+                                    <h5 class="card-title d-inline-flex">
+                                        <?php echo $row["job_title"] ?>
+                                    </h5>
+                                    <p class="card-text">Description: <?php echo $row['description_of_job'] ?></p>
+                                    <p class="card-text">Town: <?php echo $row['town'] ?></p>
+                                    <p class="card-text">Subject: <?php echo $row['subject'] ?></p>
+                                    <p class="card-text">Grade: <?php echo $row['grade'] ?></p>
+                                    <p class="card-text">Start Date: <?php echo $row['startDate'] ?></p>
+                                    <p class="card-text">End Date: <?php echo $row['endDate'] ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
                 }
                 // display message if no jobs are found
                 else {
@@ -118,43 +140,45 @@
                         <div class="p-5"></div>
                         <div class="p-5"></div>
                         <div class="p-5"></div>';
-                }
-                else{
-                // loop through the jobs until all jobs are displayed
-                while ($row = $query->fetch_assoc()) {
-                    // Get image from database that matches the fileUpload 
-                    $fileUpload = $row['fileUpload'];
-                    // echo $fileUpload;
-                    $query2 = $db->query("SELECT * FROM images WHERE file_name = '$fileUpload'");
-                    $row2 = $query2->fetch_assoc();
-                    $imageURL = 'uploads/' . $row2["file_name"];
-            ?>
+                } else {
+                    // loop through the jobs until all jobs are displayed
+                    while ($row = $query->fetch_assoc()) {
+                        // Get image from database that matches the fileUpload 
+                        $fileUpload = $row['fileUpload'];
+                        // echo $fileUpload;
+                        $query2 = $db->query("SELECT * FROM images WHERE file_name = '$fileUpload'");
+                        $row2 = $query2->fetch_assoc();
+                        $imageURL = 'uploads/' . $row2["file_name"];
+                    ?>
 
-            <div class="col-md-6">
-                <div class="card m-2 bg-light">
-                    <div class="card-body d-inline-flex">
-                        <div class="col p-1" style="width: 40%">
-                            <img src="<?php echo $imageURL; ?>" class="card-img-top" alt="company-logo">
+                        <div class="col-md-6">
+                            <div class="card m-2 bg-light" >
+                                <!-- <div class="card-body d-inline-flex"> -->
+                                <div class="row p-2 d-flex">
+                                    <div class="col p-3" style="width: 70%">
+                                        <img src="<?php echo $imageURL; ?>" width="40px" height="200px" class="card-img-top" alt="company-logo">
+                                    </div>
+
+                                    <div class="col p-3 float-end" style="width: 30%">
+                                        <a href="jobApplication.php" class="btn btn-danger float-end">Apply</a>
+                                    </div>
+                                </div>
+                                <!-- </div> -->
+                                <div class="col m-2 p-3" style="width: 100%">
+                                    <h5 class="card-title d-inline-flex"><?php echo $row["job_title"] ?></h5>
+                                    <p class="card-text">Description: <?php echo $row['description_of_job'] ?></p>
+                                    <p class="card-text">Town: <?php echo $row['town'] ?></p>
+                                    <p class="card-text">Subject: <?php echo $row['subject'] ?></p>
+                                    <p class="card-text">Grade: <?php echo $row['grade'] ?></p>
+                                    <p class="card-text">Start Date: <?php echo $row['startDate'] ?></p>
+                                    <p class="card-text">End Date: <?php echo $row['endDate'] ?></p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col" style="width: 60%">
-                            <h5 class="card-title">Job Type: <?php echo $row["type_of_job"] ?></h5>
-                            <p class="card-text">Description: <?php echo $row['description_of_job']?></p>
-                            <p class="card-text">Town: <?php echo $row['town'] ?></p>
-                            <p class="card-text">Subject: <?php echo $row['subject'] ?></p>
-                            <p class="card-text">Grade: <?php echo $row['grade'] ?></p>
-                            <p class="card-text">Start Date: <?php echo $row['startDate'] ?></p>
-                            <p class="card-text">End Date: <?php echo $row['endDate'] ?></p>
-                        </div>
-                        <div class="col p-3" style="width: 5%">
-                            <a href="jobApplication.php" class="btn btn-danger">Apply</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <?php
+                    }
                 }
             }
-        }
             ?>
             <!-- end of card groups -->
         </div>
@@ -167,28 +191,25 @@
     ?>
     <!-- end of footer -->
     <!-- Bootstrap 5 scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
-        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
     </script>
 
     <script>
-    const toastLiveExample = document.getElementById('liveToast')
-    // if the previous page was login.php show toast 
-    if (document.referrer == "http://localhost/Teachers-Recruitmet-system/login.php") {
-        console.log("show toast");
-        const toast = new bootstrap.Toast(toastLiveExample)
-        toast.show()
-        // hide toast after 3 seconds
-        setTimeout(function() {
-            toast.hide()
-        }, 3000);
-    }
+        const toastLiveExample = document.getElementById('liveToast')
+        // if the previous page was login.php show toast 
+        if (document.referrer == "http://localhost/Teachers-Recruitmet-system/login.php") {
+            console.log("show toast");
+            const toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+            // hide toast after 3 seconds
+            setTimeout(function() {
+                toast.hide()
+            }, 3000);
+        }
     </script>
 </body>
 

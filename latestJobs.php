@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,10 +16,11 @@
     <link rel="stylesheet" href="./style.css">
     <title>Latest Jobs</title>
 </head>
+
 <body>
     <!-- PHP code to import the header/navbar -->
     <?php
-        include_once 'header.php'; 
+    include_once 'header.php';
     ?>
     <!-- end of navbar -->
     <div class="p-4"></div>
@@ -30,9 +32,9 @@
     $query = $db->query("SELECT * FROM jobs WHERE date_posted >= DATE_SUB(NOW(), INTERVAL 3 DAY) ORDER BY id DESC");
 
     // loop through the jobs until all jobs are displayed
-    if($query->num_rows > 0){ 
+    if ($query->num_rows > 0) {
         // display number of job in database
-        echo '<div class="col-md-12 text-center"><p class="text-muted">There are '.$query->num_rows.' jobs!</p></div>';
+        echo '<div class="col-md-12 text-center"><p class="text-muted">There are ' . $query->num_rows . ' jobs!</p></div>';
     }
     ?>
     <!-- start of job cards -->
@@ -40,26 +42,25 @@
         <div class="row">
             <?php
             // loop through the jobs until all jobs are displayed
-            if($query->num_rows > 0){ 
-                while($row = $query->fetch_assoc()){ 
-                    // display the job cards
-                    echo '
+            if ($query->num_rows > 0) {
+                while ($row = $query->fetch_assoc()) { ?>
                     <div class="col-md-4">
-                    <div class="card m-2 bg-light">
-                        <div class="card-body">
-                            <h5 class="card-title">Job Type: '.$row['type_of_job'].'</h5>
-                            <p class="card-text">Description: '.$row['description_of_job'].'</p>
-                            <p class="card-text">Town: '.$row['town'].'</p>
-                            <p class="card-text">Subject: '.$row['subject'].'</p>
-                            <p class="card-text">Grade: '.$row['grade'].'</p>
-                            <p class="card-text">Start Date: '.$row['startDate'].'</p>
-                            <p class="card-text">End Date: '.$row['endDate'].'</p>
-                            <a href="jobApplication.php" class="btn btn-danger">Apply</a>
+                        <div class="card m-2 bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">Job Type: <?php echo $row['type_of_job'] ?></h5>
+                                <p class="card-text">Description: <?php echo $row['description_of_job'] ?></p>
+                                <p class="card-text">Town: <?php echo $row['town'] ?></p>
+                                <p class="card-text">Subject: <?php echo $row['subject'] ?></p>
+                                <p class="card-text">Grade: <?php echo $row['grade'] ?></p>
+                                <p class="card-text">Start Date: <?php echo $row['startDate'] ?></p>
+                                <p class="card-text">End Date: <?php echo $row['endDate'] ?></p>
+                                <a href="jobApplication.php" class="btn btn-danger">Apply</a>
+                            </div>
                         </div>
                     </div>
-                </div>';
+            <?php
                 }
-            }else{  
+            } else {
                 // if no jobs are found
                 echo '<p class="text-muted">Job(s) not found...</p>';
             }
@@ -68,11 +69,11 @@
     </div>
     <!-- add space -->
     <div class="p-4"></div>
-
     <!-- PHP code to import the footer -->
     <?php
-        include_once 'footer.php';
+    include_once 'footer.php';
     ?>
     <!-- end of footer -->
 </body>
+
 </html>

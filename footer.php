@@ -47,7 +47,7 @@ if(!isset($_SESSION)){
                 </svg>
             </div>
         </div>
-        <div class="row" style="margin: 0rem 4rem;">
+        <div class="row" style="margin: 0rem 27%;">
             <div class="col d-inline-flex justify-content-between" style="width: 50%;" > 
                 <a href="about.php" class="footer-links">About Us</a>
                 <a href="about.php" class="footer-links">Support</a>
