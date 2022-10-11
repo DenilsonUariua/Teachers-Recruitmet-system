@@ -167,3 +167,6 @@ footer {
     color: white;
     padding: 20px 0;
 }
+.btn-danger{
+    border-radius: 0;
+}

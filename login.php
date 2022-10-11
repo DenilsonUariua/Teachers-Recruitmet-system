@@ -38,6 +38,16 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="./style.css">
     <title>Login</title>
 </head>
+<style>
+.card {
+    border-radius: 0;
+    box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
+}
+
+.btn-danger {
+    border-radius: 0;
+}
+</style>
 
 <body>
     <!-- Navbar  -->
@@ -48,14 +58,14 @@ if (isset($_POST['submit'])) {
     <!-- end of navbar -->
 
     <!-- Login form -->
-    <div class="card align-middle " style="margin: 5rem; background: #f8f9fa">
+    <div class="card align-middle " style="margin: 5rem;">
         <div class="card-body d-flex justify-content-center">
             <form class="needs-validation" novalidate action="login.php" method="post">
                 <div class="row">
                     <div class="mb-4">
                         <label for="exampleInputEmail1" class="form-label">Username</label>
                         <input type="text" name="username" class="form-control " id="validationServerUsername"
-                        aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div class="invalid-feedback">
                             Please enter a username.
                         </div>
@@ -63,27 +73,27 @@ if (isset($_POST['submit'])) {
                     <div class="mb-4">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" name="password" class="form-control " id="validationServer01" value=""
-                        required />
+                            required />
                         <div class="invalid-feedback">
                             Please enter a password.
                         </div>
-                        <button type="submit" name="submit" class="btn btn-danger my-3">Submit</button>
+                        <button type="submit" name="submit" class="btn btn-danger my-3">Login</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="text-center p-3"><a href="registration.php" style="text-decoration: none; color: black;">
-            Don't have an account?</a>
-        </div>        
+                Don't have an account?</a>
+        </div>
     </div>
     <!-- end of login form -->
- <!-- start of footer -->
- <!-- PHP code to import the header/navbar -->
- <?php
+    <!-- start of footer -->
+    <!-- PHP code to import the header/navbar -->
+    <?php
     include_once 'footer.php'; 
- ?>   
-<!-- end of footer -->
-<script>
+ ?>
+    <!-- end of footer -->
+    <script>
     (() => {
         'use strict'
 
@@ -93,17 +103,17 @@ if (isset($_POST['submit'])) {
         // Loop over them and prevent submission
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
 
-            form.classList.add('was-validated')
+                form.classList.add('was-validated')
             }, false)
         })
     })()
-
-</script>
+    </script>
 
 </body>
+
 </html>

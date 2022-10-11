@@ -54,6 +54,15 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="./style.css" />
     <title>Registration</title>
 </head>
+<style>
+.card {
+    border-radius: 0;
+    box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
+}
+.btn-danger{
+    border-radius: 0;
+}
+</style>
 
 <body>
     <!-- Navbar  -->
@@ -63,7 +72,7 @@ if (isset($_POST['submit'])) {
     <!-- end of navbar -->
 
     <!-- Start of the form  -->
-    <div class="card align-middle" style="margin: 5rem; background: #f8f9fa">
+    <div class="card align-middle" style="margin: 5rem;">
         <div class="card-body d-flex justify-content-center">
             <!-- action="registration.php" is where the form will submit the data when the button is clicked -->
             <!-- method="post" send the form data-->
@@ -71,8 +80,9 @@ if (isset($_POST['submit'])) {
                 <div class="col-md-6">
                     <label for="validationServerUsername" class="form-label">Username</label>
                     <div class="input-group ">
-                        
-                        <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+
+                        <input type="text" name="username" class="form-control " id="validationServerUsername"
+                            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div class="invalid-feedback">
                             Please enter a username.
                         </div>
@@ -95,7 +105,8 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="col-md-6">
                     <label for="role" class="form-label">Role</label>
-                    <select class="form-control" aria-label="Default select example" name="role" id="role" onchange="disableCompany()" required>
+                    <select class="form-control" aria-label="Default select example" name="role" id="role"
+                        onchange="disableCompany()" required>
                         <option selected hidden value="">Role</option>
                         <option value="Employer">Employer</option>
                         <option value="Employee">Employee</option>
@@ -116,7 +127,8 @@ if (isset($_POST['submit'])) {
                 <div class="col-md-6 age-field">
                     <label for="validationServerUsername" class="form-label">Age</label>
                     <div class="input-group ">
-                        <input type="number" name="age" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                        <input type="number" name="age" class="form-control " id="validationServerUsername"
+                            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div class="invalid-feedback">
                             Please enter an age.
                         </div>
@@ -129,7 +141,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <!-- End of Form -->
-    <div class="p-5"></div>
+    <div class="p-2"></div>
 
     <!-- Toast notification to welcome the user -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
@@ -155,11 +167,14 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <!-- Bootstrap 5 scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
     </script>
     <!-- start of footer -->
     <?php
@@ -191,75 +206,73 @@ if (isset($_POST['submit'])) {
     ?>
     <!-- end of footer -->
     <script>
-        // if the username already exist change the innerHtml of the error message
-        const usernameError = document.querySelector('.username-error');
-        const username = document.querySelector('#validationServerUsername');
-        username.addEventListener('input', () => {
-            if (username.value.length > 0) {
-                usernameError.innerHTML = 'Username already exist';
-            }
-        })
-        // function to check if a string contains a capital letter
-        function hasUpperCase(str) {
-            return (/[A-Z]/.test(str));
+    // if the username already exist change the innerHtml of the error message
+    const usernameError = document.querySelector('.username-error');
+    const username = document.querySelector('#validationServerUsername');
+    username.addEventListener('input', () => {
+        if (username.value.length > 0) {
+            usernameError.innerHTML = 'Username already exist';
         }
+    })
+    // function to check if a string contains a capital letter
+    function hasUpperCase(str) {
+        return (/[A-Z]/.test(str));
+    }
 
-        // add password validation
-        const password = document.getElementById('password');
-        const passwordError = document.getElementById('password-error');
-        password.addEventListener('input', () => {
-            console.log(password.value.length);
-            // password must contain atleast one capital letter
-            if (password.value.length < 6) {
-                // console.log('password is too short');
-                passwordError.innerHTML = 'Password must be at least 6 characters';
-                password.classList.add('is-invalid')
-                // console.log(passwordError.innerHTML);
-            }
-            else if (hasUpperCase(password.value) === false) {
-                passwordError.innerHTML = 'Password must contain at least one capital letter';
-            }
-            else{
-                passwordError.innerHTML = 'Password is valid';
-                password.classList.remove('is-invalid')
-                password.classList.add('is-valid')
-            }
-        })
-
-
-        // function to change the display property of the company field to none when the role === 'Employee'
-        function disableCompany() {
-            var role = document.getElementById("role").value;
-            if (role === "Employee") {
-                document.getElementById("company-field").style.display = "none";
-                document.getElementById("company").required = false;
-                // change age-field to col-md-12
-                document.querySelector(".age-field").classList.remove("col-md-6");
-                document.querySelector(".age-field").classList.add("col-md-12");
-            } else {
-                document.getElementById("company-field").style.display = "block";
-                // change age-field to col-md-12
-                document.querySelector(".age-field").classList.remove("col-md-12");
-                document.querySelector(".age-field").classList.add("col-md-6");
-            }
+    // add password validation
+    const password = document.getElementById('password');
+    const passwordError = document.getElementById('password-error');
+    password.addEventListener('input', () => {
+        console.log(password.value.length);
+        // password must contain atleast one capital letter
+        if (password.value.length < 6) {
+            // console.log('password is too short');
+            passwordError.innerHTML = 'Password must be at least 6 characters';
+            password.classList.add('is-invalid')
+            // console.log(passwordError.innerHTML);
+        } else if (hasUpperCase(password.value) === false) {
+            passwordError.innerHTML = 'Password must contain at least one capital letter';
+        } else {
+            passwordError.innerHTML = 'Password is valid';
+            password.classList.remove('is-invalid')
+            password.classList.add('is-valid')
         }
-        (() => {
-            'use strict'
+    })
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
 
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
+    // function to change the display property of the company field to none when the role === 'Employee'
+    function disableCompany() {
+        var role = document.getElementById("role").value;
+        if (role === "Employee") {
+            document.getElementById("company-field").style.display = "none";
+            document.getElementById("company").required = false;
+            // change age-field to col-md-12
+            document.querySelector(".age-field").classList.remove("col-md-6");
+            document.querySelector(".age-field").classList.add("col-md-12");
+        } else {
+            document.getElementById("company-field").style.display = "block";
+            // change age-field to col-md-12
+            document.querySelector(".age-field").classList.remove("col-md-12");
+            document.querySelector(".age-field").classList.add("col-md-6");
+        }
+    }
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
     </script>
 </body>
 

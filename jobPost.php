@@ -16,6 +16,15 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 
+<style>
+.container-md {
+    box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
+}
+.btn-danger{
+    border-radius: 0;
+}
+</style>
+
 <body>
     <!-- start of navbar  -->
     <?php
@@ -47,7 +56,7 @@
 
     <div class="p-4"></div>
     <!-- form for creating a job post -->
-    <div class="container-md bg-light border">
+    <div class="container-md border">
         <div class="py-2">
             <h3>Post A New Job</h3>
         </div>
@@ -135,13 +144,15 @@
 
             <div class="col-12">
                 <div class="form-floating">
-                    <textarea class="form-control" name="requirements" placeholder="Leave a comment here" id="requirements"></textarea>
+                    <textarea class="form-control" name="requirements" placeholder="Leave a comment here"
+                        id="requirements"></textarea>
                     <label for="requirements">Requirements</label>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-floating">
-                    <textarea class="form-control" name="description_of_job" placeholder="Leave a comment here" id="Description" required></textarea>
+                    <textarea class="form-control" name="description_of_job" placeholder="Leave a comment here"
+                        id="Description" required></textarea>
                     <label for="description">Description</label>
                 </div>
             </div>
@@ -160,10 +171,11 @@
             </div>
             <div class="col-12">
                 <label for="fileUpload" class="form-label">Upload Image File</label>
-                <input type="file" class="form-control" id="fileUpload" name="fileUpload" placeholder="Upload PDF or Image">
+                <input type="file" class="form-control" id="fileUpload" name="fileUpload"
+                    placeholder="Upload PDF or Image">
             </div>
             <div class="col-12 my-3">
-                <button id="submit" type="submit" name="submit" class="btn btn-primary">Post Job</button>
+                <button id="submit" type="submit" name="submit" class="btn btn-danger">Post Job</button>
             </div>
         </form>
     </div>
@@ -171,11 +183,14 @@
 
 
     <!--bootstrap 5 imports   -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
     </script>
 
     <!-- handle form submission -->

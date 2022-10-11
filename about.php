@@ -17,21 +17,35 @@
     <link rel="stylesheet" href="./style.css">
     <title>About Us</title>
 </head>
+<style>
+.card {
+    border-radius: 0;
+    border: 1px solid darkred;
+    background-color: #FCF9F9;
+    /* add hover effects */
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0 18px 0 rgba(0, 0, 0, 0.9);
+}
+</style>
 
 <body>
     <!-- About us page with a navbar and body container containing text -->
     <!-- start of navbar -->
-   <!-- PHP code to import the header/navbar -->
-   <?php
+    <!-- PHP code to import the header/navbar -->
+    <?php
         include_once 'header.php'; 
     ?>
     <!-- end of navbar -->
     <!-- start of body containing title and paragraph text  -->
-    <div class="p-5"></div>
-    <div class="container text-center bg-white rounded ">
+    <div class="p-2"></div>
+    <div class="container text-center bg-white ">
         <div class="row">
             <div class="col">
-                <div class="card my-3 shadow-lg" style="width: 18rem;">
+                <div class="card my-3" style="width: 18rem;">
                     <img src="./images/MISSION.png" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Our Mission</h5>
@@ -44,8 +58,8 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card my-3 shadow-lg" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card my-3" style="width: 18rem;">
+                    <img src="./images/SEEKERS.png" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Job Seekers</h5>
                         <p class="card-text">Whether you're just starting out or experienced,
@@ -57,8 +71,8 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card my-3 shadow-lg" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card my-3" style="width: 18rem;">
+                    <img src="./images/EMPLOYERS.png" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Employers</h5>
                         <p class="card-text">Find teachers, administrators, support
@@ -73,8 +87,8 @@
         </div>
     </div>
     <div class="p-5"></div>
-     <!-- start of footer -->
-        <!-- PHP code to import the header/navbar -->
+    <!-- start of footer -->
+    <!-- PHP code to import the header/navbar -->
     <?php
         include_once 'footer.php'; 
     ?>
