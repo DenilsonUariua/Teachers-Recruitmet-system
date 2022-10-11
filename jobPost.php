@@ -159,7 +159,7 @@
                 <input type="text" name="website" class="form-control" id="inputPassword4" placeholder="http://">
             </div>
             <div class="col-12">
-                <label for="fileUpload" class="form-label">Upload PDF or Image File</label>
+                <label for="fileUpload" class="form-label">Upload Image File</label>
                 <input type="file" class="form-control" id="fileUpload" name="fileUpload" placeholder="Upload PDF or Image">
             </div>
             <div class="col-12 my-3">
@@ -234,7 +234,6 @@
         $targetFilePath = $targetDir . $fileName;
         $fileUploadName = $fileName;
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-        echo $targetFilePath;
         //create images table if not exists
         $sql = "CREATE TABLE `images` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -245,22 +244,22 @@
                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $result = mysqli_query($db, $sql);
         // Allow certain file formats
-        $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
         if (in_array($fileType, $allowTypes)) {
             // Upload file to server
             if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $targetFilePath)) {
                 // Insert image file name into database
                 $insert = $db->query("INSERT into images (file_name, uploaded_on) VALUES ('" . $fileName . "', NOW())");
                 if ($insert) {
-                    $statusMsg = "The file " . $fileName . " has been uploaded successfully.";
+                    $_SESSION['message'] = "The file " . $fileName . " has been uploaded successfully.";
                 } else {
-                    $statusMsg = "Error uploading file, please try again.";
+                    $_SESSION['message'] = "Error uploading file, please try again.";
                 }
             } else {
-                $statusMsg = "Sorry, there was an error uploading your file.";
+                $_SESSION['message'] = "Sorry, there was an error uploading your file.";
             }
         } else {
-            $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
+            $_SESSION['message'] = 'Sorry, only JPG, JPEG, PNG & GIF files are allowed to upload.';
         }
         //------------------- end of file upload-----------------------------------------------------
 
