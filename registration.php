@@ -6,7 +6,8 @@ include_once 'dbConfig.php';
 $adminSql = "CREATE TABLE IF NOT EXISTS admin_users (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(255) NOT NULL
     )";
 $seekersSql = "CREATE TABLE IF NOT EXISTS job_seekers (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -23,6 +24,14 @@ $employersSql = "CREATE TABLE IF NOT EXISTS employers (
     address VARCHAR(255) NOT NULL,
     role VARCHAR(255) NOT NULL,
     school VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL,
+    age INT(11) NOT NULL
+    )";
+$requestSql = "CREATE TABLE IF NOT EXISTS employer_request (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    school VARCHAR(255) NOT NULL,
     age INT(11) NOT NULL
     )";
 
@@ -32,6 +41,8 @@ $db->query($adminSql);
 $db->query($seekersSql);
 // execute the query
 $db->query($employersSql);
+// execute the query
+$db->query($requestSql);
 
 //save the data to the database
 if (isset($_POST['submit'])) {
@@ -40,6 +51,7 @@ if (isset($_POST['submit'])) {
     $address = $_POST['address'];
     $role = $_POST['role'];
     $school = $_POST['school'];
+    $status = "pending";
     $age = $_POST['age'];
 
 
@@ -51,27 +63,26 @@ if (isset($_POST['submit'])) {
         } else {
 
             // insert the data into the database
-            $sql = "INSERT INTO employers(username, password, address, role, school, age) VALUES('$username', '$password', '$address', '$role', '$school', '$age')";
+            $sql = "INSERT INTO employers(username, password, address, role, school, status, age) VALUES('$username', '$password', '$address', '$role', '$school', '$status', '$age')";
             // execute the query
             $db->query($sql);
             //wait 3 seconds before redirect to the login page
             header("refresh:2;url=login.php");
         }
-    }
-    else{
-         // check if the username is unique
-         $sql = "SELECT * FROM job_seekers WHERE username = '$username'";
-         $result = mysqli_query($db, $sql);
-         if (mysqli_num_rows($result) > 0) {
-         } else {
- 
-             // insert the data into the database
-             $sql = "INSERT INTO job_seekers(username, password, address, role, age) VALUES('$username', '$password', '$address', '$role', '$age')";
-             // execute the query
-             $db->query($sql);
-             //wait 3 seconds before redirect to the login page
-             header("refresh:2;url=login.php");
-         }
+    } else {
+        // check if the username is unique
+        $sql = "SELECT * FROM job_seekers WHERE username = '$username'";
+        $result = mysqli_query($db, $sql);
+        if (mysqli_num_rows($result) > 0) {
+        } else {
+
+            // insert the data into the database
+            $sql = "INSERT INTO job_seekers(username, password, address, role, age) VALUES('$username', '$password', '$address', '$role', '$age')";
+            // execute the query
+            $db->query($sql);
+            //wait 3 seconds before redirect to the login page
+            header("refresh:2;url=login.php");
+        }
     }
 }
 ?>

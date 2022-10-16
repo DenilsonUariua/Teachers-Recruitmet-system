@@ -8,6 +8,19 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    $adminSql = "SELECT * FROM admin_users WHERE username = '$username' AND password = '$password'";
+    $adminResult = mysqli_query($db, $adminSql);
+    if (mysqli_num_rows($adminResult) > 0) {
+        while ($row = $adminResult->fetch_assoc()) {
+            //   set session variables]
+            $_SESSION['role'] = $row['role'];
+        }
+        // console log the role
+        $_SESSION['username'] = $username;
+        // if the user is an admin redirect to admin dashboard
+        header('Location: adminDashboard.php');
+    }
+
     // check if the username and password are correct
     $sql = "SELECT * FROM job_seekers WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($db, $sql);
@@ -24,20 +37,23 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($db, $employersSql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = $result->fetch_assoc()) {
-                $_SESSION['company'] = $row['company'];
+                $_SESSION['company'] = $row['school'];
                 $_SESSION['role'] = $row['role'];
+                $_SESSION['status'] = $row['status'];
             }
-            //   set session variables
-            $_SESSION['username'] = $username;
-            // login successful
-            header('Location: homepage.php');
         }
         // login failed
-        else {
-            echo '<div class="alert alert-danger" role="alert">
-        Login Failed!
-      </div>';
-        }
+        else { ?>
+            <!-- alert should disappear after 3 seconds -->
+            <div class="alert alert-danger text-center" id='alert' role="alert">
+                Incorrect username or password
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('alert').style.display = 'none';
+                }, 1500);
+            </script>
+<?php }
     }
 }
 ?>
@@ -91,7 +107,7 @@ if (isset($_POST['submit'])) {
                         <div class="invalid-feedback">
                             Please enter a password.
                         </div>
-                        <button type="submit" name="submit" class="btn btn-danger my-3">Login</button>
+                        <button type="submit" name="submit" id="submit" class="btn btn-danger my-3">Login</button>
                     </div>
                 </div>
             </form>
@@ -101,12 +117,54 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <!-- end of login form -->
+    <!-- Toast notification to welcome the user -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
+                <strong class="me-auto">NamEduHire</strong>
+                <small><?php
+                        echo date("h:i:sa");
+                        ?></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?php
+                echo 'The administrator is approving your account. Please wait for a while.';
+                ?>
+            </div>
+        </div>
+    </div>
     <!-- start of footer -->
+
     <!-- PHP code to import the header/navbar -->
     <?php
     include_once 'footer.php';
     ?>
+    <!-- Bootstrap 5 scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+    </script>
     <!-- end of footer -->
+    <?php if ($_SESSION['status'] == 'pending') { ?>
+        <script>
+            const toastTrigger = document.getElementById("submit")
+            const toastLiveExample = document.getElementById("liveToast")
+            toastTrigger.addEventListener("click", (e) => {
+                e.preventDefault();
+                const toast = new bootstrap.Toast(toastLiveExample)
+                toast.show()
+                setTimeout(() => {
+                    window.location.href = "logout.php";
+                }, 2000);
+            })
+        </script>
+    <?php
+
+    } ?>
     <script>
         (() => {
             'use strict'
