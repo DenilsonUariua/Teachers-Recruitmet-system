@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $address = $_POST['address'];
     $role = $_POST['role'];
-    $company = $_POST['school'];
+    $school = $_POST['school'];
     $age = $_POST['age'];
 
 
