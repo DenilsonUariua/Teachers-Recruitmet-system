@@ -11,7 +11,7 @@
         phone VARCHAR(30) NOT NULL,
         address VARCHAR(50) NOT NULL,
         position VARCHAR(50) NOT NULL,
-        company VARCHAR(50) NOT NULL,
+        school VARCHAR(50) NOT NULL,
         resume VARCHAR(255) NOT NULL,
         reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )";
@@ -58,10 +58,10 @@
         $phone = $_POST['phone'];
         $address = $_POST['address'];
         $position = $_POST['position'];
-        $company = $_POST['company'];
+        $school = $_POST['school'];
 
         // insert the data into the database
-        $sql = "INSERT INTO jobApplication (name, email, phone, address, position, company, resume) VALUES ('$name', '$email', '$phone', '$address', '$position', '$company', '$resume')";
+        $sql = "INSERT INTO jobApplication (name, email, phone, address, position, school, resume) VALUES ('$name', '$email', '$phone', '$address', '$position', '$school', '$resume')";
         if (mysqli_query($db, $sql)) {
             echo "<script>alert('Your application has been submitted successfully')</script>";
         } else {
@@ -136,9 +136,9 @@
                              placeholder="Enter the position you are applying for">
                      </div>
                      <div class="mb-3">
-                         <label for="position" class="form-label">Company</label>
-                         <input type="text" class="form-control" id="position" name="company"
-                             placeholder="Enter the company you are applying for">
+                         <label for="position" class="form-label">School</label>
+                         <input type="text" class="form-control" id="position" name="school"
+                             placeholder="Enter the school you are applying for">
                      </div>
                      <div class="mb-3">
                          <label for="resume" class="form-label">Resume</label>
