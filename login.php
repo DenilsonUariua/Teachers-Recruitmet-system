@@ -7,21 +7,37 @@ if (isset($_POST['submit'])) {
     // get the form data
     $username = $_POST['username'];
     $password = $_POST['password'];
+
     // check if the username and password are correct
-    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM job_seekers WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($db, $sql);
     if (mysqli_num_rows($result) > 0) {
-        while($row = $result->fetch_assoc()){
-                $_SESSION['company'] = $row['company'];
-                $_SESSION['role'] = $row['role'];
+        while ($row = $result->fetch_assoc()) {
+            $_SESSION['role'] = $row['role'];
         }
         //   set session variables
         $_SESSION['username'] = $username;
         // login successful
-        header('Location: findJob.php');
+        header('Location: homepage.php');
     } else {
+        $employersSql = "SELECT * FROM employers WHERE username = '$username' AND password = '$password'";
+        $result = mysqli_query($db, $employersSql);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $_SESSION['company'] = $row['company'];
+                $_SESSION['role'] = $row['role'];
+            }
+            //   set session variables
+            $_SESSION['username'] = $username;
+            // login successful
+            header('Location: homepage.php');
+        }
         // login failed
-        // echo 'Incorrect username or password';
+        else {
+            echo '<div class="alert alert-danger" role="alert">
+        Login Failed!
+      </div>';
+        }
     }
 }
 ?>
@@ -39,21 +55,21 @@ if (isset($_POST['submit'])) {
     <title>Login</title>
 </head>
 <style>
-.card {
-    border-radius: 0;
-    box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
-}
+    .card {
+        border-radius: 0;
+        box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
+    }
 
-.btn-danger {
-    border-radius: 0;
-}
+    .btn-danger {
+        border-radius: 0;
+    }
 </style>
 
 <body>
     <!-- Navbar  -->
     <!-- PHP code to import the header/navbar -->
     <?php
-        include_once 'header.php'; 
+    include_once 'header.php';
     ?>
     <!-- end of navbar -->
 
@@ -64,16 +80,14 @@ if (isset($_POST['submit'])) {
                 <div class="row">
                     <div class="mb-4">
                         <label for="exampleInputEmail1" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control " id="validationServerUsername"
-                            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                        <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div class="invalid-feedback">
                             Please enter a username.
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control " id="validationServer01" value=""
-                            required />
+                        <input type="password" name="password" class="form-control " id="validationServer01" value="" required />
                         <div class="invalid-feedback">
                             Please enter a password.
                         </div>
@@ -90,28 +104,28 @@ if (isset($_POST['submit'])) {
     <!-- start of footer -->
     <!-- PHP code to import the header/navbar -->
     <?php
-    include_once 'footer.php'; 
- ?>
+    include_once 'footer.php';
+    ?>
     <!-- end of footer -->
     <script>
-    (() => {
-        'use strict'
+        (() => {
+            'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.needs-validation')
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
 
-                form.classList.add('was-validated')
-            }, false)
-        })
-    })()
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
     </script>
 
 </body>

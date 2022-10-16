@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +21,29 @@
 <body>
     <!-- PHP code to import the header/navbar -->
     <?php
-        include_once 'header.php'; 
+    include_once 'header.php';
+    // create images table
+
+    $sqlJobs = "CREATE TABLE IF NOT EXISTS jobs (
+        id INT(11) NOT NULL AUTO_INCREMENT,
+        job_title VARCHAR(255) NOT NULL,
+        type_of_job VARCHAR(255) NOT NULL,
+        startDate DATE NOT NULL,
+        endDate DATE NOT NULL,
+        region VARCHAR(255) NOT NULL,
+        subject VARCHAR(255) NOT NULL,
+        grade VARCHAR(255) NOT NULL,
+        requirements VARCHAR(255) NOT NULL,
+        description_of_job VARCHAR(255) NOT NULL,
+        company_name VARCHAR(255) NOT NULL,
+        website VARCHAR(255) NOT NULL,
+        town VARCHAR(255) NOT NULL,
+        fileUpload VARCHAR(255) NOT NULL,
+        date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY (id)
+    )";
+    //execute the query
+    $db->query($sqlJobs);
     ?>
     <!--=====================main section=======================-->
     <section class="main ">
@@ -97,10 +120,10 @@
                                 <div class="card-body py-3">
                                     <img src="./images/MathematicsImage.jpg" class="img-fluid my-3 " alt="">
                                     <h6> Mathematics</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Mathematics'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Mathematics'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -109,10 +132,10 @@
                                 <div class="card-body py-3">
                                     <img src="./images/GeographyImage.png" class="img-fluid my-3 " alt="">
                                     <h6> Geography</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Geography'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Geography'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -121,10 +144,10 @@
                                 <div class="card-body">
                                     <img src="./images/BiologyImage.png" class="img-fluid my-3 " alt="">
                                     <h6>Biology</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Biology'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Biology'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -133,10 +156,10 @@
                                 <div class="card-body">
                                     <img src="./images/PhysicalScienceImage.png" class="img-fluid my-3 " alt="">
                                     <h6> Physical Science</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Physical Science'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Physical Science'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -152,10 +175,10 @@
                                 <div class="card-body py-4">
                                     <img src="./images/PhysicalEducation.png" class="img-fluid my-3 " alt="">
                                     <h6> Physical Education</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Physical Education'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Physical Education'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)
                                     </h6>
                                 </div>
                             </div>
@@ -165,10 +188,10 @@
                                 <div class="card-body">
                                     <img src="./images/LanguagesImage.png" class="img-fluid my-3 " alt="">
                                     <h6> Languages</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Languages'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Languages'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -177,10 +200,10 @@
                                 <div class="card-body">
                                     <img src="./images/ArtsImage.png" class="img-fluid my-3 " alt="">
                                     <h6> Arts </h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Arts'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Arts'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -189,10 +212,10 @@
                                 <div class="card-body">
                                     <img src="./images/ChemistryImage.png" class="img-fluid my-3 " alt="">
                                     <h6> Chemistry</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Chemistry'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Chemistry'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -206,10 +229,10 @@
                                 <div class="card-body">
                                     <img src="./images/HistoryImage.png" class="img-fluid my-3 " alt="">
                                     <h6> History</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'History'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'History'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -218,10 +241,10 @@
                                 <div class="card-body">
                                     <img src="./images/LifeSkillsImage.png" class="img-fluid my-3 " alt="">
                                     <h6>Life Skills</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Life Skills'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Life Skills'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -230,10 +253,10 @@
                                 <div class="card-body">
                                     <img src="./images/ComputerScience.png" class="img-fluid my-3 " alt="">
                                     <h6> Computer Science</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Computer Science'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Computer Science'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -242,10 +265,10 @@
                                 <div class="card-body">
                                     <img src="./images/Design&Technology.png" class="img-fluid my-3 " alt="">
                                     <h6> Design & Technology</h6>
-                                    <h6 class="red">(<?php 
-                                    $query = $db->query("SELECT * FROM jobs WHERE subject = 'Design & Technology'");
-                                    // display the number of rows in the result set
-                                    echo $query->num_rows;?>)</h6>
+                                    <h6 class="red">(<?php
+                                                        $query = $db->query("SELECT * FROM jobs WHERE subject = 'Design & Technology'");
+                                                        // display the number of rows in the result set
+                                                        echo $query->num_rows; ?>)</h6>
                                 </div>
                             </div>
                         </div>
@@ -262,8 +285,8 @@
     </section>
 
     <!-- PHP code to import the footer component -->
-    <?php include 'footer.php';?>
-    
+    <?php include 'footer.php'; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

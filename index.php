@@ -24,6 +24,13 @@
     <!-- PHP code to import the header/navbar -->
     <?php
         include_once 'header.php'; 
+        // create teachers_recruitment database
+       $sql = "CREATE DATABASE IF NOT EXISTS teachers_recruitment";
+         $result = mysqli_query($db, $sql);
+            if ($result) {
+            } else {
+                echo "Error creating database: " . mysqli_error($db);
+            }
     ?>
     <div class="m-5"></div>
     <div class="container text-center">

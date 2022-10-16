@@ -158,11 +158,11 @@
             </div>
 
             <div class="col-12">
-                <h4>Company Details</h4>
+                <h4>School Details</h4>
             </div>
 
             <div class="col-md-12">
-                <label for="inputPassword4" class="form-label">Company Name</label>
+                <label for="inputPassword4" class="form-label">School Name</label>
                 <input type="text" name="company_name" class="form-control" id="inputPassword4" placeholder="" required>
             </div>
             <div class="col-md-12">
