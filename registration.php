@@ -28,7 +28,6 @@ $employersSql = "CREATE TABLE IF NOT EXISTS employers (
 
 // execute the query
 $db->query($adminSql);
-// check if the query was successful
 // execute the query
 $db->query($seekersSql);
 // execute the query
