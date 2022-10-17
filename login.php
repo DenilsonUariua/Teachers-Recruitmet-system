@@ -40,6 +40,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['company'] = $row['school'];
                 $_SESSION['role'] = $row['role'];
                 $_SESSION['status'] = $row['status'];
+                $_SESSION['username'] = $username;
             }
         }
         // login failed
@@ -160,6 +161,18 @@ if (isset($_POST['submit'])) {
                 setTimeout(() => {
                     window.location.href = "logout.php";
                 }, 2000);
+            })
+        </script>
+    <?php
+
+    } elseif ($_SESSION['status'] == 'approved') {
+         ?>
+        <script>
+            const toastTrigger = document.getElementById("submit")
+            toastTrigger.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.location.href = "homepage.php";
+                console.log('I ran d')
             })
         </script>
     <?php

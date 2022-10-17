@@ -62,15 +62,6 @@ include_once 'dbConfig.php';
                             Logout
                         </button>
                     </a>
-                    <div class="dropdown m-1">
-                        <button style="border-radius: 0; height: 3rem;" class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Manage Jobs
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="applicationsPosted.php">See Applications</a></li>
-                            <li><a class="dropdown-item" href="jobsPosted.php">See Job Post</a></li>
-                        </ul>
-                    </div>
 
                 <?php } elseif ($_SESSION['role'] == 'Job Seeker') { ?>
                     <li class="nav-item">

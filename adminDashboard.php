@@ -37,6 +37,41 @@
                 </div>
             </div>
         </div>
+        <?php
+        // get all the employer_requests from the db
+        $sql = "SELECT * FROM employer_request";
+        // display in table
+        $result = mysqli_query($db, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            echo "<table class='table table-striped table-hover'>
+            <thead>
+                <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>School</th>
+                    <th scope='col'>Address</th>
+                    <th scope='col'>Age</th>
+                    <th scope='col'>Action</th>
+                </tr>
+            </thead>
+            <tbody>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>
+                    <th scope='row'>" . $row['id'] . "</th>
+                    <td>" . $row['school'] . "</td>
+                    <td>" . $row['address'] . "</td>
+                    <td>" . $row['age'] . "</td>
+                    <td>
+                        <a href='approveEmployer.php?username=" . $row['username'] . "' class='btn btn-success'>Approve</a>
+                        <a href='rejectEmployer.php?username=" . $row['username'] . "' class='btn btn-danger'>Reject</a>
+                    </td>
+                </tr>";
+            }
+            echo "</tbody>
+            </table>";
+        } else {
+            echo "No requests";
+        }
+        ?>
     </div>
 </body>
 

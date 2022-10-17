@@ -30,6 +30,7 @@ $employersSql = "CREATE TABLE IF NOT EXISTS employers (
 $requestSql = "CREATE TABLE IF NOT EXISTS employer_request (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
     school VARCHAR(255) NOT NULL,
     age INT(11) NOT NULL
@@ -63,11 +64,13 @@ if (isset($_POST['submit'])) {
         } else {
 
             // insert the data into the database
-            $sql = "INSERT INTO employers(username, password, address, role, school, status, age) VALUES('$username', '$password', '$address', '$role', '$school', '$status', '$age')";
+            $sqlEmployer = "INSERT INTO employers(username, password, address, role, school, status, age) VALUES('$username', '$password', '$address', '$role', '$school', '$status', '$age')";
+            $sql1 = "INSERT INTO employer_request(username, password, address, school, age) VALUES('$username', '$password', '$address', '$school', '$age')";
             // execute the query
-            $db->query($sql);
+            $db->query($sqlEmployer);
+            $db->query($sql1);
             //wait 3 seconds before redirect to the login page
-            header("refresh:2;url=login.php");
+            header("refresh:1;url=login.php");
         }
     } else {
         // check if the username is unique
@@ -81,7 +84,7 @@ if (isset($_POST['submit'])) {
             // execute the query
             $db->query($sql);
             //wait 3 seconds before redirect to the login page
-            header("refresh:2;url=login.php");
+            header("refresh:1;url=login.php");
         }
     }
 }
