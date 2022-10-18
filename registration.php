@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
 
     if ($role == "Employer") {
         // check if the username is unique
-        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $sql = "SELECT * FROM employers WHERE username = '$username'";
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
         } else {

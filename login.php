@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['company'] = $row['school'];
                 $_SESSION['role'] = $row['role'];
                 $_SESSION['status'] = $row['status'];
-                $_SESSION['username'] = $username;
+                
             }
         }
         // login failed
@@ -166,6 +166,7 @@ if (isset($_POST['submit'])) {
     <?php
 
     } elseif ($_SESSION['status'] == 'approved') {
+        $_SESSION['username'] = $username;
          ?>
         <script>
             const toastTrigger = document.getElementById("submit")

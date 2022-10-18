@@ -10,8 +10,8 @@ database once and import it where ever it is needed thoughout he project -->
 // $password is the password to connect to the database
 // $database is the name of the database
 $host = 'localhost';
-// $database = 'teachers_recruitment';
-$database = 'test';
+$database = 'teachers_recruitment';
+
 $user = 'root';
 $password = '';
 // if session is not started start session
