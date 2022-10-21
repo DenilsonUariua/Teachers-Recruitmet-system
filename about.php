@@ -18,18 +18,28 @@
     <title>About Us</title>
 </head>
 <style>
-.card {
-    border-radius: 0;
-    border: 1px solid darkred;
-    background-color: #FCF9F9;
-    /* add hover effects */
-    transition: all 0.2s ease-in-out;
-}
+    .card {
+        border-radius: 0;
+        border: 1px solid darkred;
+        background-color: #FCF9F9;
+        /* add hover effects */
+        transition: all 0.2s ease-in-out;
+    }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0 18px 0 rgba(0, 0, 0, 0.9);
-}
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 0 18px 0 rgba(0, 0, 0, 0.9);
+    }
+
+    /* add background image to wrapper */
+    .wrapper {
+        background-image: url('./images/About us page.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        
+        align-items: center;
+    }
 </style>
 
 <body>
@@ -37,60 +47,63 @@
     <!-- start of navbar -->
     <!-- PHP code to import the header/navbar -->
     <?php
-        include_once 'header.php'; 
+    include_once 'header.php';
     ?>
-    <!-- end of navbar -->
-    <!-- start of body containing title and paragraph text  -->
-    <div class="p-2"></div>
-    <div class="container text-center bg-white ">
-        <div class="row">
-            <div class="col">
-                <div class="card my-3" style="width: 18rem;">
-                    <img src="./images/MISSION.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Our Mission</h5>
-                        <p class="card-text">We have digitized the recruitment process
-                            for teachers in Namibia. To improve the recruitment process
-                            for teachers by making vacancies more accessible and for schools
-                            to attract more applicants while saving advertising costs.</p>
-                        <a href="registration.php" class="btn btn-danger">Sign Up Now</a>
+    <div class="wrapper">
+        <!-- end of navbar -->
+        <!-- start of body containing title and paragraph text  -->
+        <div class="p-2"></div>
+        <div class="container text-center bg-white ">
+            <div class="row">
+                <div class="col">
+                    <div class="card my-3" style="width: 18rem;">
+                        <img src="./images/MISSION.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Our Mission</h5>
+                            <p class="card-text">We have digitized the recruitment process
+                                for teachers in Namibia. To improve the recruitment process
+                                for teachers by making vacancies more accessible and for schools
+                                to attract more applicants while saving advertising costs.</p>
+                            <a href="registration.php" class="btn btn-danger">Sign Up Now</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card my-3" style="width: 18rem;">
-                    <img src="./images/SEEKERS.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Job Seekers</h5>
-                        <p class="card-text">Whether you're just starting out or experienced,
-                            NamEduHire is the best place to manage your education career.
-                            Access thousands of job openings nationwide in a single,
-                            easy-to-search engine. And that's just the beginning </p>
-                        <a href="findJob.php" class="btn btn-danger">Find a Job ></a>
+                <div class="col">
+                    <div class="card my-3" style="width: 18rem;">
+                        <img src="./images/SEEKERS.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Job Seekers</h5>
+                            <p class="card-text">Whether you're just starting out or experienced,
+                                NamEduHire is the best place to manage your education career.
+                                Access thousands of job openings nationwide in a single,
+                                easy-to-search engine. And that's just the beginning </p>
+                            <a href="findJob.php" class="btn btn-danger">Find a Job ></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card my-3" style="width: 18rem;">
-                    <img src="./images/EMPLOYERS.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Employers</h5>
-                        <p class="card-text">Find teachers, administrators, support
-                            staff and other education professionals for your school.
-                            Attract more applicants even those hard-to-fill positions,
-                            while saving money spent on career fairs and advertising.
-                        </p>
-                        <a href="jobPost.php" class="btn btn-danger">Post a Job ></a>
+                <div class="col">
+                    <div class="card my-3" style="width: 18rem;">
+                        <img src="./images/EMPLOYERS.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Employers</h5>
+                            <p class="card-text">Find teachers, administrators, support
+                                staff and other education professionals for your school.
+                                Attract more applicants even those hard-to-fill positions,
+                                while saving money spent on career fairs and advertising.
+                            </p>
+                            <a href="jobPost.php" class="btn btn-danger">Post a Job ></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="p-5"></div>
+
     </div>
-    <div class="p-5"></div>
     <!-- start of footer -->
     <!-- PHP code to import the header/navbar -->
     <?php
-        include_once 'footer.php'; 
+    include_once 'footer.php';
     ?>
     <!-- end of footer -->
 </body>
