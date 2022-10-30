@@ -11,7 +11,6 @@ database once and import it where ever it is needed thoughout he project -->
 // $database is the name of the database
 $host = 'localhost';
 $database = 'teachers_recruitment';
-
 $user = 'root';
 $password = '';
 // if session is not started start session

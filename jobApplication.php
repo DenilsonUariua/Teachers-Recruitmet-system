@@ -2,25 +2,6 @@
  <?php
     // connect to the database
     include_once 'dbConfig.php';
-
-    // create job application table if it does not exist
-    $sql = "CREATE TABLE IF NOT EXISTS jobApplication (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(30) NOT NULL,
-        email VARCHAR(50) NOT NULL,
-        phone VARCHAR(30) NOT NULL,
-        address VARCHAR(50) NOT NULL,
-        position VARCHAR(50) NOT NULL,
-        school VARCHAR(50) NOT NULL,
-        resume VARCHAR(255) NOT NULL,
-        reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-        )";
-
-    if (mysqli_query($db, $sql)) {
-        // echo "Table jobApplication created successfully";
-    } else {
-        echo "Error creating table: " . mysqli_error($db);
-    }
     // check if the submit button was clicked
     if (isset($_POST['submit'])) {
         // create uploads folder if it doesn't exist

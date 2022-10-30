@@ -37,7 +37,7 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;
-        
+        background-size: 100%;
         align-items: center;
     }
 </style>
@@ -53,7 +53,7 @@
         <!-- end of navbar -->
         <!-- start of body containing title and paragraph text  -->
         <div class="p-2"></div>
-        <div class="container text-center bg-white ">
+        <div class="container text-center bg-transparent ">
             <div class="row">
                 <div class="col">
                     <div class="card my-3" style="width: 18rem;">

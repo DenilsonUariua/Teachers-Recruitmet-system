@@ -18,12 +18,13 @@
     <title> NamEduHire</title>
 </head>
 <style>
-    .wrapper {
-        background-image: url('./images/About us page.jpg');
+    .home {
+        background-image: url('./images/HomePage img.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;
         align-items: center;
+        background-size: 100%;
     }
 </style>
 
@@ -32,30 +33,10 @@
     <!-- PHP code to import the header/navbar -->
     <?php
     include_once 'header.php';
-    // create images table
 
-    $sqlJobs = "CREATE TABLE IF NOT EXISTS jobs (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        job_title VARCHAR(255) NOT NULL,
-        type_of_job VARCHAR(255) NOT NULL,
-        startDate DATE NOT NULL,
-        endDate DATE NOT NULL,
-        region VARCHAR(255) NOT NULL,
-        subject VARCHAR(255) NOT NULL,
-        grade VARCHAR(255) NOT NULL,
-        requirements VARCHAR(255) NOT NULL,
-        description_of_job VARCHAR(255) NOT NULL,
-        company_name VARCHAR(255) NOT NULL,
-        website VARCHAR(255) NOT NULL,
-        town VARCHAR(255) NOT NULL,
-        fileUpload VARCHAR(255) NOT NULL,
-        date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        PRIMARY KEY (id)
-    )";
-    //execute the query
-    $db->query($sqlJobs);
     ?>
-    <div class="wrapper">
+
+    <div class="home">
         <!--=====================main section=======================-->
         <section class="main ">
             <div class="container py-2">
@@ -121,7 +102,7 @@
         <!--==========================Browse subjects sections====================-->
         <section class="subjects py-3">
             <div class="container-fluid py-5 text-center">
-                <p class="red"> <strong>POPULAR SCHOOL SUBJECTS </strong></p>
+                <p class="red"> <strong class="text-white">POPULAR SCHOOL SUBJECTS </strong></p>
                 <h2>Browse top subject Categories</h2>
                 <div class="row ">
                     <div class="col-lg-11 m-auto pt-3">
@@ -295,11 +276,8 @@
     </div>
     </section>
     </div>
-
-
     <!-- PHP code to import the footer component -->
     <?php include 'footer.php'; ?>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
