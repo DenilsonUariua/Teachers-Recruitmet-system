@@ -5,13 +5,14 @@
   "dependencies": {
     "grommet": "^2.0.1",
     "grommet-icons": "^3.2.0",
+    "module-alias": "^2.2.2",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1",
     "styled-components": "^4.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "craco start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -24,5 +25,15 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "_moduleAliases": {
+    "@root": ".",
+    "@deep": "src/some/very/deep/directory/or/file",
+    "@my_module": "lib/some-file.js",
+    "something": "src/foo"
+  },
+  "devDependencies": {
+    "craco": "^0.0.3",
+    "react-app-alias": "^2.2.2"
+  }
 }
