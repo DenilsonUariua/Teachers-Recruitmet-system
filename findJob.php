@@ -20,6 +20,7 @@
 .card-img-top {
     height: 200px;
     width: 200px;
+    object-fit: cover;
 }
 
 .card {
