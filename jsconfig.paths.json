@@ -3,7 +3,8 @@
       "baseUrl": ".",
       "paths": {
         "@controls": ["src/components/controls"],
-        "@auth": ["src/components/signup"]
+        "@auth": ["src/components/signup"],
+        "images": ["src/images"]
       }
     }
   }
