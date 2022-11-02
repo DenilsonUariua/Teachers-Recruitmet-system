@@ -1,19 +1,34 @@
-import React from 'react';
+import React from "react";
 
-import {
-    Box,
-  } from "grommet";
 
-const Footer = ({ ...rest }) => (
-  <Box
-    as="footer"
-    align="center"
-    direction="row"
-    flex={false}
-    gap="medium"
-    justify="between"
-    {...rest}
-  />
-);
+import { Anchor, Box, grommet, Grommet } from "grommet";
+const theme = {
+  global: {
+    colors: {
+      brand: "#2a2f33"
+    },
+    font: {
+      family: "Roboto",
+      size: "14px",
+      height: "20px"
+    }
+  }
+};
 
-export { Footer };
+
+
+export const Footer = ({ ...rest }) => {
+  return (
+    <Grommet theme={theme}>
+      <Box
+        as="footer"
+        align="center"
+        direction="row"
+        flex={false}
+        gap="medium"
+        justify="center"
+        {...rest}
+      />
+    </Grommet>
+  );
+};
