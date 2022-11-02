@@ -1,5 +1,6 @@
 import React from "react";
 import { Header, Footer } from "@controls";
+import { LoginForm, SignupForm } from "@auth";
 import { Text, Anchor, Grid, Box } from "grommet";
 import PocketBase from "pocketbase";
 
@@ -23,17 +24,6 @@ const App = () => {
   return (
     <div>
       <Header />
-      <Grid
-        rows={["auto", "flex"]}
-        columns={["auto", "flex"]}
-        gap="small"
-      >
-        <Box gridArea="header" background="brand" />
-        <Box gridArea="main" background="light-2" />
-
-        <Box gridArea="sidebar" background="light-4" />
-        <Box gridArea="footer" background="brand" />
-      </Grid>
     </div>
   );
 };

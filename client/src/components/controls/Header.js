@@ -41,7 +41,7 @@ export const Header = () => {
   const [showSidebar, setShowSidebar] = React.useState(false);
 
   return (
-    <Grommet theme={theme} full>
+    <Grommet theme={theme}>
       <ResponsiveContext.Consumer>
         {size => (
           <Box fill>
