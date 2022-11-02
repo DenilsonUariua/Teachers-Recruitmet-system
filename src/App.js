@@ -21,10 +21,10 @@ async function fetchValues() {
     "jobs",
     200 /* batch size */,
     {
-      sort: "-created"
+      sort: "-created",
     }
   );
-  console.log("records", records);
+  // await client.users.delete('zfng4t4z7x55lq4');
   localStorage.setItem("token", adminAuthData.token);
 }
 const Media = () => (

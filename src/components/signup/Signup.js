@@ -9,12 +9,17 @@ import {
   Heading,
   Select,
   TextArea,
-  TextInput
+  TextInput,
 } from "grommet";
+import PocketBase from "pocketbase";
+import { useNavigate } from "react-router-dom";
+
+const client = new PocketBase("http://127.0.0.1:8090");
 
 export const SignupForm = () => {
   const [submitted, setSubmitted] = useState(false);
-  const [selectValue, setSelectValue] = useState('')
+  const [selectValue, setSelectValue] = useState("");
+  const navigate = useNavigate();
 
   return (
     <Grommet theme={grommet}>
@@ -28,9 +33,9 @@ export const SignupForm = () => {
               email_address: "",
               type: "",
               phone_number: "",
-              confirm_password: ""
+              confirm_password: "",
             }}
-            validate={values => {
+            validate={(values) => {
               const errors = {};
               if (!values.username) {
                 errors.name = "required";
@@ -61,8 +66,29 @@ export const SignupForm = () => {
             validateOnBlur={submitted}
             validateOnChange={submitted}
             onSubmit={(values, { setSubmitting }) => {
-              // whatever submitting the form should entail
-              alert("Submitting\n" + JSON.stringify(values, null, 2));
+              setSubmitting(true);
+              // create user
+              const user = client.users
+                .create({
+                  email: values.email_address,
+                  password: values.password,
+                  passwordConfirm: values.confirm_password,
+                })
+                .then((res) => {
+                  client.records
+                  .create("users", values)
+                  .then((res) => {
+                    console.log('Me',res);
+                    navigate("/signin");
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+               // whatever submitting the form should entail
               setSubmitted(true);
               setSubmitting();
             }}
@@ -73,10 +99,10 @@ export const SignupForm = () => {
               handleChange,
               handleBlur,
               handleSubmit,
-              setFieldValue
+              setFieldValue,
             }) => (
               <form
-                onSubmit={event => {
+                onSubmit={(event) => {
                   event.preventDefault();
                   handleSubmit();
                 }}
@@ -97,6 +123,7 @@ export const SignupForm = () => {
                 </FormField>
                 <FormField label="Email" error={errors.email_address}>
                   <TextInput
+                    type={"email"}
                     name="email_address"
                     value={values.email_address || ""}
                     onChange={handleChange}
@@ -109,7 +136,7 @@ export const SignupForm = () => {
                     value={selectValue}
                     onChange={({ option }) => {
                       values.type = option;
-                      setSelectValue(option)
+                      setSelectValue(option);
                       return option;
                     }}
                     onBlur={handleBlur}
@@ -139,7 +166,6 @@ export const SignupForm = () => {
                     }}
                   />
                 </FormField>
-                {console.log("values", values)}
                 <Box
                   tag="footer"
                   margin={{ top: "medium" }}
