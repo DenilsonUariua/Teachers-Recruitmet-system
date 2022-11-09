@@ -11,9 +11,19 @@ import {
   TextArea,
   TextInput
 } from "grommet";
+import PocketBase from "pocketbase";
+import { useNavigate } from "react-router-dom";
+
+const client = new PocketBase("http://127.0.0.1:8090");
 
 export const LoginForm = () => {
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
+
+  async function authenticateUser(email, password) {
+    const authData = await client.users.authViaEmail(email, password);
+    return authData;
+  }
 
   return (
     <Grommet theme={grommet}>
@@ -22,22 +32,27 @@ export const LoginForm = () => {
           <Heading>Login</Heading>
           <Formik
             initialValues={{
-              username: "",
+              email: "",
               password: ""
             }}
             validate={values => {
               const errors = {};
-              if (!values.username) {
+              if (!values.email) {
                 errors.name = "required";
               }
               return errors;
             }}
             validateOnBlur={submitted}
             validateOnChange={submitted}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={async (values, { setSubmitting }) => {
               // whatever submitting the form should entail
-              alert("Submitting\n" + JSON.stringify(values, null, 2));
-              setSubmitting();
+              authenticateUser(values.email, values.password).then((data) => {
+                console.log(data);
+                console.log('success');
+                navigate('/dashboard');
+              }).catch((err) => {
+                console.log('error', err);
+              });
             }}
           >
             {({
@@ -53,15 +68,15 @@ export const LoginForm = () => {
                   handleSubmit();
                 }}
               >
-                <FormField label="Username" error={errors.username}>
+                <FormField label="Email address" error={errors.email}>
                   <TextInput
-                    name="username"
-                    value={values.username || ""}
+                    name="email"
+                    value={values.email || ""}
                     onChange={handleChange}
                     required
                   />
                 </FormField>
-                <FormField label="Password" error={errors.email}>
+                <FormField label="Password" error={errors.password}>
                   <TextInput
                     name="password"
                     type="password"

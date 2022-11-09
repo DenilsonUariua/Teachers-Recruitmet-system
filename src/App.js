@@ -12,10 +12,11 @@ const client = new PocketBase("http://127.0.0.1:8090");
 async function fetchValues() {
   // admin authentication via email/pass
   const adminAuthData = await client.admins.authViaEmail(
-    "namutenya.ch@gmail.com",
-    "celinehaiketi"
+    "denuariua@gmail.com", 
+    "denilson12345"
   );
-
+ // "namutenya.ch@gmail.com",
+    // "celinehaiketi"
   // alternatively you can also fetch all records at once via getFullList:
   const records = await client.records.getFullList(
     "jobs",
@@ -24,6 +25,7 @@ async function fetchValues() {
       sort: "-created",
     }
   );
+ 
   // await client.users.delete('zfng4t4z7x55lq4');
   localStorage.setItem("token", adminAuthData.token);
 }

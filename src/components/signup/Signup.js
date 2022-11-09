@@ -58,6 +58,12 @@ export const SignupForm = () => {
               if (!values.password) {
                 errors.password = "required";
               }
+              if(values.password.length < 8) {
+                errors.password = "password must be at least 8 characters";
+              }
+              if (!values.confirm_password) {
+                errors.confirm_password = "required";
+              }
               if (values.confirm_password !== values.password) {
                 errors.confirm_password = "passwords do not match";
               }

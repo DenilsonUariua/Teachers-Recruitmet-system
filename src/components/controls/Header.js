@@ -57,12 +57,22 @@ export const Header = () => {
         {size => (
           <Box fill>
             <AppBar>
-              <Heading level="3" margin="none">
-                NamEduHire
-              </Heading>
+              <Link to="/">
+                <Heading
+                  level="3"
+                  margin="none"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Anchor label="NamEduHire" />
+                </Heading>
+              </Link>
+
               {unauthenticatedNavLinks.map(navLink => (
                 <Link to={`/${navLink}`}>
-                  <Anchor label={`${navLink}`} style={{textDecoration: 'none !important'}} />
+                  <Anchor
+                    label={`${navLink}`}
+                    style={{ textDecoration: "none !important" }}
+                  />
                 </Link>
               ))}
               <Button
