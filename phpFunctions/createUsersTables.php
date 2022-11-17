@@ -9,23 +9,15 @@ $adminSql = "CREATE TABLE IF NOT EXISTS admin_users (
     password VARCHAR(255) NOT NULL,
     role VARCHAR(255) DEFAULT 'Admin' NOT NULL
     )";
-$seekersSql = "CREATE TABLE IF NOT EXISTS job_seekers (
-    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL,
-    age INT(11) NOT NULL
-    )";
-$employersSql = "CREATE TABLE IF NOT EXISTS employers (
+$users = "CREATE TABLE IF NOT EXISTS users (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
     role VARCHAR(255) NOT NULL,
     school VARCHAR(255) NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    age INT(11) NOT NULL
+    phone_number VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL
     )";
 $requestSql = "CREATE TABLE IF NOT EXISTS employer_request (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -33,15 +25,13 @@ $requestSql = "CREATE TABLE IF NOT EXISTS employer_request (
     password VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
     school VARCHAR(255) NOT NULL,
-    age INT(11) NOT NULL
+    phone_number VARCHAR(255) NOT NULL
     )";
 
 // execute the query
 $db->query($adminSql);
 // execute the query
-$db->query($seekersSql);
-// execute the query
-$db->query($employersSql);
+$db->query($users);
 // execute the query
 $db->query($requestSql);
 ?>

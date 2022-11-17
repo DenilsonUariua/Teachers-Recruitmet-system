@@ -18,6 +18,10 @@
     <title> NamEduHire</title>
 </head>
 <style>
+    body {
+        background-color: darkorange;
+    }
+
     .home {
         background-image: url('./images/HomePage img.jpg');
         background-repeat: no-repeat;

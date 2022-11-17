@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="./style.css" />
     <title>Dashboard</title>
 </head>
+<style>
+    body {
+        background-color: darkorange;
+    }
+</style>
 
 <body>
     <!-- Navbar  -->

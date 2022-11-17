@@ -14,6 +14,10 @@
     <title>Login</title>
 </head>
 <style>
+    body {
+        background-color: darkorange;
+    }
+
     .card {
         border-radius: 0;
         box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);

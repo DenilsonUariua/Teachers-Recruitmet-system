@@ -18,7 +18,11 @@
     </script>
     <title> NamEduHire</title>
 </head>
-
+<style>
+    body {
+        background-color: darkorange;
+    }
+</style>
 <body>
     <!-- PHP code to import the header/navbar -->
     <?php
