@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 
     if ($role == "Employer") {
         // check if the username is unique
-        $sql = "SELECT * FROM employers WHERE username = '$username'";
+        $sql = "SELECT * FROM users WHERE username = '$username'";
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
         } else {
@@ -26,9 +26,13 @@ if (isset($_POST['submit'])) {
             $sql1 = "INSERT INTO employer_request(username, password, address, school, phone_number) VALUES('$username', '$password', '$address', '$school', '$phone_number')";
             // execute the query
             $db->query($sqlEmployer);
-            $db->query($sql1);
-            //wait 3 seconds before redirect to the login page
-            header("refresh:1;url=login.php");
+            $db->query($sql1); ?>
+            <script>
+                setTimeout(function() {
+                    window.location.href = "login.php";
+                }, 3000);
+            </script>
+        <?php
         }
     } else {
         // check if the username is unique
@@ -36,15 +40,18 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
         } else {
-
+            $status = 'approved';
             // insert the data into the database
             $sql = "INSERT INTO users(username, password, address, role, school, status, phone_number) 
             VALUES('$username', '$password', '$address', '$role', '$school', '$status', '$phone_number')";
             // execute the query
-            $db->query($sql);
-            //wait 3 seconds before redirect to the login page
-            header("refresh:1;url=login.php");
-        }
+            $db->query($sql); ?>
+            <script>
+                setTimeout(function() {
+                    window.location.href = "login.php";
+                }, 3000);
+            </script>
+<?php   }
     }
 }
 ?>
@@ -65,6 +72,7 @@ if (isset($_POST['submit'])) {
     body {
         background-color: darkorange;
     }
+
     .card {
         border-radius: 0;
         box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
