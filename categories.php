@@ -25,7 +25,7 @@
         include_once 'header.php'; 
     ?>
     <!-- end of nav bar -->
-    <div class="d-flex p-2 justify-content-center flex-column">\
+    <div class="d-flex p-2 justify-content-center flex-column">
         <div class="container text-center d-flex justify-content-center" 
         style="height: 200px;background-image: url('./images/coffee.jpg');
                     background-repeat: no-repeat;

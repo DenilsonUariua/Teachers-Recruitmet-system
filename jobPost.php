@@ -22,6 +22,7 @@
     }
 
     .container-md {
+        background: #fff;
         box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
     }
 

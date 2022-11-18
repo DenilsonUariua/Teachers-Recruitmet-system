@@ -32,14 +32,7 @@
     }
 
     /* add background image to wrapper */
-    .wrapper {
-        background-image: url('./images/About us page.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: 100%;
-        align-items: center;
-    }
+    
 </style>
 
 <body>

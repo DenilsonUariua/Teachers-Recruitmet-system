@@ -36,6 +36,24 @@
     ?>
     <!-- end of navbar -->
 
+    <!-- Toast notification to welcome the user -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
+                <strong class="me-auto">NamEduHire</strong>
+                <small><?php
+                        echo date("h:i:sa");
+                        ?></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?php
+                echo 'The administrator is approving your account. Please wait for a while.';
+                ?>
+            </div>
+        </div>
+    </div>
     <!-- Login form -->
     <div class="card align-middle " style="margin: 5rem;">
         <?php
@@ -72,7 +90,9 @@
                     $_SESSION['role'] = $row['role'];
                     $_SESSION['username'] = $row['username'];
                     if ($row['role'] == 'Employer') {
-                        if ($row['status'] == 'pending') { ?>
+                        if ($row['status'] == 'pending') {
+                            echo "Unverfied Employer";
+                ?>
                             <script>
                                 const toastLiveExample = document.getElementById("liveToast")
                                 const toast = new bootstrap.Toast(toastLiveExample)
@@ -82,13 +102,16 @@
                                 }, 1000);
                             </script>
                 <?php
+                            return;
                         } else {
                             $_SESSION['company'] = $row['school'];
                         }
                     }
                 } ?>
                 <script>
-                    window.location.href = "homepage.php"
+                    setTimeout(() => {
+                        window.location.href = "homepage.php"
+                    }, 1200);
                 </script>;
             <?php
             } else {
@@ -131,24 +154,7 @@
         </div>
     </div>
     <!-- end of login form -->
-    <!-- Toast notification to welcome the user -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
-                <strong class="me-auto">NamEduHire</strong>
-                <small><?php
-                        echo date("h:i:sa");
-                        ?></small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                <?php
-                echo 'The administrator is approving your account. Please wait for a while.';
-                ?>
-            </div>
-        </div>
-    </div>
+
     <!-- start of footer -->
 
     <!-- PHP code to import the header/navbar -->

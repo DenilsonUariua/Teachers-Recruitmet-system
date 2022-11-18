@@ -20,15 +20,17 @@
     body {
         background-color: darkorange;
     }
+
     .card-img-top {
         height: 200px;
-        width: 200px;
+        border-radius: 0px;
+        width: 100%;
         object-fit: cover;
     }
 
     .card {
-        border-radius: 0;
-        border: 1px solid darkred;
+        border-radius: 45;
+        border: 1px solid white;
         background-color: #FCF9F9;
         /* add hover effects */
         transition: all 0.2s ease-in-out;
@@ -46,6 +48,13 @@
     .btn2:hover {
         transform: scale(1.05);
         box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+    .job-text{
+        color: #FCF9F9;
     }
 </style>
 
@@ -104,7 +113,7 @@
         // loop through the jobs until all jobs are displayed
         if ($query->num_rows > 0) {
             // display number of job in database
-            echo '<div class="col-md-12 text-center"><p class="text-muted">There are ' . $query->num_rows . ' jobs!</p></div>';
+            echo '<div class="col-md-12 text-center"><p class="job-text">There are ' . $query->num_rows . ' jobs!</p></div>';
         }
         // if form is submitted fetch jobs from database that match the job type
         if (isset($_POST['submit'])) {
@@ -120,8 +129,12 @@
                     // echo $fileUpload;
                     $query2 = $db->query("SELECT * FROM images WHERE file_name = '$fileUpload'");
                     $row2 = $query2->fetch_assoc();
-                    $imageURL = 'uploads/' . $row2["file_name"]; ?>
-
+                    $imageURL = '';
+                    if ($fileUpload == "") {
+                        $imageURL = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+                    } else {
+                        $imageURL = 'uploads/' . $row2["file_name"];
+                    } ?>
                     <div class="col">
                         <div class="card">
                             <img src="<?php echo $imageURL; ?>" class="card-img-top" alt="...">
@@ -141,7 +154,7 @@
             }
             // display message if no jobs are found
             else {
-                echo '<div class="col-md-12 text-center"><p class="text-muted">No jobs found!</p></div>
+                echo '<div class="col-md-12 text-center"><p class="job-text">No jobs found!</p></div>
                         <div class="p-5"></div>
                         <div class="p-5"></div>
                         <div class="p-5"></div>';
@@ -151,7 +164,7 @@
         else {
             // if there are no jobs in the db display message
             if ($query->num_rows < 1) {
-                echo '<div class="col-md-12 text-center"><p class="text-muted">No jobs found!</p></div>
+                echo '<div class="col-md-12 text-center"><p class="job-text">No jobs found!</p></div>
                         <div class="p-5"></div>
                         <div class="p-5"></div>
                         <div class="p-5"></div>';
@@ -160,10 +173,15 @@
                 while ($row = $query->fetch_assoc()) {
                     // Get image from database that matches the fileUpload 
                     $fileUpload = $row['fileUpload'];
-                    // echo $fileUpload;
                     $query2 = $db->query("SELECT * FROM images WHERE file_name = '$fileUpload'");
                     $row2 = $query2->fetch_assoc();
-                    $imageURL = 'uploads/' . $row2["file_name"];
+                    $imageURL = '';
+                    if ($fileUpload == "") {
+                        $imageURL = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+                    } else {
+                        $imageURL = 'uploads/' . $row2["file_name"];
+                    }
+
                 ?>
 
                     <div class="col">
