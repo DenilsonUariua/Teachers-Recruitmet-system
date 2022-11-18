@@ -34,7 +34,7 @@
             // get all the job from the db that match the session user's company
             include_once 'dbConfig.php';
             $company = $_SESSION['company'];
-            $query = $db->query("SELECT * FROM jobapplication WHERE company = '$company'");
+            $query = $db->query("SELECT * FROM jobapplication WHERE school = '$company'");
             // loop through the jobs until all jobs are displayed
             if ($query->num_rows > 0) {
 

@@ -2,10 +2,10 @@
 include_once 'dbConfig.php';
 $username = $_GET["username"];
 // select the employer from the employers table
-$sql = "SELECT * FROM employers WHERE username = '$username'";
+$sql = "SELECT * FROM users WHERE username = '$username'";
 $result = mysqli_query($db, $sql);
 // change status to approved
-$sql = "UPDATE employers SET status = 'approved' WHERE username = '$username'";
+$sql = "UPDATE users SET status = 'approved' WHERE username = '$username'";
 mysqli_query($db, $sql);
 // delete the employer request from the employer_request table
 $sql = "DELETE FROM employer_request WHERE username = '$username'";

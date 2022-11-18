@@ -54,7 +54,7 @@
                     <th scope='col'>#</th>
                     <th scope='col'>School</th>
                     <th scope='col'>Address</th>
-                    <th scope='col'>Age</th>
+                    <th scope='col'>Phone number</th>
                     <th scope='col'>Action</th>
                 </tr>
             </thead>
@@ -64,7 +64,7 @@
                     <th scope='row'>" . $row['id'] . "</th>
                     <td>" . $row['school'] . "</td>
                     <td>" . $row['address'] . "</td>
-                    <td>" . $row['age'] . "</td>
+                    <td>" . $row['phone_number'] . "</td>
                     <td>
                         <a href='approveEmployer.php?username=" . $row['username'] . "' class='btn btn-success'>Approve</a>
                         <a href='rejectEmployer.php?username=" . $row['username'] . "' class='btn btn-danger'>Reject</a>

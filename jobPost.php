@@ -42,7 +42,7 @@
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
-                <strong class="me-auto">NamEduHire</strong>
+                <strong class="me-auto">NamEduJobs</strong>
                 <small><?php
                         echo date("h:i:sa");
                         ?></small>
@@ -77,7 +77,7 @@
                     <option selected hidden>Job Type</option>
                     <option value="Internship">Internship</option>
                     <option value="Permanent">Permanent</option>
-                    <option value="Volunteer">Volunteer</option>
+                    <option value="Volunteer">Temporary</option>
                 </select>
             </div>
             <div class="col-md-12">
@@ -227,7 +227,7 @@
         $fileUploadName = $fileName;
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
         //create images table if not exists
-        $sql = "CREATE TABLE `images` (
+        $sql = "CREATE TABLE  IF NOT EXISTS `images` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
                     `file_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                     `uploaded_on` datetime NOT NULL,

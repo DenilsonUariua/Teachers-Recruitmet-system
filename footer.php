@@ -5,7 +5,7 @@
     color: white;
 }
 .footer-inner-container{
-    background-color: darkgray;
+    background-color: black;
 }
 </style>
 

@@ -62,10 +62,17 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- add logo to the browser tab -->
-    <link rel="icon" href="./images/eduhirelogo.png" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css" />
+     <!-- add logo to the browser tab -->
+     <link rel="icon" href="./images/eduhirelogo.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <!--Link HTML and CSS file-->
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <title>Registration</title>
 </head>
 <style>
@@ -97,7 +104,7 @@ if (isset($_POST['submit'])) {
             <!-- method="post" send the form data-->
             <form class="row g-3 needs-validation" novalidate action="registration.php" method="post">
                 <div class="col-md-6">
-                    <label for="validationServerUsername" class="form-label">Username</label>
+                    <label for="validationServerUsername" class="form-label">Username <small><i>(enter a unique username to login with)</i></small></label>
                     <div class="input-group ">
 
                         <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
@@ -114,7 +121,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="validationServer02" class="form-label">Address</label>
+                    <label for="validationServer02" class="form-label">Address <small><i>(enter your P.O.Box address)</i></small></label>
                     <input type="text" name="address" class="form-control " id="validationServer02" value="" required />
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">
@@ -133,7 +140,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
                 <div class="col-md-6" id="school-field">
-                    <label for="validationServer02" class="form-label">School</label>
+                    <label for="validationServer02" class="form-label">School <small><i>(for schools only, enter school name)</i></small></label>
                     <input type="text" name="school" class="form-control " id="school" value="" required />
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">

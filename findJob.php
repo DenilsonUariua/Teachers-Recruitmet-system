@@ -137,7 +137,7 @@
                     } ?>
                     <div class="col">
                         <div class="card">
-                            <img src="<?php echo $imageURL; ?>" class="card-img-top" alt="...">
+                            <img onclick="window.open(this.src, '_blank');" src="<?php echo $imageURL; ?>" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Description</h5>
 
@@ -186,7 +186,7 @@
 
                     <div class="col">
                         <div class="card">
-                            <img src="<?php echo $imageURL; ?>" height="200" width="50" class="card-img-top" alt="...">
+                            <img onclick="window.open(this.src, '_blank');" src="<?php echo $imageURL; ?>" height="200" width="50" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-title fw-bold">Description</p>
 
