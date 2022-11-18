@@ -10,39 +10,48 @@ if (isset($_POST['submit'])) {
     $role = $_POST['role'];
     $school = $_POST['school'];
     $status = "pending";
-    $age = $_POST['age'];
+    $phone_number = $_POST['phone_number'];
 
 
     if ($role == "Employer") {
         // check if the username is unique
-        $sql = "SELECT * FROM employers WHERE username = '$username'";
+        $sql = "SELECT * FROM users WHERE username = '$username'";
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
         } else {
 
             // insert the data into the database
-            $sqlEmployer = "INSERT INTO employers(username, password, address, role, school, status, age) VALUES('$username', '$password', '$address', '$role', '$school', '$status', '$age')";
-            $sql1 = "INSERT INTO employer_request(username, password, address, school, age) VALUES('$username', '$password', '$address', '$school', '$age')";
+            $sqlEmployer = "INSERT INTO users(username, password, address, role, school, status, phone_number) 
+                            VALUES('$username', '$password', '$address', '$role', '$school', '$status', '$phone_number')";
+            $sql1 = "INSERT INTO employer_request(username, password, address, school, phone_number) VALUES('$username', '$password', '$address', '$school', '$phone_number')";
             // execute the query
             $db->query($sqlEmployer);
-            $db->query($sql1);
-            //wait 3 seconds before redirect to the login page
-            header("refresh:1;url=login.php");
+            $db->query($sql1); ?>
+            <script>
+                setTimeout(function() {
+                    window.location.href = "login.php";
+                }, 3000);
+            </script>
+        <?php
         }
     } else {
         // check if the username is unique
-        $sql = "SELECT * FROM job_seekers WHERE username = '$username'";
+        $sql = "SELECT * FROM users WHERE username = '$username'";
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
         } else {
-
+            $status = 'approved';
             // insert the data into the database
-            $sql = "INSERT INTO job_seekers(username, password, address, role, age) VALUES('$username', '$password', '$address', '$role', '$age')";
+            $sql = "INSERT INTO users(username, password, address, role, school, status, phone_number) 
+            VALUES('$username', '$password', '$address', '$role', '$school', '$status', '$phone_number')";
             // execute the query
-            $db->query($sql);
-            //wait 3 seconds before redirect to the login page
-            header("refresh:1;url=login.php");
-        }
+            $db->query($sql); ?>
+            <script>
+                setTimeout(function() {
+                    window.location.href = "login.php";
+                }, 3000);
+            </script>
+<?php   }
     }
 }
 ?>
@@ -60,6 +69,10 @@ if (isset($_POST['submit'])) {
     <title>Registration</title>
 </head>
 <style>
+    body {
+        background-color: darkorange;
+    }
+
     .card {
         border-radius: 0;
         box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
@@ -129,11 +142,11 @@ if (isset($_POST['submit'])) {
                 </div>
 
                 <div class="col-md-6 age-field">
-                    <label for="validationServerUsername" class="form-label">Age</label>
+                    <label for="validationServerUsername" class="form-label">Phone number</label>
                     <div class="input-group ">
-                        <input type="number" name="age" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                        <input type="number" name="phone_number" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div class="invalid-feedback">
-                            Please enter an age.
+                            Please enter a phone number.
                         </div>
                     </div>
                 </div>

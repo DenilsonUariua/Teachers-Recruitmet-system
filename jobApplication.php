@@ -70,13 +70,17 @@
      <title>Apply for Job</title>
  </head>
  <style>
-.form-container {
-    box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
-}
+     body {
+         background-color: darkorange;
+     }
 
-.btn-danger {
-    border-radius: 0;
-}
+     .form-container {
+         box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
+     }
+
+     .btn-danger {
+         border-radius: 0;
+     }
  </style>
 
  <body>
@@ -98,33 +102,27 @@
                      </div>
                      <div class="mb-3">
                          <label for="email" class="form-label">Email</label>
-                         <input type="email" class="form-control" id="email" name="email"
-                             placeholder="Enter your email">
+                         <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
                      </div>
                      <div class="mb-3">
                          <label for="phone" class="form-label">Phone</label>
-                         <input type="text" class="form-control" id="phone" name="phone"
-                             placeholder="Enter your phone number">
+                         <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
                      </div>
                      <div class="mb-3">
                          <label for="address" class="form-label">Address</label>
-                         <input type="text" class="form-control" id="address" name="address"
-                             placeholder="Enter your address">
+                         <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address">
                      </div>
                      <div class="mb-3">
                          <label for="position" class="form-label">Position</label>
-                         <input type="text" class="form-control" id="position" name="position"
-                             placeholder="Enter the position you are applying for">
+                         <input type="text" class="form-control" id="position" name="position" placeholder="Enter the position you are applying for">
                      </div>
                      <div class="mb-3">
                          <label for="position" class="form-label">School</label>
-                         <input type="text" class="form-control" id="position" name="school"
-                             placeholder="Enter the school you are applying for">
+                         <input type="text" class="form-control" id="position" name="school" placeholder="Enter the school you are applying for">
                      </div>
                      <div class="mb-3">
                          <label for="resume" class="form-label">Resume</label>
-                         <input type="file" class="form-control" id="resume" name="resume"
-                             placeholder="Upload your resume">
+                         <input type="file" class="form-control" id="resume" name="resume" placeholder="Upload your resume">
                      </div>
                      <button type="submit" class="btn btn-danger" name="submit">Submit</button>
                  </form>

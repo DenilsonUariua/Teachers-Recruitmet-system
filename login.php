@@ -14,6 +14,10 @@
     <title>Login</title>
 </head>
 <style>
+    body {
+        background-color: darkorange;
+    }
+
     .card {
         border-radius: 0;
         box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.6);
@@ -32,8 +36,98 @@
     ?>
     <!-- end of navbar -->
 
+    <!-- Toast notification to welcome the user -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
+                <strong class="me-auto">NamEduHire</strong>
+                <small><?php
+                        echo date("h:i:sa");
+                        ?></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?php
+                echo 'The administrator is approving your account. Please wait for a while.';
+                ?>
+            </div>
+        </div>
+    </div>
     <!-- Login form -->
     <div class="card align-middle " style="margin: 5rem;">
+        <?php
+        // include database connection file    
+        include_once 'dbConfig.php';
+        // check if the form is submitted
+        if (isset($_POST['submit'])) {
+            // get the form data
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            $adminSql = "SELECT * FROM admin_users WHERE username = '$username' AND password = '$password'";
+            $adminResult = mysqli_query($db, $adminSql);
+            if (mysqli_num_rows($adminResult) > 0) {
+                while ($row = $adminResult->fetch_assoc()) {
+                    //   set session variables]
+                    $_SESSION['role'] = $row['role'];
+                }
+                // console log the role
+                $_SESSION['username'] = $username;
+                // if the user is an admin redirect to admin dashboard 
+        ?>
+                <script>
+                    window.location.href = "adminDashboard.php";
+                </script>;
+                <?php
+            }
+            // check if the username and password are correct
+            $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+            $result = mysqli_query($db, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $_SESSION['role'] = $row['role'];
+                    $_SESSION['username'] = $row['username'];
+                    if ($row['role'] == 'Employer') {
+                        if ($row['status'] == 'pending') {
+                            echo "Unverfied Employer";
+                ?>
+                            <script>
+                                const toastLiveExample = document.getElementById("liveToast")
+                                const toast = new bootstrap.Toast(toastLiveExample)
+                                toast.show()
+                                setTimeout(() => {
+                                    window.location.href = "logout.php";
+                                }, 1000);
+                            </script>
+                <?php
+                            return;
+                        } else {
+                            $_SESSION['company'] = $row['school'];
+                        }
+                    }
+                } ?>
+                <script>
+                    setTimeout(() => {
+                        window.location.href = "homepage.php"
+                    }, 1200);
+                </script>;
+            <?php
+            } else {
+            ?>
+                <!-- alert should disappear after 3 seconds -->
+                <div class="alert alert-danger text-center" id='alert' role="alert">
+                    Incorrect username or password
+                </div>
+                <script>
+                    setTimeout(function() {
+                        document.getElementById('alert').style.display = 'none';
+                    }, 1500);
+                </script>
+        <?php }
+        }    ?>
+
         <div class="card-body d-flex justify-content-center">
             <form class="needs-validation" novalidate action="login.php" method="post">
                 <div class="row">
@@ -60,24 +154,7 @@
         </div>
     </div>
     <!-- end of login form -->
-    <!-- Toast notification to welcome the user -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
-                <strong class="me-auto">NamEduHire</strong>
-                <small><?php
-                        echo date("h:i:sa");
-                        ?></small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                <?php
-                echo 'The administrator is approving your account. Please wait for a while.';
-                ?>
-            </div>
-        </div>
-    </div>
+
     <!-- start of footer -->
 
     <!-- PHP code to import the header/navbar -->
@@ -92,81 +169,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
     </script>
     <!-- end of footer -->
-    <?php
-    // include database connection file    
-    include_once 'dbConfig.php';
-    // check if the form is submitted
-    if (isset($_POST['submit'])) {
-        // get the form data
-        $username = $_POST['username'];
-        $password = $_POST['password'];
 
-        $adminSql = "SELECT * FROM admin_users WHERE username = '$username' AND password = '$password'";
-        $adminResult = mysqli_query($db, $adminSql);
-        if (mysqli_num_rows($adminResult) > 0) {
-            while ($row = $adminResult->fetch_assoc()) {
-                //   set session variables]
-                $_SESSION['role'] = $row['role'];
-            }
-            // console log the role
-            $_SESSION['username'] = $username;
-            // if the user is an admin redirect to admin dashboard
-    ?><script>
-                window.location.href = "adminDashboard.php";
-            </script>;
-            <?php }
-
-        // check if the username and password are correct
-        $sql = "SELECT * FROM job_seekers WHERE username = '$username' AND password = '$password'";
-        $result = mysqli_query($db, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $_SESSION['role'] = $row['role'];
-            }
-            //   set session variables
-            $_SESSION['username'] = $username;
-            echo '<script>window.location.href = "homepage.php";</script>';
-        } else {
-            $employersSql = "SELECT * FROM employers WHERE username = '$username' AND password = '$password'";
-            $result = mysqli_query($db, $employersSql);
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $_SESSION['company'] = $row['school'];
-                    $_SESSION['role'] = $row['role'];
-                    $_SESSION['status'] = $row['status'];
-                }
-                if ($row['status'] == 'pending') { ?>
-                    <script>
-                        const toastLiveExample = document.getElementById("liveToast")
-                        const toast = new bootstrap.Toast(toastLiveExample)
-                        toast.show()
-                        setTimeout(() => {
-                            window.location.href = "logout.php";
-                        }, 1000);
-                    </script>
-                <?php } elseif ($_SESSION['status'] == 'approved') {
-                    $_SESSION['username'] = $username;
-                ?><script>
-                        window.location.href = "homepage.php";
-                        console.log('I ran d')
-                    </script>
-                <?php }
-            }
-            // login failed
-            else { ?>
-                <!-- alert should disappear after 3 seconds -->
-                <div class="alert alert-danger text-center" id='alert' role="alert">
-                    Incorrect username or password
-                </div>
-                <script>
-                    setTimeout(function() {
-                        document.getElementById('alert').style.display = 'none';
-                    }, 1500);
-                </script>
-    <?php }
-        }
-    }
-    ?>
     <script>
         (() => {
             'use strict'
