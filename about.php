@@ -50,7 +50,6 @@
             <div class="row">
                 <div class="col">
                     <div class="card my-3" style="width: 18rem;">
-                        <img src="./images/MISSION.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Our Mission</h5>
                             <p class="card-text">We have digitized the recruitment process
@@ -63,7 +62,6 @@
                 </div>
                 <div class="col">
                     <div class="card my-3" style="width: 18rem;">
-                        <img src="./images/SEEKERS.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Job Seekers</h5>
                             <p class="card-text">Whether you're just starting out or experienced,
@@ -76,7 +74,6 @@
                 </div>
                 <div class="col">
                     <div class="card my-3" style="width: 18rem;">
-                        <img src="./images/EMPLOYERS.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Employers</h5>
                             <p class="card-text">Find teachers, administrators, support

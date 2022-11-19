@@ -3,6 +3,8 @@
 database once and import it where ever it is needed thoughout he project -->
 
 <?php
+ob_start();
+session_start();
 //connect to database
 //create variables for the database connection
 // $host is the servername to connect to
@@ -13,10 +15,7 @@ $host = 'localhost';
 $database = 'teachers_recruitment';
 $user = 'root';
 $password = '';
-// if session is not started start session
-if (!isset($_SESSION)) {
-    session_start();
-}
+
 //create a connection to the database
 $db = mysqli_connect($host, $user, $password, $database);
 

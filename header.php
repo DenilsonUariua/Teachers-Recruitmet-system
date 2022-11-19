@@ -1,11 +1,4 @@
-<?php
-// if session is not started start session
-if (!isset($_SESSION)) {
-    session_start();
-}
-// include dbConfig.php
-include_once 'dbConfig.php';
-?>
+<?php include_once 'dbConfig.php';?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <!--Nav Bar-->
 <nav class="navbar navbar-expand-lg bg-light">
