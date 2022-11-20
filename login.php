@@ -9,8 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- add logo to the browser tab -->
     <link rel="icon" href="./images/eduhirelogo.png" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <!--Link HTML and CSS file-->
     <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
 <style>
@@ -55,104 +62,105 @@
         </div>
     </div>
     <!-- Login form -->
-    <div class="card align-middle " style="margin: 5rem;">
-        <?php
-        // include database connection file    
-        include_once 'dbConfig.php';
-        // check if the form is submitted
-        if (isset($_POST['submit'])) {
-            // get the form data
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-
-            $adminSql = "SELECT * FROM admin_users WHERE username = '$username' AND password = '$password'";
-            $adminResult = mysqli_query($db, $adminSql);
-            if (mysqli_num_rows($adminResult) > 0) {
-                while ($row = $adminResult->fetch_assoc()) {
-                    //   set session variables]
-                    $_SESSION['role'] = $row['role'];
-                }
-                // console log the role
-                $_SESSION['username'] = $username;
-                // if the user is an admin redirect to admin dashboard 
-        ?>
-                <script>
-                    window.location.href = "adminDashboard.php";
-                </script>;
-                <?php
-            }
-            // check if the username and password are correct
-            $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-            $result = mysqli_query($db, $sql);
-
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $_SESSION['role'] = $row['role'];
-                    $_SESSION['username'] = $row['username'];
-                    if ($row['role'] == 'Employer') {
-                        if ($row['status'] == 'pending') {
-                            echo "Unverfied Employer";
-                ?>
-                            <script>
-                                const toastLiveExample = document.getElementById("liveToast")
-                                const toast = new bootstrap.Toast(toastLiveExample)
-                                toast.show()
-                                setTimeout(() => {
-                                    window.location.href = "logout.php";
-                                }, 4000);
-                            </script>
-                <?php
-                            return;
-                        } else {
-                            $_SESSION['company'] = $row['school'];
-                        }
-                    }
-                } ?>
-                <script>
-                    setTimeout(() => {
-                        window.location.href = "homepage.php"
-                    }, 1200);
-                </script>;
+    <div class="d-flex justify-content-center pb-5">
+        <div class="card align-middle " style="width: 50%;">
             <?php
-            } else {
-            ?>
-                <!-- alert should disappear after 3 seconds -->
-                <div class="alert alert-danger text-center" id='alert' role="alert">
-                    Incorrect username or password
-                </div>
-                <script>
-                    setTimeout(function() {
-                        document.getElementById('alert').style.display = 'none';
-                    }, 1500);
-                </script>
-        <?php }
-        }    ?>
+            // include database connection file    
+            include_once 'dbConfig.php';
+            // check if the form is submitted
+            if (isset($_POST['submit'])) {
+                // get the form data
+                $username = $_POST['username'];
+                $password = $_POST['password'];
 
-        <div class="card-body d-flex justify-content-center">
-            <form class="needs-validation" novalidate action="login.php" method="post">
-                <div class="row">
-                    <div class="mb-4">
-                        <label for="exampleInputEmail1" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
-                        <div class="invalid-feedback">
-                            Please enter a username.
+                $adminSql = "SELECT * FROM admin_users WHERE username = '$username' AND password = '$password'";
+                $adminResult = mysqli_query($db, $adminSql);
+                if (mysqli_num_rows($adminResult) > 0) {
+                    while ($row = $adminResult->fetch_assoc()) {
+                        //   set session variables]
+                        $_SESSION['role'] = $row['role'];
+                    }
+                    // console log the role
+                    $_SESSION['username'] = $username;
+                    // if the user is an admin redirect to admin dashboard 
+            ?>
+                    <script>
+                        window.location.href = "adminDashboard.php";
+                    </script>;
+                    <?php
+                }
+                // check if the username and password are correct
+                $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+                $result = mysqli_query($db, $sql);
+
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $_SESSION['role'] = $row['role'];
+                        $_SESSION['username'] = $row['username'];
+                        if ($row['role'] == 'Employer') {
+                            if ($row['status'] == 'pending') {
+                                echo "Unverfied Employer";
+                    ?>
+                                <script>
+                                    const toastLiveExample = document.getElementById("liveToast")
+                                    const toast = new bootstrap.Toast(toastLiveExample)
+                                    toast.show()
+                                    setTimeout(() => {
+                                        window.location.href = "logout.php";
+                                    }, 4000);
+                                </script>
+                    <?php
+                                return;
+                            } else {
+                                $_SESSION['company'] = $row['school'];
+                            }
+                        }
+                    } ?>
+                    <script>
+                        window.location.href = "homepage.php"
+                    </script>;
+                <?php
+                } else {
+                ?>
+                    <!-- alert should disappear after 3 seconds -->
+                    <div class="alert alert-danger text-center" id='alert' role="alert">
+                        Incorrect username or password
+                    </div>
+                    <script>
+                        setTimeout(function() {
+                            document.getElementById('alert').style.display = 'none';
+                        }, 1500);
+                    </script>
+            <?php }
+            }    ?>
+
+            <div class="card-body d-flex justify-content-center">
+                <form class="needs-validation" novalidate action="login.php" method="post">
+                    <div class="row">
+                        <div class="mb-4">
+                            <label for="exampleInputEmail1" class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                            <div class="invalid-feedback">
+                                Please enter a username.
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control " id="validationServer01" value="" required />
+                            <div class="invalid-feedback">
+                                Please enter a password.
+                            </div>
+                            <button type="submit" name="submit" id="submit" class="btn btn-danger my-3">Login</button>
                         </div>
                     </div>
-                    <div class="mb-4">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control " id="validationServer01" value="" required />
-                        <div class="invalid-feedback">
-                            Please enter a password.
-                        </div>
-                        <button type="submit" name="submit" id="submit" class="btn btn-danger my-3">Login</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="text-center p-3"><a href="registration.php" style="text-decoration: none; color: black;">
-                Don't have an account?</a>
+                </form>
+            </div>
+            <div class="text-center p-3"><a href="registration.php" style="text-decoration: none; color: black;">
+                    Don't have an account?</a>
+            </div>
         </div>
     </div>
+
     <!-- end of login form -->
 
     <!-- start of footer -->

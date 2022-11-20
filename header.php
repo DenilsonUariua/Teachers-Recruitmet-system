@@ -47,7 +47,7 @@ include_once 'dbConfig.php';
                             Logout
                         </button>
                     </a>
-                    <div class="dropdown m-1">
+                    <div class="dropdown">
                         <button style="border-radius: 0; height: 3rem;" class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Manage Jobs
                         </button>
