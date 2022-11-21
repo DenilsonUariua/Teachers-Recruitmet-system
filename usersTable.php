@@ -66,7 +66,7 @@
                     <td>" . $row['phone_number'] . "</td>
                     <td>" . $row['status'] . "</td>
                     <td>
-                        <a href='userUnblock.php?username=" . $row['username'] . "' class='btn btn-success'>Approve</a>
+                        <a href='userUnblock.php?username=" . $row['username'] . "' class='btn btn-success'>Allow</a>
                         <a href='userBlock.php?username=" . $row['username'] . "' class='btn btn-danger'>Block</a>
                     </td>
                 </tr>";

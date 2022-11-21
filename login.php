@@ -1,4 +1,6 @@
 <!-- php code to handle login process -->
+<?php                
+ $message = ''; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,24 +45,7 @@
     ?>
     <!-- end of navbar -->
 
-    <!-- Toast notification to welcome the user -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
-                <strong class="me-auto">NamEduJobs</strong>
-                <small><?php
-                        echo date("h:i:sa");
-                        ?></small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                <?php
-                echo 'The administrator is approving your account. Please wait for a while.';
-                ?>
-            </div>
-        </div>
-    </div>
+   
     <!-- Login form -->
     <div class="d-flex justify-content-center pb-5">
         <div class="card align-middle " style="width: 50%;">
@@ -95,10 +80,24 @@
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $_SESSION['role'] = $row['role'];
-                        $_SESSION['username'] = $row['username'];
+                        if ($row['status'] == 'blocked') {
+                            echo "Blocked User"; 
+                            $message = 'Blocked account. Contact the administrator...';?>
+                            <script>
+                                const toastLiveExample = document.getElementById("liveToast")
+                                const toast = new bootstrap.Toast(toastLiveExample)
+                                toast.show()
+                                setTimeout(() => {
+                                    window.location.href = "logout.php";
+                                }, 4000);
+                            </script>
+                            <?php
+                            return;
+                            }
+                 
                         if ($row['status'] == 'pending') {
-                            echo "Unverfied User"; ?>
+                            echo "Unverfied User"; 
+                            $message = 'The administrator is reviewing your account. Please wait for a while.';?>
                             <script>
                                 const toastLiveExample = document.getElementById("liveToast")
                                 const toast = new bootstrap.Toast(toastLiveExample)
@@ -121,6 +120,8 @@
                     <?php
                                 return;
                             } else {
+                                $_SESSION['role'] = $row['role'];
+                                $_SESSION['username'] = $row['username'];
                                 $_SESSION['company'] = $row['school'];
                             }
                         }

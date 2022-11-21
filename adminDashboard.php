@@ -52,6 +52,7 @@
             <thead>
                 <tr>
                     <th scope='col'>#</th>
+                    <th scope='col'>Username</th>
                     <th scope='col'>School</th>
                     <th scope='col'>Address</th>
                     <th scope='col'>Phone number</th>
@@ -62,6 +63,7 @@
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
                     <th scope='row'>" . $row['id'] . "</th>
+                    <td>" . $row['username'] . "</td>
                     <td>" . $row['school'] . "</td>
                     <td>" . $row['address'] . "</td>
                     <td>" . $row['phone_number'] . "</td>
