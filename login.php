@@ -1,6 +1,6 @@
 <!-- php code to handle login process -->
-<?php                
- $message = ''; ?>
+<?php
+$message = ''; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,7 @@
     ?>
     <!-- end of navbar -->
 
-   
+
     <!-- Login form -->
     <div class="d-flex justify-content-center pb-5">
         <div class="card align-middle " style="width: 50%;">
@@ -81,8 +81,16 @@
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = $result->fetch_assoc()) {
                         if ($row['status'] == 'blocked') {
-                            echo "Blocked User"; 
-                            $message = 'Blocked account. Contact the administrator...';?>
+                            echo "Blocked User";
+                            $message = 'Blocked account. Contact the administrator...'; ?>
+
+                        <?php
+                            return;
+                        }
+
+                        if ($row['status'] == 'pending') {
+                            echo "Unverfied User";
+                            $message = 'The administrator is reviewing your account. Please wait for a while.'; ?>
                             <script>
                                 const toastLiveExample = document.getElementById("liveToast")
                                 const toast = new bootstrap.Toast(toastLiveExample)
@@ -93,20 +101,6 @@
                             </script>
                             <?php
                             return;
-                            }
-                 
-                        if ($row['status'] == 'pending') {
-                            echo "Unverfied User"; 
-                            $message = 'The administrator is reviewing your account. Please wait for a while.';?>
-                            <script>
-                                const toastLiveExample = document.getElementById("liveToast")
-                                const toast = new bootstrap.Toast(toastLiveExample)
-                                toast.show()
-                                setTimeout(() => {
-                                    window.location.href = "logout.php";
-                                }, 4000);
-                            </script>
-                            <?php
                             if ($row['role'] == 'Employer') {
                             ?>
                                 <script>
@@ -187,6 +181,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
     </script>
     <!-- end of footer -->
+    <?php
+    if (isset($_POST['submit'])) {
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if ($row['status'] == 'blocked') {
+    ?>
+                    <script>
+                        const toastLiveExample = document.getElementById("liveToast")
+                        const toast = new bootstrap.Toast(toastLiveExample)
+                        toast.show()
+                        setTimeout(() => {
+                            window.location.href = "logout.php";
+                        }, 4000);
+                    </script>
+            <?php   }
+            }
+        }
+        if ($row['status'] == 'pending') {
+            ?>
+            <script>
+                const toastLiveExample = document.getElementById("liveToast")
+                const toast = new bootstrap.Toast(toastLiveExample)
+                toast.show()
+                setTimeout(() => {
+                    window.location.href = "logout.php";
+                }, 4000);
+            </script>
+    <?php
+        }
+    }
+
+    ?>
+
 
     <script>
         (() => {
