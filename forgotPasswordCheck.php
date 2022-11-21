@@ -56,62 +56,28 @@ $message = ''; ?>
             if (isset($_POST['submit'])) {
                 // get the form data
                 $username = $_POST['username'];
-                $password = $_POST['password'];
-
-                $adminSql = "SELECT * FROM admin_users WHERE username = '$username' AND password = '$password'";
-                $adminResult = mysqli_query($db, $adminSql);
-                if (mysqli_num_rows($adminResult) > 0) {
-                    while ($row = $adminResult->fetch_assoc()) {
-                        //   set session variables]
-                        $_SESSION['role'] = $row['role'];
-                    }
-                    // console log the role
-                    $_SESSION['username'] = $username;
-                    // if the user is an admin redirect to admin dashboard 
-            ?>
-                    <script>
-                        window.location.href = "adminDashboard.php";
-                    </script>;
-                    <?php
-                }
+                $phone_number = $_POST['phone_number'];
                 // check if the username and password are correct
-                $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+                $sql = "SELECT * FROM users WHERE username = '$username' AND phone_number = '$phone_number'";
                 $result = mysqli_query($db, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        if ($row['status'] == 'blocked') {
-                            $message = 'Blocked account. Contact the administrator...'; ?>
-                            <?php
-                        }
-                        if ($row['role'] == 'Employer') {
-                            if ($row['status'] == 'pending') {
-                                $message = 'The administrator is reviewing your account. Please wait for a while.'; ?>
-
-                            <?php
-                            }
-                        }
-                        if ($row['status'] == 'approved') {
-                            $_SESSION['role'] = $row['role'];
-                            $_SESSION['username'] = $row['username'];
-                            $_SESSION['company'] = $row['school'];
-                            ?>
-                            <script>
-                                window.location.href = "homepage.php"
-                            </script>;
+                    while ($row = $result->fetch_assoc()) { ?>
+                        <div class="alert alert-danger text-center" id='alert' role="alert">
+                        The username or phone number is incorrect.
+                    </div>
                     <?php
-                        }
                     }
                 } else {
                     ?>
                     <!-- alert should disappear after 3 seconds -->
                     <div class="alert alert-danger text-center" id='alert' role="alert">
-                        Incorrect username or password
+                        The username or phone number is incorrect.
                     </div>
                     <script>
                         setTimeout(function() {
                             document.getElementById('alert').style.display = 'none';
-                        }, 1500);
+                        }, 2500);
                     </script>
             <?php }
             }    ?>
@@ -127,28 +93,15 @@ $message = ''; ?>
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control " id="validationServer01" value="" required />
+                            <label for="exampleInputPassword1" class="form-label">Phone number</label>
+                            <input type="text" name="phone_number" class="form-control " id="validationServer01" value="" required />
                             <div class="invalid-feedback">
-                                Please enter a password.
+                                Please enter a phone number.
                             </div>
-                            <button type="submit" name="submit" id="submit" class="btn btn-danger my-3">Login</button>
+                            <button type="submit" name="submit" id="submit" class="btn btn-danger my-3">Proceed to change password</button>
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="container text-center pb-3">
-                <div class="row">
-                    <div class="col">
-                        <a href="registration.php" style="text-decoration: none; color: black;">
-                            Don't have an account? Sign Up</a>
-                    </div>
-                    <div class="col">
-                        <a href="forgotPasswordCheck.php" style="text-decoration: none; color: black;">
-                            Forgot password?</a>
-                    </div>
-
-                </div>
             </div>
         </div>
     </div>

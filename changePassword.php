@@ -56,26 +56,9 @@ $message = ''; ?>
             if (isset($_POST['submit'])) {
                 // get the form data
                 $username = $_POST['username'];
-                $password = $_POST['password'];
-
-                $adminSql = "SELECT * FROM admin_users WHERE username = '$username' AND password = '$password'";
-                $adminResult = mysqli_query($db, $adminSql);
-                if (mysqli_num_rows($adminResult) > 0) {
-                    while ($row = $adminResult->fetch_assoc()) {
-                        //   set session variables]
-                        $_SESSION['role'] = $row['role'];
-                    }
-                    // console log the role
-                    $_SESSION['username'] = $username;
-                    // if the user is an admin redirect to admin dashboard 
-            ?>
-                    <script>
-                        window.location.href = "adminDashboard.php";
-                    </script>;
-                    <?php
-                }
+                $phone_number = $_POST['phone_number'];
                 // check if the username and password are correct
-                $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+                $sql = "SELECT * FROM users WHERE username = '$username' AND phone_number = '$phone_number'";
                 $result = mysqli_query($db, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -106,12 +89,12 @@ $message = ''; ?>
                     ?>
                     <!-- alert should disappear after 3 seconds -->
                     <div class="alert alert-danger text-center" id='alert' role="alert">
-                        Incorrect username or password
+                        The username or phone number is incorrect.
                     </div>
                     <script>
                         setTimeout(function() {
                             document.getElementById('alert').style.display = 'none';
-                        }, 1500);
+                        }, 2500);
                     </script>
             <?php }
             }    ?>
@@ -120,35 +103,22 @@ $message = ''; ?>
                 <form class="needs-validation" novalidate action="login.php" method="post">
                     <div class="row">
                         <div class="mb-4">
-                            <label for="exampleInputEmail1" class="form-label">Username</label>
+                            <label for="exampleInputEmail1" class="form-label">New password</label>
                             <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                             <div class="invalid-feedback">
                                 Please enter a username.
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control " id="validationServer01" value="" required />
+                            <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                            <input type="text" name="phone_number" class="form-control " id="validationServer01" value="" required />
                             <div class="invalid-feedback">
-                                Please enter a password.
+                                Please enter a phone number.
                             </div>
-                            <button type="submit" name="submit" id="submit" class="btn btn-danger my-3">Login</button>
+                            <button type="submit" name="submit" id="submit" class="btn btn-danger my-3">Proceed to change password</button>
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="container text-center pb-3">
-                <div class="row">
-                    <div class="col">
-                        <a href="registration.php" style="text-decoration: none; color: black;">
-                            Don't have an account? Sign Up</a>
-                    </div>
-                    <div class="col">
-                        <a href="forgotPasswordCheck.php" style="text-decoration: none; color: black;">
-                            Forgot password?</a>
-                    </div>
-
-                </div>
             </div>
         </div>
     </div>
