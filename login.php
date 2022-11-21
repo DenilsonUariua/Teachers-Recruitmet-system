@@ -81,51 +81,29 @@ $message = ''; ?>
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = $result->fetch_assoc()) {
                         if ($row['status'] == 'blocked') {
-                            echo "Blocked User";
                             $message = 'Blocked account. Contact the administrator...'; ?>
-
-                        <?php
-                            return;
-                        }
-
-                        if ($row['status'] == 'pending') {
-                            echo "Unverfied User";
-                            $message = 'The administrator is reviewing your account. Please wait for a while.'; ?>
-                            <script>
-                                const toastLiveExample = document.getElementById("liveToast")
-                                const toast = new bootstrap.Toast(toastLiveExample)
-                                toast.show()
-                                setTimeout(() => {
-                                    window.location.href = "logout.php";
-                                }, 4000);
-                            </script>
                             <?php
-                            return;
-                            if ($row['role'] == 'Employer') {
-                            ?>
-                                <script>
-                                    const toastLiveExample = document.getElementById("liveToast")
-                                    const toast = new bootstrap.Toast(toastLiveExample)
-                                    toast.show()
-                                    setTimeout(() => {
-                                        window.location.href = "logout.php";
-                                    }, 4000);
-                                </script>
-                    <?php
-                                return;
-                            } else {
-                                $_SESSION['role'] = $row['role'];
-                                $_SESSION['username'] = $row['username'];
-                                $_SESSION['company'] = $row['school'];
+                        }
+                        if ($row['role'] == 'Employer') {
+                            if ($row['status'] == 'pending') {
+                                $message = 'The administrator is reviewing your account. Please wait for a while.'; ?>
+
+                            <?php
                             }
                         }
-                    } ?>
-                    <script>
-                        window.location.href = "homepage.php"
-                    </script>;
-                <?php
+                        if ($row['status'] == 'approved') {
+                            $_SESSION['role'] = $row['role'];
+                            $_SESSION['username'] = $row['username'];
+                            $_SESSION['company'] = $row['school'];
+                            ?>
+                            <script>
+                                window.location.href = "homepage.php"
+                            </script>;
+                    <?php
+                        }
+                    }
                 } else {
-                ?>
+                    ?>
                     <!-- alert should disappear after 3 seconds -->
                     <div class="alert alert-danger text-center" id='alert' role="alert">
                         Incorrect username or password
@@ -166,8 +144,9 @@ $message = ''; ?>
     </div>
 
     <!-- end of login form -->
-     <!-- Toast notification to welcome the user -->
-     <div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    <!-- Toast notification to welcome the user -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
@@ -184,7 +163,6 @@ $message = ''; ?>
             </div>
         </div>
     </div>
-
     <!-- start of footer -->
 
     <!-- PHP code to import the header/navbar -->
@@ -201,35 +179,20 @@ $message = ''; ?>
     <!-- end of footer -->
     <?php
     if (isset($_POST['submit'])) {
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = $result->fetch_assoc()) {
-                if ($row['status'] == 'blocked') {
-    ?>
-                    <script>
-                        const toastLiveExample = document.getElementById("liveToast")
-                        const toast = new bootstrap.Toast(toastLiveExample)
-                        toast.show()
-                        setTimeout(() => {
-                            window.location.href = "logout.php";
-                        }, 4000);
-                    </script>
-            <?php   }
-            }
-        }
-        if ($row['status'] == 'pending') {
-            ?>
-            <script>
-                const toastLiveExample = document.getElementById("liveToast")
-                const toast = new bootstrap.Toast(toastLiveExample)
-                toast.show()
-                setTimeout(() => {
-                    window.location.href = "logout.php";
-                }, 4000);
-            </script>
-    <?php
+        if ($result) {
+            echo '<script>  
+            const toastLiveExample = document.getElementById("liveToast")          
+            const toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+        </script>';
+        } else {
+            echo '<script>  
+        const toastLiveExample = document.getElementById("liveToast")          
+        const toast = new bootstrap.Toast(toastLiveExample)
+        toast.show()
+    </script>';
         }
     }
-
     ?>
 
 
