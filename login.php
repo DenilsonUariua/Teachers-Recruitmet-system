@@ -97,10 +97,19 @@
                     while ($row = $result->fetch_assoc()) {
                         $_SESSION['role'] = $row['role'];
                         $_SESSION['username'] = $row['username'];
-                        if ($row['role'] == 'Employer') {
-                            if ($row['status'] == 'pending') {
-                                echo "Unverfied Employer";
-                    ?>
+                        if ($row['status'] == 'pending') {
+                            echo "Unverfied User"; ?>
+                            <script>
+                                const toastLiveExample = document.getElementById("liveToast")
+                                const toast = new bootstrap.Toast(toastLiveExample)
+                                toast.show()
+                                setTimeout(() => {
+                                    window.location.href = "logout.php";
+                                }, 4000);
+                            </script>
+                            <?php
+                            if ($row['role'] == 'Employer') {
+                            ?>
                                 <script>
                                     const toastLiveExample = document.getElementById("liveToast")
                                     const toast = new bootstrap.Toast(toastLiveExample)

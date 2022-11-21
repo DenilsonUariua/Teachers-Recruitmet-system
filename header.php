@@ -60,6 +60,9 @@ include_once 'dbConfig.php';
                     <li class="nav-item">
                         <a class="nav-link" href="adminDashboard.php">Dashboard</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="usersTable.php">Users Table</a>
+                    </li>
                     <a href="logout.php" style="text-decoration: none; color: black;">
                         <button class="btn btn-danger btn-lg mx-2" style="border-radius: 0">
                             Logout

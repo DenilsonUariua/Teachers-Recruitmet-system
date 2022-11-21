@@ -32,7 +32,6 @@
     }
 
     /* add background image to wrapper */
-    
 </style>
 
 <body>
@@ -50,33 +49,44 @@
             <div class="row">
                 <div class="col">
                     <div class="card my-3" style="width: 18rem;">
-                        <img src="./images/MISSION.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Our Mission</h5>
                             <p class="card-text">We have digitized the recruitment process
                                 for teachers in Namibia. To improve the recruitment process
                                 for teachers by making vacancies more accessible and for schools
                                 to attract more applicants while saving advertising costs.</p>
-                            <a href="registration.php" class="btn btn-danger">Sign Up Now</a>
+                            <a class="btn btn-danger " href="<?php
+                                                                if (isset($_SESSION['username'])) {
+                                                                    echo 'registration.php';
+                                                                } else {
+                                                                    echo 'login.php';
+                                                                }
+                                                                ?>" style=" width: fit-content">
+                                Sign Up Now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card my-3" style="width: 18rem;">
-                        <img src="./images/SEEKERS.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Job Seekers</h5>
                             <p class="card-text">Whether you're just starting out or experienced,
                                 NamEduHire is the best place to manage your education career.
                                 Access thousands of job openings nationwide in a single,
                                 easy-to-search engine. And that's just the beginning </p>
-                            <a href="findJob.php" class="btn btn-danger">Find a Job ></a>
+                            <a class="btn btn-danger " href="<?php
+                                                                if (isset($_SESSION['username'])) {
+                                                                    echo 'findJob.php';
+                                                                } else {
+                                                                    echo 'login.php';
+                                                                }
+                                                                ?>" style=" width: fit-content">
+                                Find a Job ></a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card my-3" style="width: 18rem;">
-                        <img src="./images/EMPLOYERS.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Employers</h5>
                             <p class="card-text">Find teachers, administrators, support
@@ -84,7 +94,14 @@
                                 Attract more applicants even those hard-to-fill positions,
                                 while saving money spent on career fairs and advertising.
                             </p>
-                            <a href="jobPost.php" class="btn btn-danger">Post a Job ></a>
+                            <a class="btn btn-danger " href="<?php
+                                                                if (isset($_SESSION['username'])) {
+                                                                    echo 'jobPost.php';
+                                                                } else {
+                                                                    echo 'login.php';
+                                                                }
+                                                                ?>" style=" width: fit-content">
+                                Post a Job ></a>
                         </div>
                     </div>
                 </div>
