@@ -150,7 +150,8 @@
             </form>
         </div>
         <div class="text-center p-3"><a href="registration.php" style="text-decoration: none; color: black;">
-                Don't have an account?</a>
+                Don't have an account?
+                <p>Sign Up today!</p></a>
         </div>
     </div>
     <!-- end of login form -->
