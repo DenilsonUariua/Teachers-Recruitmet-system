@@ -19,7 +19,7 @@
 </head>
 <style>
     body {
-        background-color: darkorange;
+        background-color: lightgray;
     }
 
 </style>
@@ -39,7 +39,7 @@
                 <div class="banner text-center">
                     <div class="col-1g-7">
                         <h1> With endless opportunities</h1>
-                        <h5> Find you next job in Education today!</h5>
+                        <h5> Find your next job in Education today!</h5>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
         <!--==========================Browse subjects sections====================-->
         <section class="subjects py-3">
             <div class="container-fluid py-5 text-center">
-                <p class="red"> <strong class="text-white">POPULAR SCHOOL SUBJECTS </strong></p>
+                <p class="red"> <strong class="text-darkblue">POPULAR SCHOOL SUBJECTS </strong></p>
                 <h2>Browse top subject Categories</h2>
                 <div class="row ">
                     <div class="col-lg-11 m-auto pt-3">

@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
 
 <style>
     body {
-        background-color: darkorange;
+        background-color: lightgray;
     }
 
     .container-md {
@@ -158,7 +158,7 @@ if (isset($_POST['submit'])) {
                 <input type="date" name="startDate" class="form-control" id="inputAddress2">
             </div>
             <div class="col-6">
-                <label for="inputAddress2" class="form-label">End Date</label>
+                <label for="inputAddress2" class="form-label">Due Date</label>
                 <input type="date" name="endDate" class="form-control" id="inputAddress2" required>
             </div>
             <div class="col-4">
@@ -202,6 +202,7 @@ if (isset($_POST['submit'])) {
                 <label for="inputAddress2" class="form-label">Grade</label>
                 <select class="form-control" aria-label="Default select example" name="grade" required>
                     <option selected hidden>Grades</option>
+                    <option value="1">Grade 0</option>
                     <option value="1">Grade 1</option>
                     <option value="2">Grade 2</option>
                     <option value="3">Grade 3</option>
@@ -220,13 +221,13 @@ if (isset($_POST['submit'])) {
             <div class="col-12">
                 <div class="form-floating">
                     <textarea class="form-control" name="requirements" placeholder="Leave a comment here" id="requirements"></textarea>
-                    <label for="requirements">Requirements</label>
+                    <label for="requirements">Description</label>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-floating">
                     <textarea class="form-control" name="description_of_job" placeholder="Leave a comment here" id="Description" required></textarea>
-                    <label for="description">Description</label>
+                    <label for="description">Requirements</label>
                 </div>
             </div>
 

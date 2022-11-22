@@ -31,7 +31,6 @@
         box-shadow: 0px 0 18px 0 rgba(0, 0, 0, 0.9);
     }
 
-    /* add background image to wrapper */
 </style>
 
 <body>

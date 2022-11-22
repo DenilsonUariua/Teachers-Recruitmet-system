@@ -71,7 +71,7 @@
  </head>
  <style>
      body {
-         background-color: darkorange;
+         background-color: lightgray;
      }
 
      .form-container {

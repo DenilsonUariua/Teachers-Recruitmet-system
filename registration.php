@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
 </head>
 <style>
     body {
-        background-color: darkorange;
+        background-color: lightgray;
     }
 
     .card {
