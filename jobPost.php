@@ -185,9 +185,12 @@ if (isset($_POST['submit'])) {
                 <label for="inputAddress2" class="form-label">Subject</label>
                 <select class="form-control" aria-label="Default select example" name="subject" required>
                     <option selected hidden>Subjects</option>
+                    <option value="Accounting">Accounting</option>
                     <option value="Mathematics">Mathematics</option>
                     <option value="Geography">Geography</option>
                     <option value="Biology">Biology</option>
+                    <option value="Business Studies">Business Studies</option>
+                    <option value="Entrepreneurship">Entrepreneurship</option>
                     <option value="Physical Science">Physical Science</option>
                     <option value="Physical Education">Physical Education</option>
                     <option value="Languages">Languages</option>

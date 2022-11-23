@@ -12,8 +12,8 @@
     <title>Users</title>
 </head>
 <style>
-    body {
-        background-color: darkorange;
+     body {
+        background-color: lightgray;
     }
 </style>
 

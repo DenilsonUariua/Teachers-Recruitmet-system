@@ -264,7 +264,7 @@
                         </div>
                         <div class="row py-5">
                             <div class="col-lg-5 m-auto">
-                                <a href="categories.php"><button class="btn3"> BROWSE MORE CATEGORIES</button></a>
+                                <a href="findJob.php"><button class="btn3"> FIND AVAILABLE JOBS</button></a>
                             </div>
                         </div>
                     </div>
