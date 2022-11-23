@@ -78,6 +78,7 @@
                     </select>
                     <select class="form-control" aria-label="Default select example" name="grade">
                         <option selected hidden>Grades</option>
+                        <option value="1">Grade 0</option>
                         <option value="1">Grade 1</option>
                         <option value="2">Grade 2</option>
                         <option value="3">Grade 3</option>

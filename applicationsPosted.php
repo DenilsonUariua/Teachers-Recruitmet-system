@@ -20,6 +20,9 @@
     .card{
         border-radius: 0;
     }
+    body {
+        background-color: lightgray;
+    }
 </style>
 <body>
     <!-- PHP code to import the header/navbar -->

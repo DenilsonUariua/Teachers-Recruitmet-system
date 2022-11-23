@@ -28,7 +28,10 @@
 
     .card:hover {
         transform: scale(1.05);
-        box-shadow: 0px 0 18px 0 rgba(0, 0, 0, 0.9);
+        box-shadow: -3px 4px 21px -2px #fd102b;
+    }
+    body {
+        background-color: lightgray;
     }
 
 </style>

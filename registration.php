@@ -149,7 +149,7 @@ if (isset($_POST['submit'])) {
                 </div>
 
                 <div class="col-md-6 age-field">
-                    <label for="validationServerUsername" class="form-label">Phone number</label>
+                    <label for="validationServerUsername" class="form-label">Phone number <small><i>(081/085/06..)</i></small></label>
                     <div class="input-group ">
                         <input type="number" name="phone_number" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                         <div class="invalid-feedback">
