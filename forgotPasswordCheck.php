@@ -20,7 +20,7 @@ $message = ''; ?>
     <!--Link HTML and CSS file-->
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <title>Login</title>
+    <title>Password Change</title>
 </head>
 <style>
     body {
@@ -44,8 +44,6 @@ $message = ''; ?>
     include_once 'header.php';
     ?>
     <!-- end of navbar -->
-
-
     <!-- Login form -->
     <div class="d-flex justify-content-center pb-5">
         <div class="card align-middle " style="width: 50%;">
@@ -57,43 +55,45 @@ $message = ''; ?>
                 // get the form data
                 $username = $_POST['username'];
                 $phone_number = $_POST['phone_number'];
+                // pass the username in the url
+                $url = "http://localhost/Teachers-Recruitmet-system/changePassword.php?username=" . $username;
                 // check if the username and password are correct
                 $sql = "SELECT * FROM users WHERE username = '$username' AND phone_number = '$phone_number'";
                 $result = mysqli_query($db, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = $result->fetch_assoc()) { ?>
-                        <div class="alert alert-danger text-center" id='alert' role="alert">
-                        The username or phone number is incorrect.
-                    </div>
+                        <script>
+                            setTimeout(function() {
+                                // pass the username in the url
+                                window.location.href = "<?php echo $url ?>";
+                            }, 3000);
+                        </script>
                     <?php
+
                     }
+                    $message = "Success redirecting...";
                 } else {
                     ?>
-                    <!-- alert should disappear after 3 seconds -->
                     <div class="alert alert-danger text-center" id='alert' role="alert">
                         The username or phone number is incorrect.
                     </div>
-                    <script>
-                        setTimeout(function() {
-                            document.getElementById('alert').style.display = 'none';
-                        }, 2500);
-                    </script>
-            <?php }
+            <?php $message = "The username or phone number is incorrect.";
+                }
             }    ?>
 
             <div class="card-body d-flex justify-content-center">
-                <form class="needs-validation" novalidate action="login.php" method="post">
+                <form class="needs-validation" novalidate action="forgotPasswordCheck.php" method="post">
                     <div class="row">
                         <div class="mb-4">
-                            <label for="exampleInputEmail1" class="form-label">Username</label>
+                            <label for="exampleInputEmail1" class="form-label">Username (Enter the username of the account you wish to change the password for)</label>
                             <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
                             <div class="invalid-feedback">
                                 Please enter a username.
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="exampleInputPassword1" class="form-label">Phone number</label>
+                            <label for="exampleInputPassword1" class="form-label">Phone number (Enter phone number associated with username)</label>
                             <input type="text" name="phone_number" class="form-control " id="validationServer01" value="" required />
                             <div class="invalid-feedback">
                                 Please enter a phone number.

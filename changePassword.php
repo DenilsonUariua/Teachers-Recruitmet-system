@@ -1,6 +1,12 @@
 <!-- php code to handle login process -->
 <?php
-$message = ''; ?>
+$message = '';
+// get the username from the url
+$username = $_GET['username'];
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +26,7 @@ $message = ''; ?>
     <!--Link HTML and CSS file-->
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <title>Login</title>
+    <title>Change Password</title>
 </head>
 <style>
     body {
@@ -44,8 +50,6 @@ $message = ''; ?>
     include_once 'header.php';
     ?>
     <!-- end of navbar -->
-
-
     <!-- Login form -->
     <div class="d-flex justify-content-center pb-5">
         <div class="card align-middle " style="width: 50%;">
@@ -55,67 +59,57 @@ $message = ''; ?>
             // check if the form is submitted
             if (isset($_POST['submit'])) {
                 // get the form data
-                $username = $_POST['username'];
-                $phone_number = $_POST['phone_number'];
-                // check if the username and password are correct
-                $sql = "SELECT * FROM users WHERE username = '$username' AND phone_number = '$phone_number'";
+                $password = $_POST['password'];
+                // remove whitespaces from the password
+                $password = trim($password);
+                // update the new password
+                $sql = "UPDATE users SET password = '$password
+                ' WHERE username = '$username'";
                 $result = mysqli_query($db, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        if ($row['status'] == 'blocked') {
-                            $message = 'Blocked account. Contact the administrator...'; ?>
-                            <?php
-                        }
-                        if ($row['role'] == 'Employer') {
-                            if ($row['status'] == 'pending') {
-                                $message = 'The administrator is reviewing your account. Please wait for a while.'; ?>
-
-                            <?php
-                            }
-                        }
-                        if ($row['status'] == 'approved') {
-                            $_SESSION['role'] = $row['role'];
-                            $_SESSION['username'] = $row['username'];
-                            $_SESSION['company'] = $row['school'];
-                            ?>
-                            <script>
-                                window.location.href = "homepage.php"
-                            </script>;
-                    <?php
-                        }
-                    }
-                } else {
-                    ?>
-                    <!-- alert should disappear after 3 seconds -->
-                    <div class="alert alert-danger text-center" id='alert' role="alert">
-                        The username or phone number is incorrect.
-                    </div>
+                echo $result;
+                if ($result > 0) {
+                    $message = "Password changed successfully";
+            ?>
                     <script>
                         setTimeout(function() {
-                            document.getElementById('alert').style.display = 'none';
-                        }, 2500);
+                            window.location.href = 'login.php';
+                        }, 2000);
                     </script>
-            <?php }
+                <?php } else {
+                    $message = "Error changing password. Try again";
+                }
+                ?>
+                <!-- alert should disappear after 3 seconds -->
+                <div class="alert alert-danger text-center" id='alert' role="alert">
+                    The username or phone number is incorrect.
+                </div>
+                <script>
+                    setTimeout(function() {
+                        document.getElementById('alert').style.display = 'none';
+                    }, 2500);
+                </script>
+            <?php
             }    ?>
 
             <div class="card-body d-flex justify-content-center">
-                <form class="needs-validation" novalidate action="login.php" method="post">
+                <!-- get the url -->
+
+                <form class="needs-validation" novalidate action="changePassword.php?username=<?php echo $username; ?>" method="post">
                     <div class="row">
                         <div class="mb-4">
                             <label for="exampleInputEmail1" class="form-label">New password</label>
-                            <input type="text" name="username" class="form-control " id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
+                            <input type="password" name="password" class="form-control " id="validationServer01" required />
                             <div class="invalid-feedback">
-                                Please enter a username.
+                                Please enter a password.
                             </div>
                         </div>
                         <div class="mb-4">
                             <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-                            <input type="text" name="phone_number" class="form-control " id="validationServer01" value="" required />
+                            <input type="password" name="confirmPassword" class="form-control " id="validationServer01" value="" required />
                             <div class="invalid-feedback">
-                                Please enter a phone number.
+                                Please confirm password.
                             </div>
-                            <button type="submit" name="submit" id="submit" class="btn btn-danger my-3">Proceed to change password</button>
+                            <button type="submit" name="submit" id="submit" class="btn btn-danger my-3">Change Password</button>
                         </div>
                     </div>
                 </form>
