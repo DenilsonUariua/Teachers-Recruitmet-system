@@ -103,6 +103,7 @@ $message = ''; ?>
                         }
                     }
                 } else {
+                    $message = 'Invalid username or password...';
                     ?>
                     <!-- alert should disappear after 3 seconds -->
                     <div class="alert alert-danger text-center" id='alert' role="alert">

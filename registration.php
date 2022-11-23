@@ -62,8 +62,8 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <!-- add logo to the browser tab -->
-     <link rel="icon" href="./images/eduhirelogo.png" />
+    <!-- add logo to the browser tab -->
+    <link rel="icon" href="./images/eduhirelogo.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <!--Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -276,23 +276,23 @@ if (isset($_POST['submit'])) {
                 document.querySelector(".age-field").classList.add("col-md-6");
             }
         }
-        (() => {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
+        <?php
+        if (isset($_POST['submit'])) { ?>
+                (() => {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    const forms = document.querySelectorAll('.needs-validation')
+                    // Loop over them and prevent submission
+                    Array.from(forms).forEach(form => {
+                        form.addEventListener('submit', event => {
+                            if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                            }
+                            form.classList.add('was-validated')
+                        }, false)
+                    })
+                })()
+        <?php } ?>
     </script>
 </body>
 

@@ -3,8 +3,6 @@
 $message = '';
 // get the username from the url
 $username = $_GET['username'];
-
-
 ?>
 
 
@@ -66,7 +64,6 @@ $username = $_GET['username'];
                 $sql = "UPDATE users SET password = '$password
                 ' WHERE username = '$username'";
                 $result = mysqli_query($db, $sql);
-                echo $result;
                 if ($result > 0) {
                     $message = "Password changed successfully";
             ?>
@@ -76,9 +73,7 @@ $username = $_GET['username'];
                         }, 2000);
                     </script>
                 <?php } else {
-                    $message = "Error changing password. Try again";
-                }
-                ?>
+                    $message = "Error changing password. Try again"; ?>
                 <!-- alert should disappear after 3 seconds -->
                 <div class="alert alert-danger text-center" id='alert' role="alert">
                     The username or phone number is incorrect.
@@ -86,9 +81,11 @@ $username = $_GET['username'];
                 <script>
                     setTimeout(function() {
                         document.getElementById('alert').style.display = 'none';
-                    }, 2500);
+                    }, 3000);
                 </script>
             <?php
+                }
+               
             }    ?>
 
             <div class="card-body d-flex justify-content-center">
@@ -98,10 +95,10 @@ $username = $_GET['username'];
                     <div class="row">
                         <div class="mb-4">
                             <label for="exampleInputEmail1" class="form-label">New password</label>
-                            <input type="password" name="password" class="form-control " id="validationServer01" required />
-                            <div class="invalid-feedback">
-                                Please enter a password.
-                            </div>
+                            <input type="password" name="password" class="form-control " id="password" value="" required />
+                    <div class="invalid-feedback" id='password-error'>
+                        Please enter a password.
+                    </div>
                         </div>
                         <div class="mb-4">
                             <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
