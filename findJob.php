@@ -96,8 +96,8 @@
             <select class="form-control" aria-label="Default select example" name="jobType">
                 <option selected hidden>Click to Select Job Type</option>
                 <option value="internship">Internship</option>
-                <option value="volunteer">Volunteer</option>
-                <option value="permanent">Permanent</option>
+                <option value="volunteer">Permanent</option>
+                <option value="permanent">Temporary</option>
             </select>
             <button class="btn2" name="submit">Find Job</button>
         </form>
