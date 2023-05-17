@@ -20,7 +20,7 @@ include_once 'dbConfig.php';
                                         }
                                         ?>" style="display: flex; align-items: center;">
             <img src="./images/eduhirelogo.png" width="45" height="43" alt="logo">
-            NamEduJobs
+            EduJobs
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

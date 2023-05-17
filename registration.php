@@ -171,7 +171,7 @@ if (isset($_POST['submit'])) {
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <img src="./images/eduhirelogo.png" class="rounded me-2" alt="..." style="height: 20px; width: 20px;">
-                <strong class="me-auto">NamEduHire</strong>
+                <strong class="me-auto">EduHire</strong>
                 <small><?php
                         echo date("h:i:sa");
                         ?></small>
